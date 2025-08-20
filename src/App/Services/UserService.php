@@ -89,7 +89,7 @@ class UserService
             $params['secure'],
             $params['httponly']
         );
-        redirectTo('/index');
+        //redirectTo('/');
     }
 
     public function getUserBalance() : array
