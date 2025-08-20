@@ -27,6 +27,7 @@ function registerRoutes(App $app)
     //$app->get('/login', [AuthController::class, 'loginView'])->add(GuestOnlyMiddleware::class);
     //$app->post('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
     //$app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
+
     //$app->get('/transaction', [TransactionController::class, 'createView'])->add(AuthRequiredMiddleware::class);
     //$app->post('/transaction', [TransactionController::class, 'create'])->add(AuthRequiredMiddleware::class);
     //$app->get('/transaction/{transaction}', [TransactionController::class, 'editView'])->add(AuthRequiredMiddleware::class);
@@ -46,5 +47,7 @@ function registerRoutes(App $app)
     $app->post('/register', [AuthController::class, 'register'])->add(GuestOnlyMiddleware::class);
     $app->get('/main', [MainController::class, 'mainView'])->add(AuthRequiredMiddleware::class);
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
+    $app->get('/addExpense', [TransactionController::class, 'addExpenseView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/addExpense', [TransactionController::class, 'addExpense'])->add(AuthRequiredMiddleware::class);
 
 }

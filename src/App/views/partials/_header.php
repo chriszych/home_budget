@@ -27,20 +27,20 @@
 
         <?php if(isset($_SESSION['user'])) : ?>
           <div class="collapse navbar-collapse d-lg-flex" id="buttonNavbar">
-            <a href="#"><i class="fa-solid fa-house-chimney" style="color: #2861c3;"></i></a>
-            <h1><a class="navbar-brand col-lg-3 me-0" href="#">&nbsp;Budżet online</a></h1>
+            <a href="/"><i class="fa-solid fa-house-chimney" style="color: #2861c3;"></i></a>
+            <h1><a class="navbar-brand col-lg-3 me-0" href="/">&nbsp;Budżet online</a></h1>
             <ul class="navbar-nav col-lg-9 justify-content-lg-end">
 
               <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./addExpense.php">Nowy wydatek</a>
+                <a class="btn btn-lg btn-outline-primary m-1" href="./addExpense">Nowy wydatek</a>
               </li>
 
               <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./addIncome.php">Nowy przychód</a>
+                <a class="btn btn-lg btn-outline-primary m-1" href="./addIncome">Nowy przychód</a>
               </li>
 
               <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./bilans.php">Aktualny bilans</a>
+                <a class="btn btn-lg btn-outline-primary m-1" href="./bilans">Aktualny bilans</a>
               </li>              
 
               <li class="nav-item">

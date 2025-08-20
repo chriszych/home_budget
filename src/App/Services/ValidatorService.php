@@ -65,4 +65,15 @@ class ValidatorService
         ]);
     }
 
+    public function validateExpense(array $formData) 
+    {
+        $this->validator->validate($formData, [
+            'description' => ['required', 'lengthMax:255'],
+            'amount' => ['required', 'numeric'],
+            'category' => ['required'],
+            'paymentMethod' => ['required'],
+            'date' => ['required', 'dateFormat:Y-m-d H:i:s']
+        ]);
+    }
+
 }   

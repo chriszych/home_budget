@@ -67,4 +67,19 @@ class TransactionController
     $this->transactionService->delete((int)$params['transaction']);
     redirectTo('/');
   }
+
+  public function addExpenseView()
+  {
+    echo $this->view->render("transactions/addExpense.php");
+  }
+
+  public function addExpense() 
+  {
+    $this->validatorService->validateExpense($_POST);
+
+    //$this->transactionService->create($_POST);
+
+    redirectTo('/');
+  }
+
 }

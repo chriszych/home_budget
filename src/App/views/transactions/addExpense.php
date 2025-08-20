@@ -1,4 +1,6 @@
+
 <?php
+/*
 	session_start();
 	if(!isset($_SESSION['logged_id'])){
 		header('Location: login.php');
@@ -30,10 +32,10 @@
 		} else {
 			$wrong_payment = $_SESSION['wrong_payment'];
 		}
-		
+		*/
 		$now = date('Y-m-d\TH:i');
 		$nextYear = date('Y-m-d\TH:i', strtotime('+1 year'));
-		
+		/*
 		require_once 'database.php';
 		
 		$payQuery = $db->prepare("SELECT id_user_pay_met, pay_met_name FROM payment_user_method WHERE id_user = :user");
@@ -46,9 +48,10 @@
 		$expQuery->execute();
 		$expCat = $expQuery->fetchAll(PDO::FETCH_ASSOC);
 
-	}
+	}*/
 ?>
 
+<!--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,8 +72,9 @@
 
 
     <nav id="navBar">
+    -->
     <!-- navBar -->
-
+<!--
       <div class="navbar navbar-expand-lg bg-body-tertiary rounded">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#buttonNavbar" aria-controls="buttonNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,7 +112,9 @@
 
     </nav>
 
-  
+  -->
+  <?php include $this->resolve("partials/_header.php"); ?>
+
   <!-- mainPageContent -->
   <section id="mainPageContent">
 
@@ -121,18 +127,20 @@
         </div>
         
         <div class="p-5 py-0">
-          <form method="post" action="insertNewExpense.php">
+          <!--<form method="POST" action="insertNewExpense.php">-->
+           <form method="POST">
+          <?php include $this->resolve("partials/_csrf.php"); ?>
             <div class="form-floating mb-3">
               <input type="number" id="registerFloatingInput" placeholder="kwota w PLN" step="0.01" min="0.01" max="99999999.99" name="amount" class="form-control rounded-3 <?= (($wrong_amount == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_amount']) ? 'value="'.$_SESSION['form_amount'].'"' : '' ?>>
               <label for="registerFloatingInput">Kwota w PLN:</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="datetime-local" id="registerFloatingLogin" min="2000-01-01T00:00" max="<?php echo $nextYear;?>" placeholder="<?php echo $now; ?>" name="datetime" class="form-control rounded-3 <?= (($wrong_date == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_datetime']) ? 'value="'.$_SESSION['form_datetime'].'"' : 'value="'.$now.'"' ?>>
+              <input type="datetime-local" id="registerFloatingLogin" min="2000-01-01T00:00" max="<?php echo $nextYear;?>" placeholder="<?php echo $now; ?>" name="date" class="form-control rounded-3 <?= (($wrong_date == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_datetime']) ? 'value="'.$_SESSION['form_datetime'].'"' : 'value="'.$now.'"' ?>>
               <label for="registerFloatingLogin">Data:</label>
             </div>
 
             <div class="form-floating mb-3">    
-              <select id="expensePaymentMethod" name="payment" class="form-control rounded-3 <?= (($wrong_payment == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_payment']) ? 'value="'.$_SESSION['form_payment'].'"' : '' ?>>
+              <select id="expensePaymentMethod" name="paymentMethod" class="form-control rounded-3 <?= (($wrong_payment == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_payment']) ? 'value="'.$_SESSION['form_payment'].'"' : '' ?>>
                 <option disabled selected>Wybierz sposób płatności...</option>
 				
 				<?php foreach ($userPay as $row): ?> 
@@ -167,7 +175,8 @@
               <label for="expenseComment">Komentarz:</label>
 			  
 			  	<p class="text-danger fw-bold">
-			 <?php 
+      <!--
+			 <//?php 
 				if (isset($_SESSION['error'])){
 					echo $_SESSION['error'];
 					unset($_SESSION['error']);
@@ -184,6 +193,7 @@
 				 unset($_SESSION['wrong_category']);
 				 unset($_SESSION['wrong_payment']);
 				?>
+        -->
 				</p>
 			  
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -194,7 +204,9 @@
  
   </section>
   
-  <!-- Footer -->
+  <?php include $this->resolve("partials/_footer.php"); ?>
+
+  <!-- Footer 
   <footer id="footer">
     <div class="footer container ">
       <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -217,3 +229,4 @@
 </body>
 
 </html>
+-->
