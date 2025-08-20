@@ -109,4 +109,25 @@ class TransactionService
             ]
         );
     }
+
+    public function getUserExpensePayment() : array
+    {
+        $userExpenseCategories =  $this->db->query("",[]);
+        //$userIncomeCategories = $this->db->query("",[]);
+        $userPaymentMethods = $this->db->query("",[]);
+
+       /*
+       	$payQuery = $db->prepare("SELECT id_user_pay_met, pay_met_name FROM payment_user_method WHERE id_user = :user");
+		$payQuery->bindValue(':user', $_SESSION['logged_id'], PDO::PARAM_STR);
+		$payQuery->execute();
+		$userPay = $payQuery->fetchAll(PDO::FETCH_ASSOC);
+		
+		$expQuery = $db->prepare("SELECT id_exp_user_cat, exp_cat_name FROM expense_user_category WHERE id_user = :user");
+		$expQuery->bindValue(':user', $_SESSION['logged_id'], PDO::PARAM_STR);
+		$expQuery->execute();
+		$expCat = $expQuery->fetchAll(PDO::FETCH_ASSOC);
+       */
+
+        return [$userExpenseCategories, $userPaymentMethods];
+    }
 }

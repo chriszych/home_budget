@@ -59,8 +59,6 @@ class UserService
                 ]
         )->find();
 
-        //dd($newUserId);
-
 
          $this->db->query(
             "INSERT INTO expense_user_category (exp_cat_name, id_user) 
@@ -88,27 +86,6 @@ class UserService
             ]
         );
         
-        //utworzyć / przypisać tutaj nowo utworzonemu uzytkownikowi domyslne metody płatnosci + kategorie przychodów i wydatków
-        /*
-        	$preQuery = $db->prepare("SELECT id_user FROM users WHERE user_email = :email");
-			$preQuery->bindValue(':email', $email, PDO::PARAM_STR);
-			$preQuery->execute();
-			$result = $preQuery->fetch();
-			
-			$query = $db->prepare('INSERT INTO expense_user_category (exp_cat_name, id_user) SELECT exp_cat_name, :user_id FROM default_expense_category');
-			$query->bindValue(':user_id', $result['id_user'], PDO::PARAM_STR);
-			$query->execute();
-			
-			$query = $db->prepare('INSERT INTO income_user_category (inc_cat_name, id_user) SELECT inc_cat_name, :user_id FROM default_income_category');
-			$query->bindValue(':user_id', $result['id_user'], PDO::PARAM_STR);
-			$query->execute();
-			
-			$query = $db->prepare('INSERT INTO payment_user_method (pay_met_name, id_user) SELECT pay_met_name, :user_id FROM default_payment_method');
-			$query->bindValue(':user_id', $result['id_user'], PDO::PARAM_STR);
-			$query->execute();
-        */
-
-
         $_SESSION['welcomeText'] = "Konto utworzone! Możesz już się zalogować:";
     }
 

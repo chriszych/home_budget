@@ -70,7 +70,10 @@ class TransactionController
 
   public function addExpenseView()
   {
-    echo $this->view->render("transactions/addExpense.php");
+    
+    $params = $this->transactionService->getUserExpensePayment();  
+
+    echo $this->view->render("transactions/addExpense.php", $params);
   }
 
   public function addExpense() 
