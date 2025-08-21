@@ -140,6 +140,9 @@ class TransactionService
 		$expCat = $expQuery->fetchAll(PDO::FETCH_ASSOC);
        */
 
-        return [$userExpenseCategories, $userPaymentMethods];
+        return [
+            'expenseCategories' => $userExpenseCategories, 
+            'paymentsMethods' => $userPaymentMethods
+            ];
     }
 }

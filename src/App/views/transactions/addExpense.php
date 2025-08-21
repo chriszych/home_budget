@@ -117,6 +117,14 @@
 
   <!-- mainPageContent -->
   <section id="mainPageContent">
+   <? 
+
+  //dd($paymentsMethods);
+
+   //foreach ($paymentsMethods as $paymentsMethod):
+   //echo ($paymentsMethod['pay_met_name']);
+   //endforeach; 
+   ?>
 
     <section class="py-3 col-12 col-md-8 col-lg-5 text-center container">
  <!-- Subpage AddExpense -->
@@ -151,11 +159,10 @@
 				<php endforeach; ?>
         -->
       
-        <?php foreach ($params as $row): ?> 
-				<option value="<?php echo $row['id_user_pay_met']; ?>" 
+        <?php foreach ($paymentsMethods as $paymentsMethod): ?> 
+				<option value="<?php echo $paymentsMethod['id_user_pay_met']; ?>" 
 				<?= (isset($_SESSION['form_payment']) && $_SESSION['form_payment'] == $row['id_user_pay_met']) ? 'selected' : '' ?>>
-				<?php echo $row['pay_met_name']; ?>
-          <?php dd($params)?>
+				<?php echo $paymentsMethod['pay_met_name']; ?>
 				 </option> 
 				<?php endforeach; ?>
 				
@@ -167,10 +174,10 @@
               <select id="expenseCategory" name="category" class="form-control rounded-3 <?= (($wrong_category == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_category']) ? 'value="'.$_SESSION['form_category'].'"' : '' ?>>
                 <option disabled selected>Wybierz kategorię...</option>
 				
-				<?php foreach ($expCat as $row): ?> 
-				<option value="<?php echo $row['id_exp_user_cat']; ?>" 
+				<?php foreach ($expenseCategories as $expenseCategory): ?> 
+				<option value="<?php echo $expenseCategory['id_exp_user_cat']; ?>" 
 				<?= (isset($_SESSION['form_category']) && $_SESSION['form_category'] == $row['id_exp_user_cat']) ? 'selected' : '' ?>>
-				<?php echo $row['exp_cat_name']; ?>
+				<?php echo $expenseCategory['exp_cat_name']; ?>
 				 </option> 
 				<?php endforeach; ?>
 				
