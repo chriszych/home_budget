@@ -110,11 +110,23 @@ class TransactionService
         );
     }
 
-    public function getUserExpensePayment() : array
+    public function getUserExpensePayment(int $id) : array
     {
-        $userExpenseCategories =  $this->db->query("",[]);
+        $userExpenseCategories =  $this->db->query(
+            "SELECT id_exp_user_cat, exp_cat_name 
+            FROM expense_user_category 
+            WHERE id_user = :user",
+            [
+                'user' => $id
+            ])->findAll();
         //$userIncomeCategories = $this->db->query("",[]);
-        $userPaymentMethods = $this->db->query("",[]);
+        $userPaymentMethods = $this->db->query(
+            "SELECT id_user_pay_met, pay_met_name 
+            FROM payment_user_method 
+            WHERE id_user = :user",
+            [
+                'user' => $id
+            ])->findAll();
 
        /*
        	$payQuery = $db->prepare("SELECT id_user_pay_met, pay_met_name FROM payment_user_method WHERE id_user = :user");

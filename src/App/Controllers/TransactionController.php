@@ -71,7 +71,9 @@ class TransactionController
   public function addExpenseView()
   {
     
-    $params = $this->transactionService->getUserExpensePayment();  
+    $params = $this->transactionService->getUserExpensePayment((int)$_SESSION['user']);  
+
+    //dd($params);
 
     echo $this->view->render("transactions/addExpense.php", $params);
   }
@@ -79,6 +81,7 @@ class TransactionController
   public function addExpense() 
   {
     $this->validatorService->validateExpense($_POST);
+    //$this->transactionService->getUserExpensePayment($id);
 
     //$this->transactionService->create($_POST);
 

@@ -143,10 +143,19 @@
               <select id="expensePaymentMethod" name="paymentMethod" class="form-control rounded-3 <?= (($wrong_payment == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_payment']) ? 'value="'.$_SESSION['form_payment'].'"' : '' ?>>
                 <option disabled selected>Wybierz sposób płatności...</option>
 				
-				<?php foreach ($userPay as $row): ?> 
+				<!--<hp foreach ($userPay as $row): ?> -->
+				<!--<option value="<php echo $row['id_user_pay_met']; ?>" 
+				<= (isset($_SESSION['form_payment']) && $_SESSION['form_payment'] == $row['id_user_pay_met']) ? 'selected' : '' ?>>
+				<php echo $row['pay_met_name']; ?>
+				 </option> 
+				<php endforeach; ?>
+        -->
+      
+        <?php foreach ($params as $row): ?> 
 				<option value="<?php echo $row['id_user_pay_met']; ?>" 
 				<?= (isset($_SESSION['form_payment']) && $_SESSION['form_payment'] == $row['id_user_pay_met']) ? 'selected' : '' ?>>
 				<?php echo $row['pay_met_name']; ?>
+          <?php dd($params)?>
 				 </option> 
 				<?php endforeach; ?>
 				
