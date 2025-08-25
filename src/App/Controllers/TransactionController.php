@@ -80,12 +80,20 @@ class TransactionController
 
   public function addExpense() 
   {
+
+        //$this->validatorService->validateRegister($_POST);
+        //$this->userService->isEmailTaken($_POST['email']);
+        //this->userService->create($_POST);
+
+        //redirectTo('/login');
+
     $this->validatorService->validateExpense($_POST);
+    //dd($_POST);
     //$this->transactionService->getUserExpensePayment($id);
 
     //$this->transactionService->create($_POST);
 
-    redirectTo('/');
+    redirectTo('/addExpence');
   }
 
 }

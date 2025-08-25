@@ -25,7 +25,7 @@ class Validator
                 $ruleParams = [];
 
                 if(str_contains($rule, ':')){
-                    [$rule, $ruleParams] = explode(':', $rule);
+                    [$rule, $ruleParams] = explode(':', $rule, 2);
                     $ruleParams = explode(',', $ruleParams);
                 }
 

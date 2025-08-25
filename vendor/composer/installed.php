@@ -3,7 +3,7 @@
         'name' => 'kriss/phpiggy',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b42abc570954506a3a40437433ccfe142476f303',
+        'reference' => '9e3b895235e5b1c75c390125129d0972b8a53d95',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'kriss/phpiggy' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b42abc570954506a3a40437433ccfe142476f303',
+            'reference' => '9e3b895235e5b1c75c390125129d0972b8a53d95',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,5 +1,5 @@
 {
-    "name": "kriss/phpiggy",
+    "name": "kriss/home_budget",
     "description": "A PHP application for tracking expenses.",
     "type": "project",
     "authors": [
@@ -22,6 +22,6 @@
         ]
     },
     "scripts":{
-        "phpiggy": "php cli.php"
+        "home_budget": "php cli.php"
     }
 }

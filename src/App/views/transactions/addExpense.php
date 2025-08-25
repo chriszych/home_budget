@@ -136,16 +136,30 @@
         
         <div class="p-5 py-0">
           <!--<form method="POST" action="insertNewExpense.php">-->
-           <form method="POST">
+           <form method="POST" action="/addExpense">
           <?php include $this->resolve("partials/_csrf.php"); ?>
             <div class="form-floating mb-3">
-              <input type="number" id="registerFloatingInput" placeholder="kwota w PLN" step="0.01" min="0.01" max="99999999.99" name="amount" class="form-control rounded-3 <?= (($wrong_amount == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_amount']) ? 'value="'.$_SESSION['form_amount'].'"' : '' ?>>
+              <!--<input type="text" class="form-control rounded-3 <?= (array_key_exists('lastname', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="surename" name="lastname" value="<?php echo e($oldFormData['lastname'] ?? ''); ?>">-->
+              <input type="number" id="registerFloatingInput" placeholder="kwota w PLN" step="0.01" min="0.01" max="99999999.99" name="amount" class="form-control rounded-3 <?= (array_key_exists('amount', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="amount" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>">
               <label for="registerFloatingInput">Kwota w PLN:</label>
             </div>
+
+          <?php if(array_key_exists('amount', $errors)) : ?>
+            <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
+                <?php echo e($errors['amount'][0]); ?>
+            </div>
+          <?php endif;?>
+
             <div class="form-floating mb-3">
-              <input type="datetime-local" id="registerFloatingLogin" min="2000-01-01T00:00" max="<?php echo $nextYear;?>" placeholder="<?php echo $now; ?>" name="date" class="form-control rounded-3 <?= (($wrong_date == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_datetime']) ? 'value="'.$_SESSION['form_datetime'].'"' : 'value="'.$now.'"' ?>>
+              <input type="datetime-local" id="registerFloatingLogin" min="2000-01-01T00:00" max="<?php echo $nextYear;?>" placeholder="<?php echo $now; ?>" name="date" class="form-control rounded-3 <?= (array_key_exists('date', $errors)) ? 'border-danger':''?>" value="<?php echo e($oldFormData['date'] ?? $now); ?>">
               <label for="registerFloatingLogin">Data:</label>
             </div>
+
+          <?php if(array_key_exists('date', $errors)) : ?>
+            <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
+              <?php echo e($errors['date'][0]); ?>
+            </div>
+          <?php endif;?>
 
             <div class="form-floating mb-3">    
               <select id="expensePaymentMethod" name="paymentMethod" class="form-control rounded-3 <?= (($wrong_payment == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_payment']) ? 'value="'.$_SESSION['form_payment'].'"' : '' ?>>
@@ -170,6 +184,12 @@
               <label for="expensePaymentMethod">Sposób płatności:</label>
             </div>
 
+            <?php if(array_key_exists('paymentMethod', $errors)) : ?>
+            <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
+              <?php echo e($errors['paymentMethod'][0]); ?>
+            </div>
+          <?php endif;?>
+
             <div class="form-floating form-group mb-3">
               <select id="expenseCategory" name="category" class="form-control rounded-3 <?= (($wrong_category == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_category']) ? 'value="'.$_SESSION['form_category'].'"' : '' ?>>
                 <option disabled selected>Wybierz kategorię...</option>
@@ -185,13 +205,27 @@
               <label for="expenseCategory">Kategoria:</label>
             </div>
 
+            <?php if(array_key_exists('category', $errors)) : ?>
+            <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
+              <?php echo e($errors['category'][0]); ?>
+            </div>
+          <?php endif;?>
+
             <div class="form-floating mb-3">
 			  <textarea id="expenseComment" name="comment" rows="2" cols="30" placeholder="dodaj komentarz (opcja)" class="form-control rounded-3"><?= isset($_SESSION['form_comment']) ? $_SESSION['form_comment'] : '' ?></textarea>
               <br><br>
               <label for="expenseComment">Komentarz:</label>
-			  
+            </div>
+
+            <?php if(array_key_exists('comment', $errors)) : ?>
+            <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
+              <?php echo e($errors['comment'][0]); ?>
+            </div>
+          <?php endif;?>
+            
+			  <!--
 			  	<p class="text-danger fw-bold">
-      <!--
+      
 			 <//?php 
 				if (isset($_SESSION['error'])){
 					echo $_SESSION['error'];
@@ -209,12 +243,13 @@
 				 unset($_SESSION['wrong_category']);
 				 unset($_SESSION['wrong_payment']);
 				?>
-        -->
+        
 				</p>
+            -->
 			  
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 mb-md-5 mt-1 mt-md-3" type="submit">Dodaj</button>
-            <a href="./main.php" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 mb-md-5 mt-1 mt-md-3" role="button">Anuluj</a>
+            <a href="./" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 mb-md-5 mt-1 mt-md-3" role="button">Anuluj</a>
           </form>
         </div>
  
