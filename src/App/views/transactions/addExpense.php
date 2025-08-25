@@ -139,7 +139,7 @@
            <form method="POST" action="/addExpense">
           <?php include $this->resolve("partials/_csrf.php"); ?>
             <div class="form-floating mb-3">
-              <!--<input type="text" class="form-control rounded-3 <?= (array_key_exists('lastname', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="surename" name="lastname" value="<?php echo e($oldFormData['lastname'] ?? ''); ?>">-->
+              <!--<input type="text" class="form-control rounded-3 <= (array_key_exists('lastname', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="surename" name="lastname" value="<?php echo e($oldFormData['lastname'] ?? ''); ?>">-->
               <input type="number" id="registerFloatingInput" placeholder="kwota w PLN" step="0.01" min="0.01" max="99999999.99" name="amount" class="form-control rounded-3 <?= (array_key_exists('amount', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="amount" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>">
               <label for="registerFloatingInput">Kwota w PLN:</label>
             </div>
@@ -162,7 +162,7 @@
           <?php endif;?>
 
             <div class="form-floating mb-3">    
-              <select id="expensePaymentMethod" name="paymentMethod" class="form-control rounded-3 <?= (($wrong_payment == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_payment']) ? 'value="'.$_SESSION['form_payment'].'"' : '' ?>>
+              <select id="expensePaymentMethod" name="paymentMethod" class="form-control rounded-3 <?= (array_key_exists('paymentMethod', $errors)) ? 'border-danger':''?>">
                 <option disabled selected>Wybierz sposób płatności...</option>
 				
 				<!--<hp foreach ($userPay as $row): ?> -->
@@ -175,7 +175,7 @@
       
         <?php foreach ($paymentsMethods as $paymentsMethod): ?> 
 				<option value="<?php echo $paymentsMethod['id_user_pay_met']; ?>" 
-				<?= (isset($_SESSION['form_payment']) && $_SESSION['form_payment'] == $row['id_user_pay_met']) ? 'selected' : '' ?>>
+				<?= (isset($oldFormData['paymentMethod']) && $oldFormData['paymentMethod'] == $paymentsMethod['id_user_pay_met']) ? 'selected' : '' ?>>
 				<?php echo $paymentsMethod['pay_met_name']; ?>
 				 </option> 
 				<?php endforeach; ?>
@@ -191,12 +191,12 @@
           <?php endif;?>
 
             <div class="form-floating form-group mb-3">
-              <select id="expenseCategory" name="category" class="form-control rounded-3 <?= (($wrong_category == 1)&&($initial_state == 1)) ? 'border-danger':''?>" <?= isset($_SESSION['form_category']) ? 'value="'.$_SESSION['form_category'].'"' : '' ?>>
+              <select id="expenseCategory" name="category" class="form-control rounded-3 <?= (array_key_exists('category', $errors)) ? 'border-danger':''?>">
                 <option disabled selected>Wybierz kategorię...</option>
 				
 				<?php foreach ($expenseCategories as $expenseCategory): ?> 
 				<option value="<?php echo $expenseCategory['id_exp_user_cat']; ?>" 
-				<?= (isset($_SESSION['form_category']) && $_SESSION['form_category'] == $row['id_exp_user_cat']) ? 'selected' : '' ?>>
+				<?= (isset($oldFormData['category']) && $oldFormData['category'] == $expenseCategory['id_exp_user_cat']) ? 'selected' : '' ?>>
 				<?php echo $expenseCategory['exp_cat_name']; ?>
 				 </option> 
 				<?php endforeach; ?>
@@ -212,8 +212,7 @@
           <?php endif;?>
 
             <div class="form-floating mb-3">
-			  <textarea id="expenseComment" name="comment" rows="2" cols="30" placeholder="dodaj komentarz (opcja)" class="form-control rounded-3"><?= isset($_SESSION['form_comment']) ? $_SESSION['form_comment'] : '' ?></textarea>
-              <br><br>
+			  <textarea id="expenseComment" name="comment" rows="2" cols="30" placeholder="dodaj komentarz (opcja)" class="form-control rounded-3 <?= (array_key_exists('comment', $errors)) ? 'border-danger':''?>"><?= isset($oldFormData['comment']) ? $oldFormData['comment'] : '' ?></textarea>
               <label for="expenseComment">Komentarz:</label>
             </div>
 
