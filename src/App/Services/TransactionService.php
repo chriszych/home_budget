@@ -134,7 +134,7 @@ class TransactionService
             ];
     }
 
-        public function insertExpense(array $formData)
+    public function insertExpense(array $formData)
     {
         $formattedDate = "{$formData['date']} :00";
 
@@ -150,6 +150,38 @@ class TransactionService
                 'comment' => $formData['comment']
             ]
         );
+    }
 
+    public function getUserIncomeCategory(int $id) : array
+    {
+        $userIncomeCategories =  $this->db->query(
+            "SELECT id_inc_user_cat, inc_cat_name 
+            FROM income_user_category 
+            WHERE id_user = :user",
+            [
+                'user' => $id
+            ])->findAll();
+
+
+        return [
+            'incomeCategories' => $userIncomeCategories, 
+            ];
+    }
+
+    public function insertIncome(array $formData)
+    {
+        $formattedDate = "{$formData['date']} :00";
+
+        $this->db->query(
+            "INSERT INTO income(id_user, inc_date, id_inc_cat, inc_amount, inc_comment)
+            VALUES(:user_id, :datetime, :categoryId, :amount, :comment)",
+            [
+                'user_id' => $_SESSION['user'],
+                'datetime' => $formattedDate,
+                'categoryId' => $formData['category'],
+                'amount' => $formData['amount'],
+                'comment' => $formData['comment']
+            ]
+        );
     }
 }

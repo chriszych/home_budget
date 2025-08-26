@@ -85,4 +85,20 @@ class TransactionController
     redirectTo('/addExpense');
   }
 
+  public function addIncomeView()
+  {
+    $params = $this->transactionService->getUserIncomeCategory((int)$_SESSION['user']);  
+
+    echo $this->view->render("transactions/addIncome.php", $params);
+  }
+
+    public function addIncome()
+    {
+    $this->validatorService->validateIncome($_POST);
+
+    $this->transactionService->insertIncome($_POST);
+
+    redirectTo('/addIncome');
+    }
+
 }
