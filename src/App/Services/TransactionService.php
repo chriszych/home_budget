@@ -119,7 +119,7 @@ class TransactionService
             [
                 'user' => $id
             ])->findAll();
-        //$userIncomeCategories = $this->db->query("",[]);
+
         $userPaymentMethods = $this->db->query(
             "SELECT id_user_pay_met, pay_met_name 
             FROM payment_user_method 
@@ -128,21 +128,28 @@ class TransactionService
                 'user' => $id
             ])->findAll();
 
-       /*
-       	$payQuery = $db->prepare("SELECT id_user_pay_met, pay_met_name FROM payment_user_method WHERE id_user = :user");
-		$payQuery->bindValue(':user', $_SESSION['logged_id'], PDO::PARAM_STR);
-		$payQuery->execute();
-		$userPay = $payQuery->fetchAll(PDO::FETCH_ASSOC);
-		
-		$expQuery = $db->prepare("SELECT id_exp_user_cat, exp_cat_name FROM expense_user_category WHERE id_user = :user");
-		$expQuery->bindValue(':user', $_SESSION['logged_id'], PDO::PARAM_STR);
-		$expQuery->execute();
-		$expCat = $expQuery->fetchAll(PDO::FETCH_ASSOC);
-       */
-
         return [
             'expenseCategories' => $userExpenseCategories, 
             'paymentsMethods' => $userPaymentMethods
             ];
+    }
+
+        public function insertExpense(array $formData)
+    {
+        $formattedDate = "{$formData['date']} :00";
+
+        $this->db->query(
+            "INSERT INTO expense(id_user, exp_date, id_exp_cat, exp_amount, id_pay_met, exp_comment)
+            VALUES(:user_id, :datetime, :categoryId, :amount, :paymentMethod, :comment)",
+            [
+                'user_id' => $_SESSION['user'],
+                'datetime' => $formattedDate,
+                'categoryId' => $formData['category'],
+                'amount' => $formData['amount'],
+                'paymentMethod' => $formData['paymentMethod'],
+                'comment' => $formData['comment']
+            ]
+        );
+
     }
 }

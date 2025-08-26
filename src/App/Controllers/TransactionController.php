@@ -73,27 +73,16 @@ class TransactionController
     
     $params = $this->transactionService->getUserExpensePayment((int)$_SESSION['user']);  
 
-    //dd($params);
-
     echo $this->view->render("transactions/addExpense.php", $params);
   }
 
   public function addExpense() 
   {
-
-        //$this->validatorService->validateRegister($_POST);
-        //$this->userService->isEmailTaken($_POST['email']);
-        //this->userService->create($_POST);
-
-        //redirectTo('/login');
-
     $this->validatorService->validateExpense($_POST);
-    //dd($_POST);
-    //$this->transactionService->getUserExpensePayment($id);
 
-    //$this->transactionService->create($_POST);
+    $this->transactionService->insertExpense($_POST);
 
-    redirectTo('/addExpence');
+    redirectTo('/addExpense');
   }
 
 }

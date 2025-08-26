@@ -87,7 +87,10 @@
           <?php endif;?>
 
             <div class="form-floating mb-3">
-			  <textarea id="expenseComment" name="comment" rows="2" cols="30" placeholder="dodaj komentarz (opcja)" class="form-control rounded-3 <?= (array_key_exists('comment', $errors)) ? 'border-danger':''?>"><?= isset($oldFormData['comment']) ? $oldFormData['comment'] : '' ?></textarea>
+			  <textarea id="expenseComment" name="comment" 
+        rows="2" cols="30" placeholder="dodaj komentarz (opcja)" 
+        class="form-control rounded-3 <?= (array_key_exists('comment', $errors)) ? 'border-danger':''?>"><?= isset($oldFormData['comment']) ? $oldFormData['comment'] : '' ?>
+        </textarea>
               <label for="expenseComment">Komentarz:</label>
             </div>
 
