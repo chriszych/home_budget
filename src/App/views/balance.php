@@ -1,11 +1,11 @@
 <!--
-<php
+<?php
 
-session_start();
+//session_start();
 
-if(isset($_SESSION['logged_id'])){
+//if(isset($_SESSION['logged_id'])){
 
-	$user_id = $_SESSION['logged_id'];
+	//$user_id = $_SESSION['logged_id'];
 	$expSum = 0;
 	$incSum = 0;
 
@@ -14,8 +14,8 @@ if(isset($_SESSION['logged_id'])){
 	$sqlMonthHiLimit = date('Y-m-t 23:59:59');
 	$sqlMonthLowLimit = date('Y-m-01 00:00:00');
 
-	require_once 'database.php';
-
+	//require_once 'database.php';
+/*
 	$queryExp = $db->prepare("SELECT id_exp, exp_date, exp_amount, exp_cat_name, pay_met_name, exp_comment FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat JOIN payment_user_method ON id_pay_met = id_user_pay_met WHERE expense.id_user=:id_user AND exp_date BETWEEN :low_limit AND :hi_limit ORDER BY exp_date");
 	$queryExp->bindValue(':id_user', $user_id, PDO::PARAM_STR);
 	$queryExp->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
@@ -29,11 +29,12 @@ if(isset($_SESSION['logged_id'])){
 	$queryInc->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
 	$queryInc->execute();
 	$resultInc = $queryInc->fetchAll(PDO::FETCH_ASSOC);
+  */
 
-} else {
-	header('Location: login.php');
-	exit();
-}
+//} else {
+//	header('Location: login.php');
+//	exit();
+//}
 
 ?>
 -->
@@ -270,8 +271,8 @@ if(isset($_SESSION['logged_id'])){
     </div>
   </footer>
           -->
-
-<?php
+<!--
+<php
 
 $chartQuery = $db->prepare("SELECT exp_cat_name, SUM(exp_amount) AS total_amount FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat WHERE expense.id_user = :user_id AND exp_date BETWEEN :low_limit AND :hi_limit GROUP BY exp_cat_name ORDER BY total_amount DESC");
 $chartQuery->bindValue(':user_id', $user_id, PDO::PARAM_INT);
@@ -289,6 +290,7 @@ foreach ($chartResults as $row) {
 }
 
 ?>
+-->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
