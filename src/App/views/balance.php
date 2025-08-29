@@ -9,10 +9,10 @@
 	$expSum = 0;
 	$incSum = 0;
 
-	$firstCurrentMonthDay = date('01-m-Y');
-	$lastCurrentMonthDay = date('t-m-Y');
-	$sqlMonthHiLimit = date('Y-m-t 23:59:59');
-	$sqlMonthLowLimit = date('Y-m-01 00:00:00');
+	//$firstCurrentMonthDay = date('01-m-Y');
+	//$lastCurrentMonthDay = date('t-m-Y');
+	//$sqlMonthHiLimit = date('Y-m-t 23:59:59');
+	//$sqlMonthLowLimit = date('Y-m-01 00:00:00');
 
 	//require_once 'database.php';
 /*

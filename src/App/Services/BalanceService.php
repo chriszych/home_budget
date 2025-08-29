@@ -55,27 +55,13 @@ class BalanceService
             ] 
         )->findAll();
 
+    
         return [
             'resultExp' => $resultExp,
-            'resultInc' => $resultInc
+            'resultInc' => $resultInc,
+            'firstCurrentMonthDay' => $firstCurrentMonthDay,
+            'lastCurrentMonthDay' => $lastCurrentMonthDay
         ];
-
-
-        /*
-        $queryExp = $db->prepare("SELECT id_exp, exp_date, exp_amount, exp_cat_name, pay_met_name, exp_comment FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat JOIN payment_user_method ON id_pay_met = id_user_pay_met WHERE expense.id_user=:id_user AND exp_date BETWEEN :low_limit AND :hi_limit ORDER BY exp_date");
-	    $queryExp->bindValue(':id_user', $user_id, PDO::PARAM_STR);
-	    $queryExp->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
-	    $queryExp->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
-	    $queryExp->execute();
-	    $resultExp = $queryExp->fetchAll(PDO::FETCH_ASSOC);
-	
-        $queryInc = $db->prepare("SELECT id_inc, inc_date, inc_amount, inc_cat_name, inc_comment FROM income JOIN income_user_category ON id_inc_cat = id_inc_user_cat WHERE income.id_user=:id_user AND inc_date BETWEEN :low_limit AND :hi_limit ORDER BY inc_date");
-        $queryInc->bindValue(':id_user', $user_id, PDO::PARAM_STR);
-        $queryInc->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
-        $queryInc->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
-        $queryInc->execute();
-        $resultInc = $queryInc->fetchAll(PDO::FETCH_ASSOC);
-        */
 
     }
 
