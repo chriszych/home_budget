@@ -1,20 +1,20 @@
 <?php
 
-session_start();
+//session_start();
 
-if(isset($_SESSION['logged_id'])){
+//if(isset($_SESSION['logged_id'])){
 
-	$user_id = $_SESSION['logged_id'];
+//	$user_id = $_SESSION['logged_id'];
 	$expSum = 0;
 	$incSum = 0;
 
-	$firstCurrentMonthDay = date('01-m-Y');
-	$lastCurrentMonthDay = date('t-m-Y');
-	$sqlMonthHiLimit = date('Y-m-t 23:59:59');
-	$sqlMonthLowLimit = date('Y-m-01 00:00:00');
+//	$firstCurrentMonthDay = date('01-m-Y');
+//	$lastCurrentMonthDay = date('t-m-Y');
+//	$sqlMonthHiLimit = date('Y-m-t 23:59:59');
+//	$sqlMonthLowLimit = date('Y-m-01 00:00:00');
 
-	require_once 'database.php';
-
+//	require_once 'database.php';
+/*
 	$queryExp = $db->prepare("SELECT SUM(exp_amount) AS total_amount, exp_cat_name FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat WHERE expense.id_user=:id_user AND exp_date BETWEEN :low_limit AND :hi_limit GROUP BY exp_cat_name ORDER BY total_amount DESC");
 	$queryExp->bindValue(':id_user', $user_id, PDO::PARAM_STR);
 	$queryExp->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
@@ -33,9 +33,9 @@ if(isset($_SESSION['logged_id'])){
 	header('Location: login.php');
 	exit();
 }
-
+*/
 ?>
-
+<!--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,8 +53,9 @@ if(isset($_SESSION['logged_id'])){
 <body>
 
      <nav id="navBar">
+-->
     <!-- navBar -->
-
+<!--
       <div class="navbar navbar-expand-lg bg-body-tertiary rounded">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#buttonNavbar" aria-controls="buttonNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,8 +92,8 @@ if(isset($_SESSION['logged_id'])){
       </div>
 
     </nav>
-
-  
+-->
+  <?php include $this->resolve("partials/_header.php"); ?>
   <!-- mainPageContent -->
   <section id="mainPageContent">
 
@@ -106,8 +107,8 @@ if(isset($_SESSION['logged_id'])){
       </div>
 	  
 	  	<div class="btn-group m-4" role="group" aria-label="Przełącznik raportu">
-        <a href="./bilans.php" class="btn btn-lg btn-primary" id="button1" onclick="toggleButtons('button1', 'button2')">Podział na kategorie</a>
-        <a href="./bilans2.php" class="btn btn-lg btn-outline-primary" id="button2" onclick="toggleButtons('button2', 'button1')">Wyświetl wszystko</a>
+        <a href="./balance2" class="btn btn-lg btn-primary" id="button1" onclick="toggleButtons('button1', 'button2')">Podział na kategorie</a>
+        <a href="./balance" class="btn btn-lg btn-outline-primary" id="button2" onclick="toggleButtons('button2', 'button1')">Wyświetl wszystko</a>
 		</div>
 	 
 	  
@@ -241,6 +242,9 @@ if(isset($_SESSION['logged_id'])){
   </section>
   
   <!-- Footer -->
+  <?php include $this->resolve("partials/_footer.php"); ?>
+
+  <!--
   <footer id="footer">
     <div class="footer container ">
       <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -255,8 +259,10 @@ if(isset($_SESSION['logged_id'])){
       </div>
     </div>
   </footer>
+          -->
 
-<?php
+<!--          
+<php
 
 $chartQuery = $db->prepare("SELECT exp_cat_name, SUM(exp_amount) AS total_amount FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat WHERE expense.id_user = :user_id AND exp_date BETWEEN :low_limit AND :hi_limit GROUP BY exp_cat_name ORDER BY total_amount DESC");
 $chartQuery->bindValue(':user_id', $user_id, PDO::PARAM_INT);
@@ -274,6 +280,7 @@ foreach ($chartResults as $row) {
 }
 
 ?>
+-->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -25,4 +25,9 @@ class BalanceController
         $params = $this->balanceService->getUserTransactions();
         echo $this->view->render("balance.php", $params);
     }
+    public function balance2View()
+    {   
+        $params = $this->balanceService->getUserTransactions();
+        echo $this->view->render("balance2.php", $params);
+    }
 }
