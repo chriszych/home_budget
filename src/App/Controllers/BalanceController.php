@@ -27,7 +27,8 @@ class BalanceController
     }
     public function balance2View()
     {   
-        $params = $this->balanceService->getUserTransactions();
+        $params = $this->balanceService->GetUserTransactionsByCategories();
         echo $this->view->render("balance2.php", $params);
+        //echo $this->view->render("balance2.php");
     }
 }

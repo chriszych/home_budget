@@ -8,17 +8,24 @@ use Framework\Database;
 
 class BalanceService
 {
+
+    private $firstCurrentMonthDay;
+	private $lastCurrentMonthDay;
+	private $sqlMonthHiLimit;
+	private $sqlMonthLowLimit;
+    
     public function __construct(private Database $db)
     {
-        
+
+    $this -> firstCurrentMonthDay = date('01-m-Y');
+	$this -> lastCurrentMonthDay = date('t-m-Y');
+	$this -> sqlMonthHiLimit = date('Y-m-t 23:59:59');
+	$this -> sqlMonthLowLimit = date('Y-m-01 00:00:00'); 
+    
     }
 
     public function GetUserTransactions() : Array
     {
-        $firstCurrentMonthDay = date('01-m-Y');
-	    $lastCurrentMonthDay = date('t-m-Y');
-	    $sqlMonthHiLimit = date('Y-m-t 23:59:59');
-	    $sqlMonthLowLimit = date('Y-m-01 00:00:00');
 
         $resultExp = $this->db->query(
             "SELECT id_exp, exp_date, exp_amount, exp_cat_name, pay_met_name, exp_comment 
@@ -32,8 +39,8 @@ class BalanceService
             ORDER BY exp_date",
             [
                 'id_user' => $_SESSION['user'],
-                'low_limit' => $sqlMonthLowLimit,
-                'hi_limit' => $sqlMonthHiLimit
+                'low_limit' => $this -> sqlMonthLowLimit,
+                'hi_limit' => $this -> sqlMonthHiLimit
             ] 
         )->findAll();
 
@@ -50,8 +57,8 @@ class BalanceService
             ORDER BY inc_date",
             [
                 'id_user' => $_SESSION['user'],
-                'low_limit' => $sqlMonthLowLimit,
-                'hi_limit' => $sqlMonthHiLimit
+                'low_limit' => $this -> sqlMonthLowLimit,
+                'hi_limit' => $this -> sqlMonthHiLimit
             ] 
         )->findAll();
 
@@ -59,10 +66,47 @@ class BalanceService
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
-            'firstCurrentMonthDay' => $firstCurrentMonthDay,
-            'lastCurrentMonthDay' => $lastCurrentMonthDay
+            'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
+            'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];
 
+    }
+
+    public function GetUserTransactionsByCategories() : Array
+    {
+        $resultExp = $this->db->query(
+            "SELECT SUM(exp_amount) AS total_amount, exp_cat_name 
+            FROM expense 
+            JOIN expense_user_category ON id_exp_cat = id_exp_user_cat 
+            WHERE expense.id_user=:id_user AND exp_date BETWEEN :low_limit AND :hi_limit 
+            GROUP BY exp_cat_name ORDER BY total_amount DESC",
+            [
+                'id_user' => $_SESSION['user'],
+                'low_limit' => $this -> sqlMonthLowLimit,
+                'hi_limit' => $this -> sqlMonthHiLimit
+            ]
+        )->findAll();
+
+        $resultInc = $this->db->query(
+            "SELECT SUM(inc_amount) AS total_amount, inc_cat_name 
+            FROM income 
+            JOIN income_user_category ON id_inc_cat = id_inc_user_cat 
+            WHERE income.id_user=:id_user AND inc_date BETWEEN :low_limit AND :hi_limit 
+            GROUP BY inc_cat_name 
+            ORDER BY total_amount DESC",
+            [
+                'id_user' => $_SESSION['user'],
+                'low_limit' => $this -> sqlMonthLowLimit,
+                'hi_limit' => $this -> sqlMonthHiLimit
+            ]
+        )->findAll();
+
+        return [
+            'resultExp' => $resultExp,
+            'resultInc' => $resultInc,
+            'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
+            'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
+        ];
     }
 
 
