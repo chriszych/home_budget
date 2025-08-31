@@ -271,26 +271,25 @@
     </div>
   </footer>
           -->
-<!--
-<php
 
-$chartQuery = $db->prepare("SELECT exp_cat_name, SUM(exp_amount) AS total_amount FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat WHERE expense.id_user = :user_id AND exp_date BETWEEN :low_limit AND :hi_limit GROUP BY exp_cat_name ORDER BY total_amount DESC");
-$chartQuery->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-$chartQuery->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
-$chartQuery->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
-$chartQuery->execute();
-$chartResults = $chartQuery->fetchAll(PDO::FETCH_ASSOC);
+<?php
+
+//$chartQuery = $db->prepare("SELECT exp_cat_name, SUM(exp_amount) AS total_amount FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat WHERE expense.id_user = :user_id AND exp_date BETWEEN :low_limit AND :hi_limit GROUP BY exp_cat_name ORDER BY total_amount DESC");
+//$chartQuery->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+//$chartQuery->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
+//$chartQuery->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
+//$chartQuery->execute();
+//$chartResults = $chartQuery->fetchAll(PDO::FETCH_ASSOC);
 
 $labels = [];
 $data = [];
 foreach ($chartResults as $row) {
-    $labels[] = $row['exp_cat_name'];
+  $labels[] = $row['exp_cat_name'];
 	$data[] = (float)$row['total_amount'];
 
 }
 
 ?>
--->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
