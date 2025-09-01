@@ -1,4 +1,4 @@
-<!--
+
 <?php
 
 	$expSum = 0;
@@ -279,8 +279,10 @@ foreach ($chartResults as $row) {
     });
 
   </script>
-  
-      <script>
+
+  <script src="/src/App/views/js/toggleButtons.js"></script>
+      
+      <!-- <script>
         function toggleButtons(activeButtonId, inactiveButtonId) {
             const activeButton = document.getElementById(activeButtonId);
             const inactiveButton = document.getElementById(inactiveButtonId);
@@ -291,7 +293,7 @@ foreach ($chartResults as $row) {
             inactiveButton.classList.remove('btn-primary');
             inactiveButton.classList.add('btn-outline-primary');
         }
-    </script>
+    </script> -->
 
 </body>
 
