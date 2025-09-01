@@ -1,100 +1,11 @@
 <!--
 <?php
 
-//session_start();
-
-//if(isset($_SESSION['logged_id'])){
-
-	//$user_id = $_SESSION['logged_id'];
 	$expSum = 0;
 	$incSum = 0;
 
-	//$firstCurrentMonthDay = date('01-m-Y');
-	//$lastCurrentMonthDay = date('t-m-Y');
-	//$sqlMonthHiLimit = date('Y-m-t 23:59:59');
-	//$sqlMonthLowLimit = date('Y-m-01 00:00:00');
-
-	//require_once 'database.php';
-/*
-	$queryExp = $db->prepare("SELECT id_exp, exp_date, exp_amount, exp_cat_name, pay_met_name, exp_comment FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat JOIN payment_user_method ON id_pay_met = id_user_pay_met WHERE expense.id_user=:id_user AND exp_date BETWEEN :low_limit AND :hi_limit ORDER BY exp_date");
-	$queryExp->bindValue(':id_user', $user_id, PDO::PARAM_STR);
-	$queryExp->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
-	$queryExp->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
-	$queryExp->execute();
-	$resultExp = $queryExp->fetchAll(PDO::FETCH_ASSOC);
-	
-	$queryInc = $db->prepare("SELECT id_inc, inc_date, inc_amount, inc_cat_name, inc_comment FROM income JOIN income_user_category ON id_inc_cat = id_inc_user_cat WHERE income.id_user=:id_user AND inc_date BETWEEN :low_limit AND :hi_limit ORDER BY inc_date");
-	$queryInc->bindValue(':id_user', $user_id, PDO::PARAM_STR);
-	$queryInc->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
-	$queryInc->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
-	$queryInc->execute();
-	$resultInc = $queryInc->fetchAll(PDO::FETCH_ASSOC);
-  */
-
-//} else {
-//	header('Location: login.php');
-//	exit();
-//}
-
 ?>
--->
-<!--
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="./style.css">
-  <script src="https://kit.fontawesome.com/f7c473a27a.js" crossorigin="anonymous"></script>
-  <title>Budżet domowy online</title>
-</head>
-
-<body>
-
-     <nav id="navBar"> -->
-    <!-- navBar -->
-<!--
-      <div class="navbar navbar-expand-lg bg-body-tertiary rounded">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#buttonNavbar" aria-controls="buttonNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-  
-          <div class="collapse navbar-collapse d-lg-flex" id="buttonNavbar">
-            <a href="./main.php"><i class="fa-solid fa-house-chimney" style="color: #2861c3;"></i></a>
-            <h1><a class="navbar-brand col-lg-3 me-0" href="./main.php">&nbsp;Budżet online</a></h1>
-            <ul class="navbar-nav col-lg-9 justify-content-lg-end">
-
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./addExpense.php">Nowy wydatek</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./addIncome.php">Nowy przychód</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1 disabled" href="./bilans.php">Aktualny bilans</a>
-              </li>              
-
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="#">Ustawienia</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./logout.php">Wyloguj</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </nav>
-
--->
 
 <?php include $this->resolve("partials/_header.php"); ?>
 
@@ -255,38 +166,14 @@
   <!-- Footer -->
   <?php include $this->resolve("partials/_footer.php"); ?>
 
-  <!--
-  <footer id="footer">
-    <div class="footer container ">
-      <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-          <span class="mb-3 mb-md-0 text-body-secondary">Budżet online &#169; 2024</span>
-        </div>
-        <ul class="socials nav col-md-4 justify-content-end list-unstyled d-flex ">
-          <li class="ms-3"><a href="#" class="text-body-secondary"><i class="fa-brands fa-facebook"></i></a></li>
-          <li class="ms-3"><a href="#" class="text-body-secondary"><i class="fa-brands fa-linkedin"></i></a></li>
-          <li class="ms-3"><a href="#" class="text-body-secondary"><i class="fa-brands fa-github"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-          -->
 
 <?php
-
-//$chartQuery = $db->prepare("SELECT exp_cat_name, SUM(exp_amount) AS total_amount FROM expense JOIN expense_user_category ON id_exp_cat = id_exp_user_cat WHERE expense.id_user = :user_id AND exp_date BETWEEN :low_limit AND :hi_limit GROUP BY exp_cat_name ORDER BY total_amount DESC");
-//$chartQuery->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-//$chartQuery->bindValue(':low_limit', $sqlMonthLowLimit , PDO::PARAM_STR);
-//$chartQuery->bindValue(':hi_limit', $sqlMonthHiLimit , PDO::PARAM_STR);
-//$chartQuery->execute();
-//$chartResults = $chartQuery->fetchAll(PDO::FETCH_ASSOC);
 
 $labels = [];
 $data = [];
 foreach ($chartResults as $row) {
   $labels[] = $row['exp_cat_name'];
 	$data[] = (float)$row['total_amount'];
-
 }
 
 ?>
