@@ -24,6 +24,25 @@ class BalanceService
 
     }
 
+    private function getChartResults() :Array
+    {
+            $chartResults = $this->db->query(
+            "SELECT exp_cat_name, SUM(exp_amount) AS total_amount 
+            FROM expense 
+            JOIN expense_user_category ON id_exp_cat = id_exp_user_cat 
+            WHERE expense.id_user = :id_user AND exp_date BETWEEN :low_limit AND :hi_limit 
+            GROUP BY exp_cat_name 
+            ORDER BY total_amount DESC",
+            [
+                'id_user' => $_SESSION['user'],
+                'low_limit' => $this -> sqlMonthLowLimit,
+                'hi_limit' => $this -> sqlMonthHiLimit
+            ]
+        )->findAll();
+
+        return $chartResults;
+    }
+
     public function GetUserTransactions() : Array
     {
 
@@ -62,21 +81,8 @@ class BalanceService
             ] 
         )->findAll();
 
+        $chartResults = BalanceService::getChartResults();
 
-        $chartResults = $this->db->query(
-            "SELECT exp_cat_name, SUM(exp_amount) AS total_amount 
-            FROM expense 
-            JOIN expense_user_category ON id_exp_cat = id_exp_user_cat 
-            WHERE expense.id_user = :id_user AND exp_date BETWEEN :low_limit AND :hi_limit 
-            GROUP BY exp_cat_name 
-            ORDER BY total_amount DESC",
-            [
-                'id_user' => $_SESSION['user'],
-                'low_limit' => $this -> sqlMonthLowLimit,
-                'hi_limit' => $this -> sqlMonthHiLimit
-            ]
-        )->findAll();
-    
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
@@ -116,19 +122,7 @@ class BalanceService
             ]
         )->findAll();
 
-        $chartResults = $this->db->query(
-            "SELECT exp_cat_name, SUM(exp_amount) AS total_amount 
-            FROM expense 
-            JOIN expense_user_category ON id_exp_cat = id_exp_user_cat 
-            WHERE expense.id_user = :id_user AND exp_date BETWEEN :low_limit AND :hi_limit 
-            GROUP BY exp_cat_name 
-            ORDER BY total_amount DESC",
-            [
-                'id_user' => $_SESSION['user'],
-                'low_limit' => $this -> sqlMonthLowLimit,
-                'hi_limit' => $this -> sqlMonthHiLimit
-            ]
-        )->findAll();
+        $chartResults = BalanceService::getChartResults();
 
         return [
             'resultExp' => $resultExp,
@@ -138,6 +132,8 @@ class BalanceService
             'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];
     }
+
+
 
 
 }
