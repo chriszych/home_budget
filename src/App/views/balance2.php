@@ -158,7 +158,7 @@
 
 
           
-<!-- <php
+ <?php
 
 $labels = [];
 $data = [];
@@ -167,7 +167,9 @@ foreach ($chartResults as $row) {
 	$data[] = (float)$row['total_amount'];
 }
 
-?> -->
+?> 
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -178,16 +180,16 @@ foreach ($chartResults as $row) {
 
   <script src="/src/App/views/js/chart.js"></script>
 
-  <!-- <script>
+ <script>
 
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
       type: 'doughnut',
       data: {
-		 labels: <= json_encode($labels) ?>,
+		 labels: <?= json_encode($labels) ?>,
         datasets: [{
-		  data: <= json_encode($data) ?>,
+		  data: <?= json_encode($data) ?>,
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
@@ -275,7 +277,7 @@ foreach ($chartResults as $row) {
       plugins: [ChartDataLabels]
     });
 
-  </script> -->
+  </script>
 
 <script src="/src/App/views/js/toggleButtons.js"></script>
 

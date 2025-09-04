@@ -24,7 +24,7 @@ class BalanceService
 
     }
 
-    private function getChartResults() :Array
+    public function getChartResults() :Array
     {
             $chartResults = $this->db->query(
             "SELECT exp_cat_name, SUM(exp_amount) AS total_amount 
@@ -81,7 +81,7 @@ class BalanceService
             ] 
         )->findAll();
 
-        $chartResults = BalanceService::getChartResults();
+        $chartResults = $this->getChartResults();
 
         return [
             'resultExp' => $resultExp,
@@ -122,7 +122,8 @@ class BalanceService
             ]
         )->findAll();
 
-        $chartResults = BalanceService::getChartResults();
+        //$chartResults = BalanceService::getChartResults();
+        $chartResults = $this -> getChartResults();
 
         return [
             'resultExp' => $resultExp,
