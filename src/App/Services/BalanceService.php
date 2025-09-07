@@ -40,7 +40,17 @@ class BalanceService
             ]
         )->findAll();
 
-        return $chartResults;
+        $labels = [];
+        $data = [];
+        foreach ($chartResults as $row) {
+        $labels[] = $row['exp_cat_name'];
+	    $data[] = (float)$row['total_amount'];
+        }
+
+        return [
+            'labels' => $labels,
+            'data' => $data
+        ];
     }
 
     public function GetUserTransactions() : Array
@@ -81,12 +91,13 @@ class BalanceService
             ] 
         )->findAll();
 
-        $chartResults = $this->getChartResults();
+        $chartData = $this->getChartResults();
 
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
-            'chartResults' => $chartResults,
+            'chartLabels' => $chartData['labels'],
+            'chartData' => $chartData['data'],
             'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
             'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];
@@ -122,13 +133,13 @@ class BalanceService
             ]
         )->findAll();
 
-        //$chartResults = BalanceService::getChartResults();
-        $chartResults = $this -> getChartResults();
+        $chartData = $this->getChartResults();
 
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
-            'chartResults' => $chartResults,
+            'chartLabels' => $chartData['labels'],
+            'chartData' => $chartData['data'],
             'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
             'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];

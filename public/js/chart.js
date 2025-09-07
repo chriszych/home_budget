@@ -1,17 +1,23 @@
 // chart.js
 
-fetch('data.php')
-  .then(response => response.json())
-  .then(chartData => {
+//fetch('data.php')
+ // .then(response => response.json())
+ // .then(chartData => {
+
+//test
+//console.log(chartLabels); // powinno wypisać tablicę kategorii
+//alert("test chart");
+//console.log(chartData);   // powinno wypisać tablicę wartości
+//test end
 
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
       type: 'doughnut',
       data: {
-		 labels: chartData.labels,
+		 labels: chartLabels,
         datasets: [{
-		  data: chartData.data,
+		  data: chartData,
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
@@ -97,5 +103,4 @@ fetch('data.php')
 
       },
       plugins: [ChartDataLabels]
-    })
-  });
+    });
