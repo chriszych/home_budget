@@ -9,8 +9,8 @@ use Framework\Database;
 class BalanceService
 {
 
-    private $firstCurrentMonthDay;
-	private $lastCurrentMonthDay;
+    public $firstCurrentMonthDay;
+	public $lastCurrentMonthDay;
 	private $sqlMonthHiLimit;
 	private $sqlMonthLowLimit;
     
@@ -95,8 +95,6 @@ class BalanceService
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
-            'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
-            'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];
 
     }
@@ -133,8 +131,6 @@ class BalanceService
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
-            'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
-            'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];
     }
 
