@@ -1,14 +1,3 @@
-// chart.js
-
-//fetch('data.php')
- // .then(response => response.json())
- // .then(chartData => {
-
-//test
-//console.log(chartLabels); // powinno wypisać tablicę kategorii
-//alert("test chart");
-//console.log(chartData);   // powinno wypisać tablicę wartości
-//test end
 
     const ctx = document.getElementById('myChart');
 

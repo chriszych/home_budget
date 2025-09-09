@@ -48,8 +48,8 @@ class BalanceService
         }
 
         return [
-            'labels' => $labels,
-            'data' => $data
+            'chartLabels' => $labels,
+            'chartData' => $data
         ];
     }
 
@@ -91,13 +91,10 @@ class BalanceService
             ] 
         )->findAll();
 
-        $chartData = $this->getChartResults();
 
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
-            'chartLabels' => $chartData['labels'],
-            'chartData' => $chartData['data'],
             'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
             'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];
@@ -133,13 +130,9 @@ class BalanceService
             ]
         )->findAll();
 
-        $chartData = $this->getChartResults();
-
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
-            'chartLabels' => $chartData['labels'],
-            'chartData' => $chartData['data'],
             'firstCurrentMonthDay' => $this -> firstCurrentMonthDay,
             'lastCurrentMonthDay' => $this -> lastCurrentMonthDay
         ];

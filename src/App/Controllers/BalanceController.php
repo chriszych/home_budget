@@ -22,13 +22,21 @@ class BalanceController
 
     public function balanceView()
     {   
-        $params = $this->balanceService->getUserTransactions();
+        $params1 = $this->balanceService->getUserTransactions();
+        $params2 = $this->balanceService->getChartResults();
+
+        $params = array_merge($params1, $params2);
+
         echo $this->view->render("balance.php", $params);
     }
     public function balance2View()
     {   
-        $params = $this->balanceService->GetUserTransactionsByCategories();
+        $params1 = $this->balanceService->GetUserTransactionsByCategories();
+        $params2 = $this->balanceService->getChartResults();
+
+        $params = array_merge($params1, $params2);
+
         echo $this->view->render("balance2.php", $params);
-        //echo $this->view->render("balance2.php");
+
     }
 }
