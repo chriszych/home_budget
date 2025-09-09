@@ -1,43 +1,35 @@
 
-<?php
+  <?php
 
 	$expSum = 0;
 	$incSum = 0;
 
-?>
+  ?>
 
-
-<?php include $this->resolve("partials/_header.php"); ?>
+  <?php include $this->resolve("partials/_header.php"); ?>
 
   <!-- mainPageContent -->
   <section id="mainPageContent">
 
     <section class="py-3 text-center container">
 
-      <?php include $this->resolve("partials/_balanceHeader.php"); ?>
-	  
+      <?php include $this->resolve("partials/_balanceHeader.php"); ?>	  
       <?php include $this->resolve("partials/_toggleButtons.php"); ?>
 
-	  
     </section>
+
+    <section>
 
       <?php include $this->resolve("partials/_detailedTable.php"); ?>
 
-
     </section>
+
     <section class="py-3 text-center container">
 
-    <?php include $this->resolve("partials/_balanceSummary.php"); ?>
+      <?php include $this->resolve("partials/_balanceSummary.php"); ?>
+      <?php include $this->resolve("partials/_balanceChart.php"); ?>
 
-
-
-    <div class="container-sm" style="position: relative;">
-      <div class="row">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto">
-          <canvas id="myChart"></canvas>
-        </div>
-      </div>
-    </div>
+    </section>
   </section>
   
   <!-- Footer -->
@@ -53,9 +45,9 @@
   <script>
   const chartLabels = <?= json_encode($chartLabels) ?>;
   const chartData = <?= json_encode($chartData) ?>;
-</script>
+  </script>
  
-<script src="/js/chart.js"></script>
+  <script src="/js/chart.js"></script>
 
 
 </body>
