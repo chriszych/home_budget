@@ -1,11 +1,4 @@
 
-  <?php
-
-	$expSum = 0;
-	$incSum = 0;
-
-  ?>
-
   <?php include $this->resolve("partials/_header.php"); ?>
 
   <!-- mainPageContent -->

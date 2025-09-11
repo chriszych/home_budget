@@ -1,3 +1,4 @@
+
  <div class="album py-3 bg-body-tertiary">
       <div class="container">
         <div class="row row-cols-xl-2 row-cols-xl-2 g-1">
@@ -21,12 +22,7 @@
                     </thead>
 					
 					<tbody>
-					<?php 
-					$i = 0;
-					foreach ($resultInc as $row): 
-					$incSum += $row['inc_amount'];
-					$i++;
-					?>
+					<?php foreach ($resultInc as $i => $row): ?>
 					<tr>
                     <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
                     <td class="text-center px-1 text-nowrap"><?= (new DateTime($row['inc_date']))->format('d.m.y H:i') ?></td>
@@ -75,12 +71,9 @@
                     </thead>
 					
 					<tbody>
-					<?php 
-					$i = 0;
-					foreach ($resultExp as $row): 
-					$i++;
-					$expSum += $row['exp_amount'];
-					?>
+          
+					<?php foreach ($resultExp as $i => $row): ?>
+
 					<tr>
                     <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
                     <td class="text-center px-1 text-nowrap"><?= (new DateTime($row['exp_date']))->format('d.m.y H:i') ?></td>

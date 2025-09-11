@@ -91,10 +91,14 @@ class BalanceService
             ] 
         )->findAll();
 
+	    $incSum = array_sum(array_column($resultInc, 'inc_amount'));
+        $expSum = array_sum(array_column($resultExp, 'exp_amount'));
 
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
+            'incSum' => $incSum,
+            'expSum' => $expSum
         ];
 
     }
@@ -128,9 +132,14 @@ class BalanceService
             ]
         )->findAll();
 
+		$incSum = array_sum(array_column($resultInc, 'total_amount'));
+        $expSum = array_sum(array_column($resultExp, 'total_amount'));	
+
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
+            'incSum' => $incSum,
+            'expSum' => $expSum
         ];
     }
 

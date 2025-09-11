@@ -20,13 +20,7 @@
                     </thead>
 					
 					<tbody>
-					<?php 
-					
-					$i = 0;
-					foreach ($resultInc as $row): 
-					$incSum += $row['total_amount'];
-					$i++;
-					?>
+					<?php foreach ($resultInc as $i => $row): ?>
 					<tr>
                     <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
 					<td class="px-1"><?= $row['inc_cat_name'] ?></td>
@@ -68,12 +62,7 @@
                     </thead>
 					
 					<tbody>
-					<?php 
-					$i = 0;
-					foreach ($resultExp as $row): 
-					$expSum += $row['total_amount'];
-					$i++;
-					?>
+					<?php foreach ($resultExp as $i => $row): ?>
 					<tr>
                     <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
 					<td class="px-1"><?= $row['exp_cat_name'] ?></td>
