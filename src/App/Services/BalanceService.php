@@ -93,12 +93,14 @@ class BalanceService
 
 	    $incSum = array_sum(array_column($resultInc, 'inc_amount'));
         $expSum = array_sum(array_column($resultExp, 'exp_amount'));
+        $balance = $incSum - $expSum;
 
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
             'incSum' => $incSum,
-            'expSum' => $expSum
+            'expSum' => $expSum,
+            'balance' => $balance
         ];
 
     }
@@ -134,12 +136,14 @@ class BalanceService
 
 		$incSum = array_sum(array_column($resultInc, 'total_amount'));
         $expSum = array_sum(array_column($resultExp, 'total_amount'));	
+        $balance = $incSum - $expSum;
 
         return [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
             'incSum' => $incSum,
-            'expSum' => $expSum
+            'expSum' => $expSum,
+            'balance' => $balance
         ];
     }
 
