@@ -37,10 +37,12 @@
 
                 <div class="row">
                   <div class="col-1">
-                    <p class="lead fw-bold <?= (($total_inc-$total_exp) >= 0) ? 'text-success':'text-danger'?>">Saldo: </p>
+                    <p class="lead fw-bold <?= $messageColor ?>">Saldo: </p>
+                    <!-- <p class="lead fw-bold <= (($total_inc-$total_exp) >= 0) ? 'text-success':'text-danger'?>">Saldo: </p> -->
                   </div>
                   <div class="col">
-					<p class="lead fw-bold <?= (($total_inc-$total_exp) >= 0) ? 'text-success':'text-danger'?> text-end"><?= number_format($total_inc-$total_exp, 2, ',','') ?></p>
+					<p class="lead fw-bold <?= $messageColor ?> text-end"><?= number_format($total_inc-$total_exp, 2, ',','') ?></p>
+          <!-- <p class="lead fw-bold <= (($total_inc-$total_exp) >= 0) ? 'text-success':'text-danger'?> text-end"><= number_format($total_inc-$total_exp, 2, ',','') ?></p> -->
                   </div>
                 </div>
                 
