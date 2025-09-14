@@ -22,7 +22,7 @@
 					<tbody>
 					<?php foreach ($resultInc as $i => $row): ?>
 					<tr>
-                    <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
+                    <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
 					<td class="px-1"><?= $row['inc_cat_name'] ?></td>
                     <td class="text-end pe-1 fw-bold"><?= number_format($row['total_amount'], 2, ',', '') ?></td>
 					</tr>
@@ -64,7 +64,7 @@
 					<tbody>
 					<?php foreach ($resultExp as $i => $row): ?>
 					<tr>
-                    <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
+                    <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
 					<td class="px-1"><?= $row['exp_cat_name'] ?></td>
                     <td class="text-end pe-1 fw-bold"><?= number_format($row['total_amount'], 2, ',', '') ?></td>
 					</tr>

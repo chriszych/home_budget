@@ -24,7 +24,7 @@
 					<tbody>
 					<?php foreach ($resultInc as $i => $row): ?>
 					<tr>
-                    <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
+                    <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
                     <td class="text-center px-1 text-nowrap"><?= (new DateTime($row['inc_date']))->format('d.m.y H:i') ?></td>
                     <td class="text-end pe-1 fw-bold"><?= number_format($row['inc_amount'], 2, ',', '') ?></td>
                     <td class="px-1"><?= $row['inc_cat_name'] ?></td>
@@ -75,7 +75,7 @@
 					<?php foreach ($resultExp as $i => $row): ?>
 
 					<tr>
-                    <td class="text-center px-1 fw-bold"><?= str_pad($i, 1, "0", STR_PAD_LEFT); ?>. </td>
+                    <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
                     <td class="text-center px-1 text-nowrap"><?= (new DateTime($row['exp_date']))->format('d.m.y H:i') ?></td>
                     <td class="text-end pe-1 fw-bold"><?= number_format($row['exp_amount'], 2, ',', '') ?></td>
                     <td class="px-1"><?= $row['exp_cat_name'] ?></td>

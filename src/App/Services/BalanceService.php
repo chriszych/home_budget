@@ -99,11 +99,15 @@ class BalanceService
         {
             $messageMain = "Gratulacje!!!";
             $messageText = "Świetnie zarządzasz swoimi finansami :)";
+            $messageColor = "text-success";
+            $messageBackground = "text-bg-success border-success";
         }  
         else
         {
             $messageMain = "Uwaga!!!";
             $messageText = "Ostrożnie, wpadasz w długi :(";
+            $messageColor = "text-danger";
+            $messageBackground = "text-bg-danger border-danger";
         }
 
         return [
@@ -113,7 +117,9 @@ class BalanceService
             'expSum' => $expSum,
             'balance' => $balance,
             'messageMain' => $messageMain,
-            'messageText' => $messageText
+            'messageText' => $messageText,
+            'messageColor' => $messageColor,
+            'messageBackground' => $messageBackground
         ];
 
     }
@@ -155,11 +161,15 @@ class BalanceService
         {
             $messageMain = "Gratulacje!!!";
             $messageText = "Świetnie zarządzasz swoimi finansami :)";
+            $messageColor = "text-success";
+            $messageBackground = "text-bg-success border-success";
         }  
         else
         {
             $messageMain = "Uwaga!!!";
             $messageText = "Ostrożnie, wpadasz w długi :(";
+            $messageColor = "text-danger";
+            $messageBackground = "text-bg-danger border-danger";
         }
 
         return [
@@ -169,7 +179,9 @@ class BalanceService
             'expSum' => $expSum,
             'balance' => $balance,
             'messageMain' => $messageMain,
-            'messageText' => $messageText
+            'messageText' => $messageText,
+            'messageColor' => $messageColor,
+            'messageBackground' => $messageBackground
         ];
     }
 
