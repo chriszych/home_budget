@@ -13,7 +13,7 @@
            <p class="display-6 text-body-emphasis lh-1 mb-0 text-left">Witaj <?php echo $firstname;?>!</p>
             <div class="col-12 col-sm-10 col-lg-10">
 			
-			<p class="lead text-left pt-4">Jesteś z nami od: <br><span class="fw-bold"><?php echo $loggedRegDate;?></span><br><?= $loggedDays>30 ? 'Dziękujemy, doceniamy to!': 'Miło Cię poznać!';?></p>
+			        <p class="lead text-left pt-4">Jesteś z nami od: <br><span class="fw-bold"><?php echo $loggedRegDate;?></span><br><?= $welcomeText ?></p>
 			
               <p class="lead text-left pt-4">Finanse w aktualnym miesiącu:</p>
 
@@ -22,7 +22,7 @@
                     <p class="lead text-start p-0">Przychody: </p>
                   </div>
                   <div class="col">
-				  <p class="lead fw-bold text-end"><?= number_format($total_inc ?? 0, 2, ',','') ?></p>
+				            <p class="lead fw-bold text-end"><?= number_format($incSum ?? 0, 2, ',','') ?></p>
                   </div>
                 </div>
               
@@ -31,18 +31,16 @@
                     <p class="lead text-start p-0">Wydatki: </p>
                   </div>
                   <div class="col">
-					<p class="lead fw-bold text-end"><?= number_format($total_exp ?? 0, 2, ',','') ?></p>
+					          <p class="lead fw-bold text-end"><?= number_format($expSum ?? 0, 2, ',','') ?></p>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-1">
                     <p class="lead fw-bold <?= $messageColor ?>">Saldo: </p>
-                    <!-- <p class="lead fw-bold <= (($total_inc-$total_exp) >= 0) ? 'text-success':'text-danger'?>">Saldo: </p> -->
                   </div>
                   <div class="col">
-					<p class="lead fw-bold <?= $messageColor ?> text-end"><?= number_format($total_inc-$total_exp, 2, ',','') ?></p>
-          <!-- <p class="lead fw-bold <= (($total_inc-$total_exp) >= 0) ? 'text-success':'text-danger'?> text-end"><= number_format($total_inc-$total_exp, 2, ',','') ?></p> -->
+					          <p class="lead fw-bold <?= $messageColor ?> text-end"><?= number_format($balance, 2, ',','') ?></p>
                   </div>
                 </div>
                 

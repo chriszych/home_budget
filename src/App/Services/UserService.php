@@ -128,50 +128,38 @@ class UserService
         //redirectTo('/');
     }
 
-    public function getUserBalance() : array
+    public function getLoggedUserData() : Array
     {
-
-        $sqlMonthHiLimit = date('Y-m-t 23:59:59');
-        $sqlMonthLowLimit = date('Y-m-01 00:00:00');
-
         $user = $this->db->query("SELECT * FROM users WHERE id_user = :id", [
             'id' => $_SESSION['user'] 
-        ])->find();
+            ])->find();
 
+        $today = new \DateTime(date('Y-m-d')); 
+		$reg_date = new \DateTime($user['user_reg_date']); 
+		$interval = $today->diff($reg_date); 
+		$loggedDays = $interval->days;
+        $firstname = $user['user_firstname'];
 			
-			$today = new \DateTime(date('Y-m-d')); 
-			$reg_date = new \DateTime($user['user_reg_date']); 
-			$interval = $today->diff($reg_date); 
-			$loggedDays = $interval->days;
-            $firstname = $user['user_firstname'];
-			
-			if ($loggedDays == 0){
-				$loggedRegDate = "dzisiaj!";
-			} else {
-				$loggedRegDate = $interval->format('%y lat, %m miesięcy, %d dni');
-			}
-			
+		if ($loggedDays == 0){
+			$loggedRegDate = "dzisiaj!";
+		} else {
+			$loggedRegDate = $interval->format('%y lat, %m miesięcy, %d dni');
+		}
 
-                $total_exp = $this->db->query(
-                    "SELECT SUM(exp_amount) AS total_exp FROM expense WHERE expense.id_user=:id AND exp_date BETWEEN :low_limit AND :hi_limit", 
-                    [
-                        'id' => $_SESSION['user'],
-                        'low_limit' => $sqlMonthLowLimit,
-                        'hi_limit' => $sqlMonthHiLimit
-                    ])->find()['total_exp'];
-                
-                 $total_inc = $this->db->query(
-                    "SELECT SUM(inc_amount) AS total_inc FROM income WHERE income.id_user=:id AND inc_date BETWEEN :low_limit AND :hi_limit", 
-                    [
-                        'id' => $_SESSION['user'],
-                        'low_limit' => $sqlMonthLowLimit,
-                        'hi_limit' => $sqlMonthHiLimit
-                    ])->find()['total_inc'];
+        if ($loggedDays > 31) 
+        {
+            $welcomeText = "Dziękujemy, doceniamy to!";
+        } else {
+            $welcomeText = "Miło Cię poznać!";
+        }
 
-    return  ['total_inc' => $total_inc,
-            'total_exp' => $total_exp,
+        return
+            [
             'loggedDays' => $loggedDays,
             'loggedRegDate' => $loggedRegDate,
-            'firstname' => $firstname];
+            'firstname' => $firstname,
+            'welcomeText' => $welcomeText
+            ];
+
     }
 }

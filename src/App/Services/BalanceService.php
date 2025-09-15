@@ -53,6 +53,31 @@ class BalanceService
         ];
     }
 
+    public function addBalanceTexts(float $balance) : Array
+    {
+        if($balance > 0)
+        {
+            $messageMain = "Gratulacje!!!";
+            $messageText = "Świetnie zarządzasz swoimi finansami :)";
+            $messageColor = "text-success";
+            $messageBackground = "text-bg-success border-success";
+        }  
+        else
+        {
+            $messageMain = "Uwaga!!!";
+            $messageText = "Ostrożnie, wpadasz w długi :(";
+            $messageColor = "text-danger";
+            $messageBackground = "text-bg-danger border-danger";
+        }
+
+        return [
+            'messageMain' => $messageMain,
+            'messageText' => $messageText,
+            'messageColor' => $messageColor,
+            'messageBackground' => $messageBackground
+        ];
+    }
+
     public function GetUserTransactions() : Array
     {
 
@@ -91,36 +116,20 @@ class BalanceService
             ] 
         )->findAll();
 
-	    $incSum = array_sum(array_column($resultInc, 'inc_amount'));
+        $incSum = array_sum(array_column($resultInc, 'inc_amount'));
         $expSum = array_sum(array_column($resultExp, 'exp_amount'));
         $balance = $incSum - $expSum;
 
-        if($balance > 0)
-        {
-            $messageMain = "Gratulacje!!!";
-            $messageText = "Świetnie zarządzasz swoimi finansami :)";
-            $messageColor = "text-success";
-            $messageBackground = "text-bg-success border-success";
-        }  
-        else
-        {
-            $messageMain = "Uwaga!!!";
-            $messageText = "Ostrożnie, wpadasz w długi :(";
-            $messageColor = "text-danger";
-            $messageBackground = "text-bg-danger border-danger";
-        }
-
-        return [
+        $calcParams = $this->addBalanceTexts($balance);
+        $resultParams = [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
             'incSum' => $incSum,
             'expSum' => $expSum,
-            'balance' => $balance,
-            'messageMain' => $messageMain,
-            'messageText' => $messageText,
-            'messageColor' => $messageColor,
-            'messageBackground' => $messageBackground
+            'balance' => $balance
         ];
+        $params = array_merge($calcParams, $resultParams);
+        return $params;
 
     }
 
@@ -153,36 +162,21 @@ class BalanceService
             ]
         )->findAll();
 
-		$incSum = array_sum(array_column($resultInc, 'total_amount'));
-        $expSum = array_sum(array_column($resultExp, 'total_amount'));	
-        $balance = $incSum - $expSum;
+		 $incSum = array_sum(array_column($resultInc, 'total_amount'));
+         $expSum = array_sum(array_column($resultExp, 'total_amount'));	
+         $balance = $incSum - $expSum;
 
-        if($balance > 0)
-        {
-            $messageMain = "Gratulacje!!!";
-            $messageText = "Świetnie zarządzasz swoimi finansami :)";
-            $messageColor = "text-success";
-            $messageBackground = "text-bg-success border-success";
-        }  
-        else
-        {
-            $messageMain = "Uwaga!!!";
-            $messageText = "Ostrożnie, wpadasz w długi :(";
-            $messageColor = "text-danger";
-            $messageBackground = "text-bg-danger border-danger";
-        }
-
-        return [
+        $calcParams = $this->addBalanceTexts($balance);
+        $resultParams = [
             'resultExp' => $resultExp,
             'resultInc' => $resultInc,
             'incSum' => $incSum,
             'expSum' => $expSum,
             'balance' => $balance,
-            'messageMain' => $messageMain,
-            'messageText' => $messageText,
-            'messageColor' => $messageColor,
-            'messageBackground' => $messageBackground
         ];
+        $params = array_merge($calcParams, $resultParams);
+        
+        return $params;
     }
 
 
