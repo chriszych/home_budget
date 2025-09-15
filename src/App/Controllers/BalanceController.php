@@ -28,10 +28,9 @@ class BalanceController
             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
         ];
+        $params4 = $this->balanceService->checkBalancePage();
 
-        //dd($params1);
-
-        $params = array_merge($params1, $params2, $params3);
+        $params = array_merge($params1, $params2, $params3, $params4);
 
         echo $this->view->render("balance.php", $params);
     }
@@ -43,10 +42,9 @@ class BalanceController
             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
         ];
+        $params4 = $this->balanceService->checkBalancePage();
 
-        //dd($params1);
-        $params = array_merge($params1, $params2, $params3);
-         //dd($params);
+        $params = array_merge($params1, $params2, $params3, $params4);
 
         echo $this->view->render("balance2.php", $params);
 

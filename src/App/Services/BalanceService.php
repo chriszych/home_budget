@@ -179,6 +179,26 @@ class BalanceService
         return $params;
     }
 
+    public function checkBalancePage() : Array
+    {
+        $path = $_SERVER['REQUEST_URI'];
+        $isBalance2 = strpos($path, '/balance2') !== false;
+
+        if ($isBalance2)
+            {
+               $Balance2Button =  "btn-primary";
+               $Balance1Button =  "btn-outline-primary";
+            } else {
+                $Balance1Button =  "btn-primary";
+                $Balance2Button =  "btn-outline-primary";
+            }
+        return 
+        [
+            'Balance1Button' => $Balance1Button,
+            'Balance2Button' => $Balance2Button
+        ];
+    }
+
 
 
 
