@@ -1,9 +1,4 @@
 
-<?php
-		$now = date('Y-m-d\TH:i');
-		$nextYear = date('Y-m-d\TH:i', strtotime('+1 year'));
-?>
-
   <?php include $this->resolve("partials/_header.php"); ?>
 
   <!-- mainPageContent -->
