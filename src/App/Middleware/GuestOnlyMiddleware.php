@@ -11,7 +11,6 @@ class GuestOnlyMiddleware implements MiddlewareInterface
   public function process(callable $next)
   {
     if(!empty($_SESSION['user'])){
-        //redirectTo('/');
         redirectTo('/main');
     }
 
