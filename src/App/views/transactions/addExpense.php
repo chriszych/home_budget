@@ -24,7 +24,7 @@
 
           <?php if(array_key_exists('amount', $errors)) : ?>
             <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
-                <?php echo e($errors['amount'][0]); ?>
+                <?= e($errors['amount'][0]); ?>
             </div>
           <?php endif;?>
 
@@ -35,7 +35,7 @@
 
           <?php if(array_key_exists('date', $errors)) : ?>
             <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
-              <?php echo e($errors['date'][0]); ?>
+              <?= e($errors['date'][0]); ?>
             </div>
           <?php endif;?>
 
@@ -44,9 +44,9 @@
                 <option disabled selected>Wybierz sposób płatności...</option>
 				     
         <?php foreach ($paymentsMethods as $paymentsMethod): ?> 
-				<option value="<?php echo $paymentsMethod['id_user_pay_met']; ?>" 
+				<option value="<?= $paymentsMethod['id_user_pay_met']; ?>" 
 				<?= (isset($oldFormData['paymentMethod']) && $oldFormData['paymentMethod'] == $paymentsMethod['id_user_pay_met']) ? 'selected' : '' ?>>
-				<?php echo $paymentsMethod['pay_met_name']; ?>
+				<?= $paymentsMethod['pay_met_name']; ?>
 				 </option> 
 				<?php endforeach; ?>
 				
@@ -56,7 +56,7 @@
 
             <?php if(array_key_exists('paymentMethod', $errors)) : ?>
             <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
-              <?php echo e($errors['paymentMethod'][0]); ?>
+              <?= e($errors['paymentMethod'][0]); ?>
             </div>
           <?php endif;?>
 
@@ -65,9 +65,9 @@
                 <option disabled selected>Wybierz kategorię...</option>
 				
 				<?php foreach ($expenseCategories as $expenseCategory): ?> 
-				<option value="<?php echo $expenseCategory['id_exp_user_cat']; ?>" 
+				<option value="<?= $expenseCategory['id_exp_user_cat']; ?>" 
 				<?= (isset($oldFormData['category']) && $oldFormData['category'] == $expenseCategory['id_exp_user_cat']) ? 'selected' : '' ?>>
-				<?php echo $expenseCategory['exp_cat_name']; ?>
+				<?= $expenseCategory['exp_cat_name']; ?>
 				 </option> 
 				<?php endforeach; ?>
 				
@@ -77,7 +77,7 @@
 
             <?php if(array_key_exists('category', $errors)) : ?>
             <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
-              <?php echo e($errors['category'][0]); ?>
+              <?= e($errors['category'][0]); ?>
             </div>
           <?php endif;?>
 
@@ -88,7 +88,7 @@
 
             <?php if(array_key_exists('comment', $errors)) : ?>
             <div class="text-danger border-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
-              <?php echo e($errors['comment'][0]); ?>
+              <?= e($errors['comment'][0]); ?>
             </div>
           <?php endif;?>
             		  
