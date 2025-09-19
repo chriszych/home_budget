@@ -27,9 +27,10 @@ class MainController
     public function mainView()
     {   
         
-        $params1 = $this->userService->getLoggedUserData();
-        $params2 = $this->balanceService->GetUserTransactionsByCategories();
-        $params = array_merge($params1, $params2);
+        $params = array_merge(
+            $this->userService->getLoggedUserData(),
+            $this->balanceService->GetUserTransactionsByCategories()
+        );
         
         echo $this->view->render("main.php", $params);
         
