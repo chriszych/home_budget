@@ -22,29 +22,29 @@ class BalanceController
 
     public function balanceView()
     {   
-        $params1 = $this->balanceService->getUserTransactions();
-        $params2 = $this->balanceService->getChartResults();
-        $params3 = [
-            'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-            'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
-        ];
-        $params4 = $this->balanceService->checkBalancePage();
-
-        $params = array_merge($params1, $params2, $params3, $params4);
+        $params = array_merge(
+            $this->balanceService->getUserTransactions(),
+            $this->balanceService->getChartResults(),
+            [
+                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+            ],
+            $this->balanceService->checkBalancePage()
+        );
 
         echo $this->view->render("balance.php", $params);
     }
     public function balance2View()
     {   
-        $params1 = $this->balanceService->GetUserTransactionsByCategories();
-        $params2 = $this->balanceService->getChartResults();
-        $params3 = [
-            'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-            'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
-        ];
-        $params4 = $this->balanceService->checkBalancePage();
-
-        $params = array_merge($params1, $params2, $params3, $params4);
+        $params = array_merge(
+            $this->balanceService->GetUserTransactionsByCategories(),
+            $this->balanceService->getChartResults(),
+            [
+                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+            ],
+            $this->balanceService->checkBalancePage()
+        );
 
         echo $this->view->render("balance2.php", $params);
 
