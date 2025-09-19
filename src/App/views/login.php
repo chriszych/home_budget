@@ -6,7 +6,7 @@
 
       <div class="py-3 col-12 col-md-8 col-lg-5 text-center container">
         <div class="p-5 pb-4 border-bottom-0">
-          <p class="error fw-bold mb-0 fs-2 text-start"><?php echo isset($_SESSION['welcomeText']) ? $_SESSION['welcomeText'] : "Podaj dane użytkownika:";?></p>
+          <p class="error fw-bold mb-0 fs-2 text-start"><?= isset($_SESSION['welcomeText']) ? $_SESSION['welcomeText'] : "Podaj dane użytkownika:";?></p>
         </div>
 
         <div class="modal-body p-5 pt-0">
@@ -34,7 +34,7 @@
 
         <?php if(array_key_exists('password', $errors)) : ?>
             <div class="text-danger fw-bold bg-gray-100 mt-0 p-0 text-red-500">
-                <?php echo e($errors['password'][0]); ?>
+                <?= e($errors['password'][0]); ?>
             </div>
         <?php endif;?>
 
@@ -45,7 +45,6 @@
 				  }
 				?>
 		
-
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-center">
             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 my-md-5 mb-md-5" role="button" type="submit">Zaloguj się</button>
