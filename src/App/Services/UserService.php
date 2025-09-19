@@ -108,7 +108,6 @@ class UserService
         session_regenerate_id();
 
         $_SESSION['user'] = $user['id_user'];
-
     }
 
     public function logout()
@@ -125,7 +124,6 @@ class UserService
             $params['secure'],
             $params['httponly']
         );
-        //redirectTo('/');
     }
 
     public function getLoggedUserData() : Array
