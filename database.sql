@@ -1,4 +1,4 @@
---users
+-- users
 
 CREATE TABLE IF NOT EXISTS users(
     id_user int unsigned NOT NULL AUTO_INCREMENT,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users(
     UNIQUE KEY(user_email)
 );
 
---incomes
+-- incomes
 
 CREATE TABLE IF NOT EXISTS income_user_category(
     id_inc_user_cat int unsigned NOT NULL AUTO_INCREMENT,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS income(
     id_inc int unsigned NOT NULL AUTO_INCREMENT,
     id_user int unsigned NOT NULL,
     inc_date datetime DEFAULT NULL,
-    id_inc_cat int unsigned NOT NULL,
+    id_inc_cat int unsigned DEFAULT NULL,
     inc_amount decimal(10,2) DEFAULT NULL,
     inc_comment varchar(100) DEFAULT NULL,  
     PRIMARY KEY(id_inc),
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS income(
 
 
 
---expenses
+-- expenses
 
 CREATE TABLE IF NOT EXISTS expense_user_category(
     id_exp_user_cat int unsigned NOT NULL AUTO_INCREMENT,
@@ -75,9 +75,9 @@ CREATE TABLE IF NOT EXISTS expense(
     id_exp int unsigned NOT NULL AUTO_INCREMENT,
     id_user int unsigned NOT NULL,
     exp_date datetime DEFAULT NULL,
-    id_exp_cat int unsigned NOT NULL,
+    id_exp_cat int unsigned DEFAULT NULL,
     exp_amount decimal(10,2) DEFAULT NULL,
-    id_pay_met int unsigned NOT NULL,
+    id_pay_met int unsigned DEFAULT NULL,
     exp_comment varchar(100) DEFAULT NULL,  
     PRIMARY KEY(id_exp),
     FOREIGN KEY(id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS expense(
     FOREIGN KEY(id_pay_met) REFERENCES payment_user_method(id_user_pay_met) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
---indexes for foreign keys
+-- indexes for foreign keys
 
 CREATE INDEX idx_income_user ON income(id_user);
 CREATE INDEX idx_income_cat ON income(id_inc_cat);
@@ -96,7 +96,7 @@ CREATE INDEX idx_expense_pay ON expense(id_pay_met);
 CREATE INDEX idx_expense_user_category_user ON expense_user_category(id_user);
 CREATE INDEX idx_payment_user_method_user ON payment_user_method(id_user);
 
---defaults
+-- defaults
 
 INSERT INTO `default_income_category` (`id_inc_cat`, `inc_cat_name`) VALUES
 (1, 'Umowa o pracę'),
