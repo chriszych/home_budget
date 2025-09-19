@@ -6,18 +6,18 @@ namespace App\Config;
 
 use Framework\App;
 use App\Controllers\{
-    HomeController, 
-    AboutController, 
     AuthController,
     TransactionController,
-    ReceiptController,
     ErrorController,
     IndexController,
     MainController,
     BalanceController
     };
 
-use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
+use App\Middleware\{
+    AuthRequiredMiddleware, 
+    GuestOnlyMiddleware
+    };
 
 function registerRoutes(App $app) 
 {
