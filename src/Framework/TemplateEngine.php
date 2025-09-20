@@ -36,5 +36,5 @@ class TemplateEngine {
     {
         $this->globalTemplateData[$key] = $value;
     }
-
+    
 }

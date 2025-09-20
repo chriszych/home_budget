@@ -26,3 +26,14 @@ function redirectTo(string $path)
     http_response_code(Http::REDIRECT_STATUS_CODE);
     exit;
 }
+
+function formError(array $errors, string $field): string
+{
+    if (!isset($errors[$field])) {
+        return '';
+    }
+
+    return '<div class="text-danger fw-bold mt-2 p-2">'
+         . e($errors[$field][0])
+         . '</div>';
+}

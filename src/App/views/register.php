@@ -12,21 +12,34 @@
            </div>
 
            <div class="p-5 pt-0">
-           <!--<form method="post" action="addUser.php">-->
            <form method="POST" action="/register">
 
             <?php include $this->resolve('partials/_csrf.php'); ?>
 			
 			<div class="form-floating mb-2">
-              <input type="text" class="form-control rounded-3 <?= (array_key_exists('firstname', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="firstname" name="firstname" value="<?php echo e($oldFormData['firstname'] ?? ''); ?>">
+              <!-- <input type="text" class="form-control rounded-3 <?= (array_key_exists('firstname', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="firstname" name="firstname" value="<?php echo e($oldFormData['firstname'] ?? ''); ?>">
               <label for="registerFloatingInput">Imię</label>
-            </div>
+            </div> -->
 
-      <?php if(array_key_exists('firstname', $errors)) : ?>
+      <!-- <php if(array_key_exists('firstname', $errors)) : ?>
         <div class="text-danger fw-bold bg-gray-100 mt-2 p-2 text-red-500">
-          <?php echo e($errors['firstname'][0]); ?>
+          <php echo e($errors['firstname'][0]); ?>
         </div>
-      <?php endif;?>
+      <php endif;?> -->
+
+          <input 
+            type="text" 
+            name="firstname" 
+            value="<?= e($oldFormData['firstname'] ?? '') ?>" 
+            id="registerFloatingInput"
+            placeholder="firstname"
+            name="firstname"
+            class="form-control rounded-3 <?= isset($errors['firstname']) ? 'border-danger' : '' ?>"
+          >
+          <label for="registerFloatingInput">Imię</label>
+          <?= formError($errors, 'firstname') ?>
+          </div>
+
 
             <div class="form-floating mb-2">
               <input type="text" class="form-control rounded-3 <?= (array_key_exists('lastname', $errors)) ? 'border-danger':''?>" id="registerFloatingInput" placeholder="surename" name="lastname" value="<?php echo e($oldFormData['lastname'] ?? ''); ?>">
