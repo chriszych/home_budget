@@ -25,7 +25,10 @@ class AuthController
 
     public function loginView()
     {   
-        echo $this->view->render("login.php");
+        $welcomeText = $_SESSION['welcomeText'] ?? "Podaj dane użytkownika:";
+        unset($_SESSION['welcomeText']);
+
+        echo $this->view->render("login.php", ['welcomeText' => $welcomeText]);
     }
 
     public function login()
