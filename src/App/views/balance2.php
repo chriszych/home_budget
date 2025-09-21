@@ -25,8 +25,8 @@
   
   </section>
   
-    <!-- Footer -->
-    <?php include $this->resolve("partials/_footer.php"); ?>
+  <!-- Footer -->
+  <?php include $this->resolve("partials/_footer.php"); ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

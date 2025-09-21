@@ -1,7 +1,6 @@
 <?php include $this->resolve("partials/_header.php"); ?>
-
-  
-  <!-- welcomePage -->
+ 
+<!-- welcomePage -->
   <main id="welcomePage">
 
     <div class="container col-xxl-8 px-4 py-5">

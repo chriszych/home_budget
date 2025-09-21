@@ -12,10 +12,10 @@
         </div>
         
         <div class="col-10 col-sm-8 col-lg-4">
-          <p class="display-6 text-body-emphasis lh-1 mb-0 text-left">Witaj <?php echo $firstname;?>!</p>
+          <p class="display-6 text-body-emphasis lh-1 mb-0 text-left">Witaj <?= $firstname ?>!</p>
             
           <div class="col-12 col-sm-10 col-lg-10">
-			      <p class="lead text-left pt-4">Jesteś z nami od: <br><span class="fw-bold"><?php echo $loggedRegDate;?></span><br><?= $welcomeText ?></p>
+			      <p class="lead text-left pt-4">Jesteś z nami od: <br><span class="fw-bold"><?= $loggedRegDate ?></span><br><?= $welcomeText ?></p>
             <p class="lead text-left pt-4">Finanse w aktualnym miesiącu:</p>
             <div class="row">
               <div class="col-1">
