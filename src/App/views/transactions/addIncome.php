@@ -76,9 +76,7 @@
           cols="30" 
           placeholder="dodaj komentarz (opcja)" 
           class="form-control rounded-3 <?= isset($errors['comment']) ? 'border-danger':''?>"
-        >
-        <?= $oldFormData['comment'] ?? '' ?>
-        </textarea>
+        ><?= $oldFormData['comment'] ?? '' ?></textarea>
         <label for="incomeComment">Komentarz:</label>
           <?= formError($errors, 'comment') ?>
       </div>
