@@ -46,7 +46,7 @@ class TransactionService
 
     public function insertExpense(array $formData)
     {
-        $formattedDate = "{$formData['date']} :00";
+        $formattedDate = "{$formData['date']}:00";
 
         $this->db->query(
             "INSERT INTO expense(id_user, exp_date, id_exp_cat, exp_amount, id_pay_met, exp_comment)
@@ -82,7 +82,7 @@ class TransactionService
 
     public function insertIncome(array $formData)
     {
-        $formattedDate = "{$formData['date']} :00";
+        $formattedDate = "{$formData['date']}:00";
 
         $this->db->query(
             "INSERT INTO income(id_user, inc_date, id_inc_cat, inc_amount, inc_comment)
