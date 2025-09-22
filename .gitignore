@@ -1,6 +1,10 @@
 composer.phar
 /vendor/
 vendor/*
+/cba/
+/dhosting/
+/old/
+/pics/
 imaginary-file.txt
 .env
 storage/uploads/*
