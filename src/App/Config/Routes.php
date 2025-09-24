@@ -11,7 +11,8 @@ use App\Controllers\{
     ErrorController,
     IndexController,
     MainController,
-    BalanceController
+    BalanceController,
+    SettingsController
     };
 
 use App\Middleware\{
@@ -37,4 +38,5 @@ function registerRoutes(App $app)
     $app->post('/addIncome', [TransactionController::class, 'addIncome'])->add(AuthRequiredMiddleware::class);
     $app->get('/balance', [BalanceController::class, 'balanceView'])->add(AuthRequiredMiddleware::class);
     $app->get('/balance2', [BalanceController::class, 'balance2View'])->add(AuthRequiredMiddleware::class);
+    $app->get('/settings', [SettingsController::class, 'settings'])->add(AuthRequiredMiddleware::class);
 }

@@ -44,7 +44,7 @@
               </li>              
 
               <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="#">Ustawienia</a>
+                <a class="btn btn-lg btn-outline-primary m-1" href="./settings">Ustawienia</a>
               </li>
 
               <li class="nav-item">
