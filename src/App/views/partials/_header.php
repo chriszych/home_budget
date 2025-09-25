@@ -4,6 +4,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
@@ -71,6 +76,14 @@
         <?php endif; ?>
 
         </div>
+        <div class="dropdown">
+  <button class="btn btn-outline-primary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown">
+    <span class="fi fi-gb"></span></button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#"><span class="fi fi-pl"></span></a></li>
+    <li><a class="dropdown-item" href="#"><span class="fi fi-gb"></span></a></li>
+  </ul>
+</div>
       </div>
 
     </nav>
