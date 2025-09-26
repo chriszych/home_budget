@@ -16,6 +16,10 @@
 
     <script src="https://kit.fontawesome.com/f7c473a27a.js" crossorigin="anonymous"></script>
     <title>Budżet domowy online</title>
+
+  <link rel="icon" href="./assets/favicon.png" type="image/png">
+
+
   </head>
 
   <body>

@@ -8,12 +8,12 @@
 <!-- Subpage AddIncome -->
 
   <div class="text-start p-5 py-3 mb-2 border-bottom-0">
-    <p class="fw-bold mb-0 fs-2">Dodaj nowy przychód: </p>
+    <p class="fw-bold mb-0 fs-2">Edytuj kategorie przychodów: </p>
   </div>
         
   <div class="p-5 py-0">
 
-    <form method="POST" action="/addIncome">
+    <form method="POST" action="/addIncomeCategory">
       <?php include $this->resolve("partials/_csrf.php"); ?>
 
       <div class="form-floating mb-3">
