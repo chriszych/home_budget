@@ -44,9 +44,9 @@
                     <tfoot>
                       <tr>
                         <th></th>
-                        <th class="text-center">Masz: </th>
-						<!-- <th class="text-end pe-1 text-nowrap"><?= $i ?></th> -->
-            <th class="text-center"> kategorii przychodów </th>
+                        <th class="text-center">Ilość Twoich kategorii: </th>
+						 <th class="text-end pe-1 text-nowrap"><?= $incomeCategoryCount ?></th>
+            <!-- <th class="text-center"> kategorii przychodów </th> -->
                         <th></th>
                         <th></th>
                       </tr>

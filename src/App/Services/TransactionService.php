@@ -71,12 +71,14 @@ class TransactionService
             [
                 'user' => $id
             ])->findAll();
-
+        
+        $count = count(array_column($userIncomeCategories, 'inc_cat_name'));
 
         return [
             'incomeCategories' => $userIncomeCategories,
             'now' => $this -> now,
-            'nextYear'=> $this -> nextYear 
+            'nextYear'=> $this -> nextYear,
+            'incomeCategoryCount' => $count
             ];
     }
 
