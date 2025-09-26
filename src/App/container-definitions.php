@@ -12,7 +12,8 @@ use App\Services\{
     ValidatorService,
     UserService,
     TransactionService,
-    BalanceService
+    BalanceService,
+    SettingsService
 };
 
 return [
@@ -32,10 +33,18 @@ return [
 
         return new TransactionService($db);
     },
+    
     BalanceService::class => function(Container $container)
     {
         $db = $container->get(Database::class);
 
         return new BalanceService($db);
+    },
+
+    SettingsService::class => function(Container $container)
+    {
+        $db = $container->get(Database::class);
+
+        return new SettingsService($db);
     }
 ];
