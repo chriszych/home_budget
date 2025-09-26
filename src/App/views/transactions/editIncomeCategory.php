@@ -35,7 +35,25 @@
 					<?php foreach ($incomeCategories as $i => $row): ?>
 					<tr>
                     <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
-					<td class="px-1"><?= $row['inc_cat_name'] ?></td>
+					          
+                    <!-- <td class="px-1"><= $row['inc_cat_name'] ?></td> -->
+                    <td class="px-1">
+                    
+                          <!-- <div class="form-floating mb-3"> -->
+                          <div class="form-comtrol mb-1">
+                            
+                            <input 
+                              type="text" 
+                              id="registerFloatingInput" 
+                              name="incomeCategory" 
+                              class="form-control rounded-3" 
+                              value="<?= $row['inc_cat_name'] ?>"
+                            >
+                            <!-- <label for="registerFloatingInput">Income Category:</label> -->
+                              <!-- <= formError($errors, 'amount') ?> -->
+                            </div>  
+                    </td>
+                    
                     <td class="text-end pe-1 fw-bold"><?= $row['id_inc_user_cat'] ?></td>
 					</tr>
 					<?php endforeach; ?>
