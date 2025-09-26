@@ -16,75 +16,86 @@
     <form method="POST" action="/addIncomeCategory">
       <?php include $this->resolve("partials/_csrf.php"); ?>
 
-      <div class="form-floating mb-3">
-        <input 
-          type="number" 
-          id="registerFloatingInput" 
-          placeholder="kwota w PLN" 
-          step="0.01" 
-          min="0.01" 
-          max="99999999.99" 
-          name="amount" 
-          class="form-control rounded-3 <?= isset($errors['amount']) ? 'border-danger' : ''?>" 
-          value="<?= e($oldFormData['amount'] ?? '') ?>"
-        >
-        <label for="registerFloatingInput">Kwota w PLN:</label>
-          <?= formError($errors, 'amount') ?>
-      </div>
+                     <div class="container tableExpenses table-responsive">
+                  
+				  <!-- <h3>Przychody według kategorii</h3>
+				  <p>W okresie od <span class="fw-bold"><= $firstCurrentMonthDay ?></span> do <span class="fw-bold"><= $lastCurrentMonthDay ?></span></p> -->
+				  
+				    <table class="table table-hover">
+                    <thead>
+                     <tr>
+                        <th class="text-center px-1">Nr.</th>
+						<th class="px-1">Kategoria</th>
+                       <th class="text-center pe-1">Akcja</th>
+                       
+                      </tr>
+                    </thead>
+					
+					<tbody>
+					<?php foreach ($incomeCategories as $i => $row): ?>
+					<tr>
+                    <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
+					<td class="px-1"><?= $row['inc_cat_name'] ?></td>
+                    <td class="text-end pe-1 fw-bold"><?= $row['id_inc_user_cat'] ?></td>
+					</tr>
+					<?php endforeach; ?>
+					</tbody>
+					
+                    <tfoot>
+                      <tr>
+                        <th></th>
+                        <th class="text-center">Masz: </th>
+						<!-- <th class="text-end pe-1 text-nowrap"><?= $i ?></th> -->
+            <th class="text-center"> kategorii przychodów </th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </tfoot>
+                  </table>
 
-      <div class="form-floating mb-3">
-        <input 
-          type="datetime-local" 
-          id="registerFloatingLogin" 
-          min="2000-01-01T00:00" 
-          max="<?= $nextYear ?>" 
-          placeholder="<?= $now ?>" 
-          name="date" 
-          class="form-control rounded-3 <?= isset($errors['date']) ? 'border-danger':''?>" 
-          value="<?= e($oldFormData['date'] ?? $now) ?>"
-        >
-        <label for="registerFloatingLogin">Data:</label>
-          <?= formError($errors, 'date') ?>
-      </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div class="form-floating form-group mb-3">
-        <select 
-          id="incomeCategory" 
-          name="category" 
-          class="form-control rounded-3 <?= isset($errors['category']) ? 'border-danger':''?>"
-        >
-          <option disabled selected>Wybierz kategorię...</option>
-				
-		        <?php foreach ($incomeCategories as $incomeCategory): ?> 
-	            <option value="<?= $incomeCategory['id_inc_user_cat'] ?>" 
-		            <?= (isset($oldFormData['category']) && $oldFormData['category'] == $incomeCategory['id_inc_user_cat']) ? 'selected' : '' ?>
-              >
-		            <?= $incomeCategory['inc_cat_name']; ?>
-		          </option> 
-		        <?php endforeach; ?>
-				
-        </select>
-        <label for="incomeCategory">Kategoria:</label>
-          <?= formError($errors, 'category') ?>
-      </div>
+         <!--  <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div class="container tableIncomes table-responsive">
+                  <h3>Wydatki według kategorii</h3>
+                  <p>W okresie od <span class="fw-bold"><= $firstCurrentMonthDay ?></span> do <span class="fw-bold"><?= $lastCurrentMonthDay ?></span></p>
 
-      <div class="form-floating mb-3">
-	      <textarea 
-          id="incomeComment" 
-          name="comment" 
-          rows="2" 
-          cols="30" 
-          placeholder="dodaj komentarz (opcja)" 
-          class="form-control rounded-3 <?= isset($errors['comment']) ? 'border-danger':''?>"
-        ><?= $oldFormData['comment'] ?? '' ?></textarea>
-        <label for="incomeComment">Komentarz:</label>
-          <?= formError($errors, 'comment') ?>
-      </div>
-            		  
-      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 mb-md-5 mt-1 mt-md-3" type="submit">Dodaj</button>
-          <a href="./" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 mb-md-5 mt-1 mt-md-3" role="button">Anuluj</a>
-      </div>
+					<table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th class="text-center px-1">Nr.</th>
+						<th class="px-1">Kategoria</th>
+                        <th class="text-center pe-1">Kwota</th>
+                      </tr>
+                    </thead>
+					
+					<tbody>
+					<php foreach ($resultExp as $i => $row): ?>
+					<tr>
+                    <td class="text-center px-1 fw-bold"><= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
+					<td class="px-1"><= $row['exp_cat_name'] ?></td>
+                    <td class="text-end pe-1 fw-bold"><= number_format($row['total_amount'], 2, ',', '') ?></td>
+					</tr>
+					<php endforeach; ?>
+					</tbody>
+					
+                    <tfoot>
+                      <tr>
+                       <th></th>
+                       <th class="text-center">Suma: </th>
+					   <th class="text-end pe-1 text-nowrap"><= number_format($expSum, 2, ',','') ?></th>
+                       <th></th>
+                       <th></th>
+                      </tr>
+                    </tfoot>
+                  </table> -->
+
+                </div>
     </form>
   </div>
  
