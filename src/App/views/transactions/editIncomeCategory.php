@@ -11,7 +11,7 @@
     <p class="fw-bold mb-0 fs-2">Edytuj kategorie przychodów: </p>
   </div>
         
-  <div class="p-5 py-0">
+  <div class="p-5 py-0 fs-5">
 
     <form method="POST" action="/addIncomeCategory">
       <?php include $this->resolve("partials/_csrf.php"); ?>
@@ -36,10 +36,10 @@
 					<tr>
                     <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
 					          
-                    <!-- <td class="px-1"><= $row['inc_cat_name'] ?></td> -->
-                    <td class="px-1">
+                    <td class="px-1"><?= $row['inc_cat_name'] ?></td>
+                    <!-- <td class="px-1">
                     
-                          <!-- <div class="form-floating mb-3"> -->
+                          <div class="form-floating mb-3">
                           <div class="form-comtrol mb-1">
                             
                             <input 
@@ -47,14 +47,19 @@
                               id="registerFloatingInput" 
                               name="incomeCategory" 
                               class="form-control rounded-3" 
-                              value="<?= $row['inc_cat_name'] ?>"
+                              value="<= $row['inc_cat_name'] ?>"
                             >
-                            <!-- <label for="registerFloatingInput">Income Category:</label> -->
-                              <!-- <= formError($errors, 'amount') ?> -->
+                            <label for="registerFloatingInput">Income Category:</label> -->
+                              <!-- <= formError($errors, 'amount') ?>
                             </div>  
-                    </td>
+                    </td> -->
                     
-                    <td class="text-end pe-1 fw-bold"><?= $row['id_inc_user_cat'] ?></td>
+                    <td class="text-end">
+                      <!-- <= $row['id_inc_user_cat'] ?> -->
+
+                              <a href="#"><i class="fa-regular fa-pen-to-square fa-xl" style="color: #2861c3;"></i></a>
+                              <a href="#"><i class="fa-regular fa-trash-can fa-xl" style="color: #2861c3;"></i></a>
+                          </td>
 					</tr>
 					<?php endforeach; ?>
 					</tbody>
