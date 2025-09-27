@@ -37,22 +37,7 @@
                     <td class="text-center px-1 fw-bold"><?= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
 					          
                     <td class="px-1"><?= $row['inc_cat_name'] ?></td>
-                    <!-- <td class="px-1">
-                    
-                          <div class="form-floating mb-3">
-                          <div class="form-comtrol mb-1">
-                            
-                            <input 
-                              type="text" 
-                              id="registerFloatingInput" 
-                              name="incomeCategory" 
-                              class="form-control rounded-3" 
-                              value="<= $row['inc_cat_name'] ?>"
-                            >
-                            <label for="registerFloatingInput">Income Category:</label> -->
-                              <!-- <= formError($errors, 'amount') ?>
-                            </div>  
-                    </td> -->
+
                     
                     <td class="text-end">
                       <!-- <= $row['id_inc_user_cat'] ?> -->
@@ -87,42 +72,6 @@
           <a href="./" class="w-100 mb-1 btn btn-lg rounded-3 btn-primary my-1 mb-1 my-md-3 mb-md-3" role="button">Dodaj nową kategorię</a>
         </div>
 
-         <!--  <div class="col">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <div class="container tableIncomes table-responsive">
-                  <h3>Wydatki według kategorii</h3>
-                  <p>W okresie od <span class="fw-bold"><= $firstCurrentMonthDay ?></span> do <span class="fw-bold"><?= $lastCurrentMonthDay ?></span></p>
-
-					<table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th class="text-center px-1">Nr.</th>
-						<th class="px-1">Kategoria</th>
-                        <th class="text-center pe-1">Kwota</th>
-                      </tr>
-                    </thead>
-					
-					<tbody>
-					<php foreach ($resultExp as $i => $row): ?>
-					<tr>
-                    <td class="text-center px-1 fw-bold"><= str_pad($i+1, 1, "0", STR_PAD_LEFT); ?>. </td>
-					<td class="px-1"><= $row['exp_cat_name'] ?></td>
-                    <td class="text-end pe-1 fw-bold"><= number_format($row['total_amount'], 2, ',', '') ?></td>
-					</tr>
-					<php endforeach; ?>
-					</tbody>
-					
-                    <tfoot>
-                      <tr>
-                       <th></th>
-                       <th class="text-center">Suma: </th>
-					   <th class="text-end pe-1 text-nowrap"><= number_format($expSum, 2, ',','') ?></th>
-                       <th></th>
-                       <th></th>
-                      </tr>
-                    </tfoot>
-                  </table> -->
 
                 </div>
     </form>
