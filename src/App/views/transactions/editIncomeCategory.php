@@ -68,7 +68,7 @@
                       <tr>
                         <th></th>
                         <th class="text-center">Ilość Twoich kategorii: </th>
-						 <th class="text-end pe-1 text-nowrap"><?= $incomeCategoryCount ?></th>
+						 <th class="text-start text-nowrap"><?= $incomeCategoryCount ?></th>
             <!-- <th class="text-center"> kategorii przychodów </th> -->
                         <th></th>
                         <th></th>
@@ -80,6 +80,12 @@
               </div>
             </div>
           </div>
+
+        
+        <div class="d-grid gap-1 d-md-flex justify-content-md-center">
+          <!-- <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 my-md-5 mb-md-5" role="button" type="submit">Zaloguj się</button> -->
+          <a href="./" class="w-100 mb-1 btn btn-lg rounded-3 btn-primary my-1 mb-1 my-md-3 mb-md-3" role="button">Dodaj nową kategorię</a>
+        </div>
 
          <!--  <div class="col">
             <div class="card shadow-sm">
