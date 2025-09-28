@@ -38,6 +38,26 @@ class SettingsService
         }
     }
 
+    public function isCategoryUsed(int $id_cat)
+    {
+        $incomeCategoryCount = $this->db->query(
+            "SELECT COUNT(*) 
+            FROM income
+            WHERE id_user = :id_user 
+            AND id_inc_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_cat
+            ]
+        )->count();
+
+        if ($incomeCategoryCount > 0)
+        
+        {
+            throw new ValidationException(['usedCategory' => ['Kategoria jest używana, nie może być usunięta!']]);
+        }
+    }
+
     public function insertIncomeCategory(array $formData) 
     {
             $this->db->query(
@@ -53,7 +73,7 @@ class SettingsService
 
     public function deleteIncomeCategory(array $formData)
     {
-
+        // dd($formData);
         $this->db->query(
             "DELETE FROM income_user_category
             WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",

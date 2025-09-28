@@ -55,6 +55,7 @@ class SettingsController
 
     public function deleteIncomeCategory()
     {
+        $this->settingsService->isCategoryUsed((int)$_POST['id_cat']);
         $this->settingsService->deleteIncomeCategory($_POST);
     }
 }
