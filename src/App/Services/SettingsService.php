@@ -51,5 +51,20 @@ class SettingsService
         );
     }
 
+    public function deleteIncomeCategory(array $formData)
+    {
+
+        $this->db->query(
+            "DELETE FROM income_user_category
+            WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $formData['id_cat']
+            ]
+        );
+        redirectTo('/listIncomeCategory');
+
+    }
+
 
 }   

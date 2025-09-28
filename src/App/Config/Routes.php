@@ -42,4 +42,5 @@ function registerRoutes(App $app)
     $app->get('/listIncomeCategory', [SettingsController::class, 'listIncomeView'])->add(AuthRequiredMiddleware::class);
     $app->get('/addIncomeCategory', [SettingsController::class, 'addIncomeView'])->add(AuthRequiredMiddleware::class);
     $app->post('/addIncomeCategory', [SettingsController::class, 'addIncomeCategory'])->add(AuthRequiredMiddleware::class);
+    $app->post('/deleteIncomeCategory', [SettingsController::class, 'deleteIncomeCategory'])->add(AuthRequiredMiddleware::class);
 }

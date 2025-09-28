@@ -33,7 +33,6 @@ class SettingsController
 
     public function listIncomeView()
     {   
-        // echo $this->view->render("transactions/editIncomeCategory.php");
         $params = $this->transactionService->getUserIncomeCategory((int)$_SESSION['user']);  
 
         echo $this->view->render("transactions/listIncomeCategory.php", $params);
@@ -41,7 +40,6 @@ class SettingsController
 
     public function addIncomeView()
     {   
-        //$params = $this->transactionService->getUserIncomeCategory((int)$_SESSION['user']);  
 
         echo $this->view->render("transactions/addIncomeCategory.php");
     }
@@ -53,5 +51,10 @@ class SettingsController
         $this->settingsService->insertIncomeCategory($_POST);
 
         redirectTo('/listIncomeCategory');
+    }
+
+    public function deleteIncomeCategory()
+    {
+        $this->settingsService->deleteIncomeCategory($_POST);
     }
 }
