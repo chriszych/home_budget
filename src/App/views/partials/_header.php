@@ -35,31 +35,36 @@
           </button>
 
         <?php if(isset($_SESSION['user'])) : ?>
-          <div class="collapse navbar-collapse d-lg-flex" id="buttonNavbar">
-            <a href="/"><i class="fa-solid fa-house-chimney" style="color: #2861c3;"></i></a>
-            <h1><a class="navbar-brand col-lg-3 me-0" href="/">&nbsp;Budżet online</a></h1>
-            <ul class="navbar-nav col-lg-9 justify-content-lg-end">
+          <div class="collapse navbar-collapse d-lg-flex justify-content-between align-items-center" id="buttonNavbar">
+           <div class="d-flex">
+              <a class="house-hover d-flex justify-content-start align-items-center" href="/"><i class="fa-solid fa-house-chimney" style="color: #2861c3;"></i></a>
+              <h1><a class="navbar-brand col-lg-3 me-0" href="/">&nbsp;Budżet online</a></h1>
+            </div>
+            <!-- <ul class="navbar-nav col-lg-9 justify-content-lg-end"> -->
+            <!-- <div class=""> -->
+              <ul class="navbar-nav col-lg-9 justify-content-center">
 
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./addExpense">Nowy wydatek</a>
-              </li>
+                <li class="nav-item">
+                  <a class="btn btn-lg btn-outline-primary m-1" href="./addExpense">Nowy wydatek</a>
+                </li>
 
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./addIncome">Nowy przychód</a>
-              </li>
+                <li class="nav-item">
+                  <a class="btn btn-lg btn-outline-primary m-1" href="./addIncome">Nowy przychód</a>
+                </li>
 
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./balance">Aktualny bilans</a>
-              </li>              
+                <li class="nav-item">
+                  <a class="btn btn-lg btn-outline-primary m-1" href="./balance">Aktualny bilans</a>
+                </li>              
 
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./settings">Ustawienia</a>
-              </li>
+                <li class="nav-item">
+                  <a class="btn btn-lg btn-outline-primary m-1" href="./settings">Ustawienia</a>
+                </li>
 
-              <li class="nav-item">
-                <a class="btn btn-lg btn-outline-primary m-1" href="./logout">Wyloguj</a>
-              </li>
-            </ul>
+                <li class="nav-item">
+                  <a class="btn btn-lg btn-outline-primary m-1" href="./logout">Wyloguj</a>
+                </li>
+              </ul>
+            <!-- </div> -->
           </div>
 
         <?php else : ?>
@@ -81,13 +86,13 @@
 
         </div>
         <div class="dropdown">
-  <button class="btn btn-outline-primary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown">
-    <span class="fi fi-gb"></span></button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#"><span class="fi fi-pl"></span></a></li>
-    <li><a class="dropdown-item" href="#"><span class="fi fi-gb"></span></a></li>
-  </ul>
-</div>
+          <button class="btn btn-outline-primary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown">
+          <span class="fi fi-gb"></span></button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><span class="fi fi-pl"></span></a></li>
+            <li><a class="dropdown-item" href="#"><span class="fi fi-gb"></span></a></li>
+          </ul>
+        </div>
       </div>
 
     </nav>
