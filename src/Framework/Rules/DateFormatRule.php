@@ -8,10 +8,7 @@ class DateFormatRule implements RuleInterface
 {
   public function validate(array $data, string $field, array $params): bool
   {
-    //dd($params[0]);
-    //dd($data[$field]);
     $parsedDate = date_parse_from_format($params[0], $data[$field]);
-    //dd($parsedDate);
 
     return $parsedDate['error_count'] === 0 && $parsedDate['warning_count'] === 0;
   }

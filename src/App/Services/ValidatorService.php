@@ -90,4 +90,10 @@ class ValidatorService
         
     }
 
+    public function validateIncomeCategory(array $formData) 
+    {
+            $this->validator->validate($formData, [
+            'newIncomeCategory' => ['required']
+        ]);
+    }
 }   
