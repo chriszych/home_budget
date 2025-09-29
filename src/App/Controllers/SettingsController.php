@@ -58,4 +58,21 @@ class SettingsController
         $this->settingsService->isCategoryUsed((int)$_POST['id_cat']);
         $this->settingsService->deleteIncomeCategory($_POST);
     }
+
+    public function editIncomeView()
+    {   
+        $params = $_POST;
+        //dd($params);
+        echo $this->view->render("transactions/editIncomeCategory.php", $params);
+    }
+
+    public function editIncomeCategory($params)
+    {
+        dd($params);
+        //$this->settingsService->isCategoryUsed((int)$_POST['id_cat']);
+        //$this->settingsService->editIncomeCategory($_POST);
+        
+        //redirectTo('/listIncomeCategory');
+    }
+
 }

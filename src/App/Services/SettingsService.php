@@ -86,5 +86,10 @@ class SettingsService
 
     }
 
+    public function editIncomeCategory()
+    {
+        
+    }
+
 
 }   

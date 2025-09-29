@@ -37,10 +37,23 @@
                     <td class="text-end">
 
                             <div class="d-flex justify-content-evenly">
-                              <div class="mx-2">
+                              
+                              <!--<div class="mx-2">
                                 <a href="#" class="icon-hover"><i class="fa-regular fa-pen-to-square fa-xl"></i></a>
-                              </div>
+                              </div> -->
 
+                              <!-- edit-->
+
+                              <form action="/editIncomeCategory" method="POST">
+                              <input type="hidden" name="id_cat" value="<?= $row['id_inc_user_cat']?>" />
+                              <input type="hidden" name="category" value="<?= $row['inc_cat_name']?>"/>
+                                <?php include $this->resolve("partials/_csrf.php"); ?>
+                                <button type="submit" class="btn icon-hover">
+                                      <i class="fa-regular fa-pen-to-square fa-2xl"></i>
+                                </button>
+                              </form>
+
+                              <!-- delete-->
 
                               <form action="/deleteIncomeCategory" method="POST">
                               <input type="hidden" name="id_cat" value="<?= $row['id_inc_user_cat']?>" />
