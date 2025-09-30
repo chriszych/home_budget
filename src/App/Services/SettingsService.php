@@ -86,9 +86,9 @@ class SettingsService
 
     }
 
-    public function editIncomeCategory()
+    public function updateIncomeCategory(array $formData)
     {
-        
+        dd($formData);
     }
 
 
