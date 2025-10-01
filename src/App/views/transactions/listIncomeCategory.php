@@ -44,6 +44,7 @@
 
                               <!-- edit-->
 
+
                               <form action="/editIncomeCategory" method="POST">
                               <input type="hidden" name="id_cat" value="<?= $row['id_inc_user_cat']?>" />
                               <input type="hidden" name="category" value="<?= $row['inc_cat_name']?>"/>

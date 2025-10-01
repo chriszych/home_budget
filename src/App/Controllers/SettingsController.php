@@ -68,14 +68,21 @@ class SettingsController
         echo $this->view->render("transactions/editIncomeCategory.php");
     }
 
-    public function editIncomeCategory()
-    {
-         $params = $_POST;
-         dd($params);
+    // public function updateIncomeCategory()
+    // {
+    //      $params = $_POST;
+    //      dd($params);
+
+    // }
         // $this->settingsService->isCategoryUsed((int)$_POST['id_cat']);
         // $this->settingsService->editIncomeCategory($_POST);
         
         //redirectTo('/listIncomeCategory');
-    }
+public function updateIncomeCategory()
+{
+    var_dump($_POST);
+}
+
+    
 
 }
