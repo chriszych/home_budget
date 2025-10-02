@@ -15,7 +15,6 @@
 
 
     <form method="POST">
-    <!-- <form action="/editIncomeCategory" method="POST"> -->
       <?php include $this->resolve("partials/_csrf.php"); ?>
     <input type="hidden" name="id_cat" value="<?= $id_cat ?>" />
       

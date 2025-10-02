@@ -20,7 +20,6 @@ class SettingsService
 
     public function isCategoryTaken(array $params)
     {
-        //dd($params);
         $incomeCategoryCount = $this->db->query(
             "SELECT COUNT(*) 
             FROM income_user_category 
@@ -76,7 +75,6 @@ class SettingsService
 
     public function deleteIncomeCategory(array $formData)
     {
-        // dd($formData);
         $this->db->query(
             "DELETE FROM income_user_category
             WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",
@@ -103,8 +101,7 @@ class SettingsService
 
     public function updateIncomeCategory(array $formData, int $id_cat)
     {
-        //dd($formData);
-        //dd($id_cat);
+
         $this->db->query(
             "UPDATE income_user_category
             SET inc_cat_name = :new_category

@@ -61,9 +61,8 @@ class SettingsController
 
     public function editIncomeView(array $id_cat)
     {   
-        //dd($id_cat);
         $params = $this->settingsService->getUserIncomeCategory($id_cat['category']);
-       //dd($params);
+
         echo $this->view->render("transactions/editIncomeCategory.php", [
             'category' => $params['inc_cat_name'],
             'id_cat' => $id_cat['category']
@@ -72,12 +71,11 @@ class SettingsController
 
     public function editIncomeCategory(array $category)
     {
-        //dd($category);
-        //dd($category['category']);
+
         $this->validatorService->validateIncomeCategory($_POST);
         $this->settingsService->isCategoryTaken($_POST);
         $this->settingsService->updateIncomeCategory($_POST, (int)$category['category']);
-        //redirectTo($_SERVER['HTTP_REFERER']);
+
         redirectTo('../listIncomeCategory');
     }
 
