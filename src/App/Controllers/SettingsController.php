@@ -47,7 +47,7 @@ class SettingsController
     public function addIncomeCategory() 
     {
         $this->validatorService->validateIncomeCategory($_POST);
-        $this->settingsService->isCategoryTaken($_POST['newIncomeCategory']);
+        $this->settingsService->isCategoryTaken($_POST);
         $this->settingsService->insertIncomeCategory($_POST);
 
         redirectTo('/listIncomeCategory');
@@ -59,29 +59,27 @@ class SettingsController
         $this->settingsService->deleteIncomeCategory($_POST);
     }
 
-    public function editIncomeView()
+    public function editIncomeView(array $id_cat)
     {   
-        //$params = $_POST;
-        //dd($params);
-        //echo $this->view->render("transactions/editIncomeCategory.php", $params);
-        //echo $this->view->render("transactions/editIncomeCategory.php");
-        echo $this->view->render("transactions/editIncomeCategory.php");
+        //dd($id_cat);
+        $params = $this->settingsService->getUserIncomeCategory($id_cat['category']);
+       //dd($params);
+        echo $this->view->render("transactions/editIncomeCategory.php", [
+            'category' => $params['inc_cat_name'],
+            'id_cat' => $id_cat['category']
+        ]);
     }
 
-    // public function updateIncomeCategory()
-    // {
-    //      $params = $_POST;
-    //      dd($params);
-
-    // }
-        // $this->settingsService->isCategoryUsed((int)$_POST['id_cat']);
-        // $this->settingsService->editIncomeCategory($_POST);
-        
-        //redirectTo('/listIncomeCategory');
-public function updateIncomeCategory()
-{
-    var_dump($_POST);
-}
+    public function editIncomeCategory(array $category)
+    {
+        //dd($category);
+        //dd($category['category']);
+        $this->validatorService->validateIncomeCategory($_POST);
+        $this->settingsService->isCategoryTaken($_POST);
+        $this->settingsService->updateIncomeCategory($_POST, (int)$category['category']);
+        //redirectTo($_SERVER['HTTP_REFERER']);
+        redirectTo('../listIncomeCategory');
+    }
 
     
 

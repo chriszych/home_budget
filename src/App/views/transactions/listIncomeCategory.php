@@ -45,14 +45,15 @@
                               <!-- edit-->
 
 
-                              <form action="/editIncomeCategory" method="POST">
-                              <input type="hidden" name="id_cat" value="<?= $row['id_inc_user_cat']?>" />
-                              <input type="hidden" name="category" value="<?= $row['inc_cat_name']?>"/>
-                                <?php include $this->resolve("partials/_csrf.php"); ?>
-                                <button type="submit" class="btn icon-hover">
+                              <!-- <form action="/editIncomeCategory/<?= e($row['id_inc_user_cat']) ?>/" method="GET"> -->
+                              <!-- <input type="hidden" name="id_cat" value="<?= $row['id_inc_user_cat']?>" />
+                              <input type="hidden" name="category" value="<?= $row['inc_cat_name']?>"/> -->
+                                <!-- <?php include $this->resolve("partials/_csrf.php"); ?> -->
+                                  <a href="/editIncomeCategory/<?= e($row['id_inc_user_cat']) ?>"
+                                  type="submit" class="btn icon-hover">
                                       <i class="fa-regular fa-pen-to-square fa-2xl"></i>
-                                </button>
-                              </form>
+                                </a>
+                              <!-- </form> -->
 
                               <!-- delete-->
 

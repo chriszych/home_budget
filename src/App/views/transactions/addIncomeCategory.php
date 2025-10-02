@@ -15,25 +15,26 @@
 
     <form method="POST" action="/addIncomeCategory">
       <?php include $this->resolve("partials/_csrf.php"); ?>
+      <input type="hidden" name="id_cat" value="0" />
 
       <div class="form-floating mb-3">
         <input 
           type="text" 
           id="registerFloatingInput" 
           placeholder="Dodaj nową kategorię przychodów:" 
-          name="newIncomeCategory" 
-          class="form-control rounded-3 <?= isset($errors['newIncomeCategory']) ? 'border-danger' : ''?>" 
-          value="<?= e($oldFormData['newIncomeCategory'] ?? '') ?>"
+          name="incomeCategory" 
+          class="form-control rounded-3 <?= isset($errors['incomeCategory']) ? 'border-danger' : ''?>" 
+          value="<?= e($oldFormData['incomeCategory'] ?? '') ?>"
         >
         <label for="registerFloatingInput">Dodaj nową kategorię przychodów:</label>
-          <?= formError($errors, 'newIncomeCategory') ?>
+          <?= formError($errors, 'incomeCategory') ?>
       </div>
 
      
             		  
       <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 mb-md-5 mt-1 mt-md-3" type="submit">Dodaj</button>
-          <a href="./listIncomeCategory" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 mb-md-5 mt-1 mt-md-3" role="button">Anuluj</a>
+          <a href="../listIncomeCategory" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 mb-md-5 mt-1 mt-md-3" role="button">Anuluj</a>
       </div>
     </form>
   </div>

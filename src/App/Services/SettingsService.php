@@ -18,23 +18,26 @@ class SettingsService
 
     }
 
-    public function isCategoryTaken(string $category)
+    public function isCategoryTaken(array $params)
     {
+        //dd($params);
         $incomeCategoryCount = $this->db->query(
             "SELECT COUNT(*) 
             FROM income_user_category 
             WHERE id_user = :id_user 
-            AND inc_cat_name = :category",
+            AND inc_cat_name = :category
+            AND id_inc_user_cat != :id_cat",
             [
                 'id_user' => $_SESSION['user'],
-                'category' => $category
+                'category' => $params['incomeCategory'],
+                'id_cat' => $params['id_cat']
             ]
         )->count();
 
         if ($incomeCategoryCount > 0)
         
         {
-            throw new ValidationException(['newIncomeCategory' => ['Kategoria jest już dodana!']]);
+            throw new ValidationException(['incomeCategory' => ['Kategoria jest już dodana!']]);
         }
     }
 
@@ -66,7 +69,7 @@ class SettingsService
             VALUES (:id_user, :category)",
             [
                 'id_user' => $_SESSION['user'],
-                'category' => $formData['newIncomeCategory']
+                'category' => $formData['incomeCategory']
             ]
         );
     }
@@ -86,9 +89,33 @@ class SettingsService
 
     }
 
-    public function updateIncomeCategory(array $formData)
+    public function getUserIncomeCategory(string $id_category)
     {
-        dd($formData);
+        return $this->db->query(
+            "SELECT inc_cat_name FROM income_user_category
+            WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_category
+            ]
+        )->find();
+    }
+
+    public function updateIncomeCategory(array $formData, int $id_cat)
+    {
+        //dd($formData);
+        //dd($id_cat);
+        $this->db->query(
+            "UPDATE income_user_category
+            SET inc_cat_name = :new_category
+            WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_cat,
+                'new_category' => $formData['incomeCategory']
+            ]
+            
+        );
     }
 
 
