@@ -15,7 +15,6 @@
 
     <form method="POST" action="/addIncomeCategory">
       <?php include $this->resolve("partials/_csrf.php"); ?>
-      <input type="hidden" name="id_cat" value="0" />
 
       <div class="form-floating mb-3">
         <input 

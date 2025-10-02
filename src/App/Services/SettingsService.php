@@ -20,18 +20,25 @@ class SettingsService
 
     public function isCategoryTaken(array $params)
     {
-        $incomeCategoryCount = $this->db->query(
+        $query =
             "SELECT COUNT(*) 
             FROM income_user_category 
             WHERE id_user = :id_user 
-            AND inc_cat_name = :category
-            AND id_inc_user_cat != :id_cat",
-            [
+            AND inc_cat_name = :category";
+        
+        $newParams = [
                 'id_user' => $_SESSION['user'],
-                'category' => $params['incomeCategory'],
-                'id_cat' => $params['id_cat']
-            ]
-        )->count();
+                'category' => $params['incomeCategory']
+        ];
+
+        if (!empty($params['id_cat'])) 
+        {
+            $query .= " AND id_inc_user_cat != :id_cat";
+            $newParams['id_cat'] = $params['id_cat'];
+        }
+
+
+        $incomeCategoryCount = $this->db->query($query, $newParams)->count();
 
         if ($incomeCategoryCount > 0)
         
