@@ -79,6 +79,19 @@ class SettingsController
         redirectTo('../listIncomeCategory');
     }
 
-    
+    public function addExpenseView()
+    {   
+
+        echo $this->view->render("transactions/addExpenseCategory.php");
+    }
+
+    public function addExpenseCategory() 
+    {
+        $this->validatorService->validateExpenseCategory($_POST);
+        $this->settingsService->isCategoryTaken($_POST);
+        $this->settingsService->insertExpenseCategory($_POST);
+
+        redirectTo('/listIncomeCategory');
+    }
 
 }

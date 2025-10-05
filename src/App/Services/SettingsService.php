@@ -122,5 +122,18 @@ class SettingsService
         );
     }
 
+    public function insertExpenseCategory(array $formData) 
+    {
+            $this->db->query(
+
+            "INSERT INTO expense_user_category(id_user, inc_cat_name) 
+            VALUES (:id_user, :category)",
+            [
+                'id_user' => $_SESSION['user'],
+                'category' => $formData['expenseCategory']
+            ]
+        );
+    }
+
 
 }   

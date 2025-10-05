@@ -96,4 +96,11 @@ class ValidatorService
             'incomeCategory' => ['required']
         ]);
     }
-}   
+
+    public function validateExpenseCategory(array $formData) 
+    {
+            $this->validator->validate($formData, [
+            'expenseCategory' => ['required']
+        ]);
+    }
+}
