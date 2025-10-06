@@ -106,5 +106,25 @@ class SettingsController
         $this->settingsService->isExpenseCategoryUsed((int)$_POST['id_cat']);
         $this->settingsService->deleteExpenseCategory($_POST);
     }
+    
+    public function editExpenseView(array $id_cat)
+    {   
+        $params = $this->settingsService->getUserExpenseCategory($id_cat['category']);
+
+        echo $this->view->render("transactions/editExpenseCategory.php", [
+            'category' => $params['exp_cat_name'],
+            'id_cat' => $id_cat['category']
+        ]);
+    }
+
+    public function editExpenseCategory(array $category)
+    {
+
+        $this->validatorService->validateExpenseCategory($_POST);
+        $this->settingsService->isExpenseCategoryTaken($_POST);
+        $this->settingsService->updateExpenseCategory($_POST, (int)$category['category']);
+
+        redirectTo('../listExpenseCategory');
+    }
 
 }

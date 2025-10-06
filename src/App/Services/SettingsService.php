@@ -198,4 +198,32 @@ class SettingsService
 
     }
 
+    public function getUserExpenseCategory(string $id_category)
+    {
+        return $this->db->query(
+            "SELECT exp_cat_name FROM expense_user_category
+            WHERE id_user = :id_user AND id_exp_user_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_category
+            ]
+        )->find();
+    }
+
+    public function updateExpenseCategory(array $formData, int $id_cat)
+    {
+
+        $this->db->query(
+            "UPDATE expense_user_category
+            SET exp_cat_name = :new_category
+            WHERE id_user = :id_user AND id_exp_user_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_cat,
+                'new_category' => $formData['expenseCategory']
+            ]
+            
+        );
+    }
+
 }   
