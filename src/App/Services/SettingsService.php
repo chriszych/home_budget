@@ -226,4 +226,16 @@ class SettingsService
         );
     }
 
+    public function getUserPaymentMethod(string $id_category)
+    {
+        return $this->db->query(
+            "SELECT pay_met_name FROM payment_user_method
+            WHERE id_user = :id_user AND id_user_pay_met = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_category
+            ]
+        )->find();
+    }
+
 }   

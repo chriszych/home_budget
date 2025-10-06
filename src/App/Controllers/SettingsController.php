@@ -127,4 +127,11 @@ class SettingsController
         redirectTo('../listExpenseCategory');
     }
 
+    public function listPaymentView()
+    {   
+        $params = $this->transactionService->getUserPaymentMethod((int)$_SESSION['user']);  
+
+        echo $this->view->render("transactions/listPaymentMethod.php", $params);
+    }
+
 }

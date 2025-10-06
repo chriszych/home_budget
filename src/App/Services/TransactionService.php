@@ -118,4 +118,24 @@ class TransactionService
             'expenseCategoryCount' => $count
             ];
     }
+
+    public function getUserPaymentMethod(int $id) : array
+    {
+        $userPaymentMethods =  $this->db->query(
+            "SELECT id_user_pay_met, pay_met_name 
+            FROM payment_user_method 
+            WHERE id_user = :user",
+            [
+                'user' => $id
+            ])->findAll();
+        
+        $count = count(array_column($userPaymentMethods, 'pay_met_name'));
+
+        return [
+            'paymentMethod' => $userPaymentMethods,
+            'now' => $this -> now,
+            'nextYear'=> $this -> nextYear,
+            'paymentMethodCount' => $count
+            ];
+    }
 }
