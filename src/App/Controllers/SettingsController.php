@@ -47,7 +47,7 @@ class SettingsController
     public function addIncomeCategory() 
     {
         $this->validatorService->validateIncomeCategory($_POST);
-        $this->settingsService->isCategoryTaken($_POST);
+        $this->settingsService->isIncomeCategoryTaken($_POST);
         $this->settingsService->insertIncomeCategory($_POST);
 
         redirectTo('/listIncomeCategory');
@@ -55,7 +55,7 @@ class SettingsController
 
     public function deleteIncomeCategory()
     {
-        $this->settingsService->isCategoryUsed((int)$_POST['id_cat']);
+        $this->settingsService->isIncomeCategoryUsed((int)$_POST['id_cat']);
         $this->settingsService->deleteIncomeCategory($_POST);
     }
 
@@ -73,7 +73,7 @@ class SettingsController
     {
 
         $this->validatorService->validateIncomeCategory($_POST);
-        $this->settingsService->isCategoryTaken($_POST);
+        $this->settingsService->isIncomeCategoryTaken($_POST);
         $this->settingsService->updateIncomeCategory($_POST, (int)$category['category']);
 
         redirectTo('../listIncomeCategory');

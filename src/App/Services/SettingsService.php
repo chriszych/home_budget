@@ -18,7 +18,7 @@ class SettingsService
 
     }
 
-    public function isCategoryTaken(array $params)
+    public function isIncomeCategoryTaken(array $params)
     {
         $query =
             "SELECT COUNT(*) 
@@ -47,7 +47,7 @@ class SettingsService
         }
     }
 
-    public function isCategoryUsed(int $id_cat)
+    public function isIncomeCategoryUsed(int $id_cat)
     {
         $incomeCategoryCount = $this->db->query(
             "SELECT COUNT(*) 
