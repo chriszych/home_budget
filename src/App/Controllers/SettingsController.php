@@ -154,4 +154,19 @@ class SettingsController
         redirectTo('../listPaymentMethod');
     }
 
+    public function addPaymentView()
+    {   
+
+        echo $this->view->render("transactions/addPaymentMethod.php");
+    }
+
+    public function addPaymentMethod() 
+    {
+        $this->validatorService->validatePaymentMethod($_POST);
+        $this->settingsService->isPaymentMethodTaken($_POST);
+        $this->settingsService->insertPaymentMethod($_POST);
+
+        redirectTo('/listPaymentMethod');
+    }
+
 }

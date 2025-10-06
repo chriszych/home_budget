@@ -303,4 +303,17 @@ class SettingsService
         );
     }
 
+    public function insertPaymentMethod(array $formData) 
+    {
+            $this->db->query(
+
+            "INSERT INTO payment_user_method(id_user, pay_met_name) 
+            VALUES (:id_user, :category)",
+            [
+                'id_user' => $_SESSION['user'],
+                'category' => $formData['paymentMethod']
+            ]
+        );
+    }
+
 }   
