@@ -101,4 +101,10 @@ class SettingsController
         echo $this->view->render("transactions/listExpenseCategory.php", $params);
     }
 
+    public function deleteExpenseCategory()
+    {
+        $this->settingsService->isExpenseCategoryUsed((int)$_POST['id_cat']);
+        $this->settingsService->deleteExpenseCategory($_POST);
+    }
+
 }

@@ -164,5 +164,38 @@ class SettingsService
         }
     }
 
+    public function isExpenseCategoryUsed(int $id_cat)
+    {
+        $expenseCategoryCount = $this->db->query(
+            "SELECT COUNT(*) 
+            FROM expense
+            WHERE id_user = :id_user 
+            AND id_exp_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_cat
+            ]
+        )->count();
+
+        if ($expenseCategoryCount > 0)
+        
+        {
+            throw new ValidationException(['usedCategory' => ['Kategoria jest używana, nie może być usunięta!']]);
+        }
+    }
+    
+    public function deleteExpenseCategory(array $formData)
+    {
+        $this->db->query(
+            "DELETE FROM expense_user_category
+            WHERE id_user = :id_user AND id_exp_user_cat = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $formData['id_cat']
+            ]
+        );
+        redirectTo('/listExpenseCategory');
+
+    }
 
 }   
