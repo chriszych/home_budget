@@ -88,10 +88,17 @@ class SettingsController
     public function addExpenseCategory() 
     {
         $this->validatorService->validateExpenseCategory($_POST);
-        $this->settingsService->isCategoryTaken($_POST);
+        $this->settingsService->isExpenseCategoryTaken($_POST);
         $this->settingsService->insertExpenseCategory($_POST);
 
-        redirectTo('/listIncomeCategory');
+        redirectTo('/listExpenseCategory');
+    }
+
+    public function listExpenseView()
+    {   
+        $params = $this->transactionService->getUserExpenseCategory((int)$_SESSION['user']);  
+
+        echo $this->view->render("transactions/listExpenseCategory.php", $params);
     }
 
 }

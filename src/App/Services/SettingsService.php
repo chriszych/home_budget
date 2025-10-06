@@ -126,13 +126,42 @@ class SettingsService
     {
             $this->db->query(
 
-            "INSERT INTO expense_user_category(id_user, inc_cat_name) 
+            "INSERT INTO expense_user_category(id_user, exp_cat_name) 
             VALUES (:id_user, :category)",
             [
                 'id_user' => $_SESSION['user'],
                 'category' => $formData['expenseCategory']
             ]
         );
+    }
+
+    public function isExpenseCategoryTaken(array $params)
+    {
+        $query =
+            "SELECT COUNT(*) 
+            FROM expense_user_category 
+            WHERE id_user = :id_user 
+            AND exp_cat_name = :category";
+        
+        $newParams = [
+                'id_user' => $_SESSION['user'],
+                'category' => $params['expenseCategory']
+        ];
+
+        if (!empty($params['id_cat'])) 
+        {
+            $query .= " AND id_exp_user_cat != :id_cat";
+            $newParams['id_cat'] = $params['id_cat'];
+        }
+
+
+        $expenseCategoryCount = $this->db->query($query, $newParams)->count();
+
+        if ($expenseCategoryCount > 0)
+        
+        {
+            throw new ValidationException(['expenseCategory' => ['Kategoria jest już dodana!']]);
+        }
     }
 
 

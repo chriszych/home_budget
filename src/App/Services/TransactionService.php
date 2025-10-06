@@ -98,4 +98,24 @@ class TransactionService
             ]
         );
     }
+
+    public function getUserExpenseCategory(int $id) : array
+    {
+        $userExpenseCategories =  $this->db->query(
+            "SELECT id_exp_user_cat, exp_cat_name 
+            FROM expense_user_category 
+            WHERE id_user = :user",
+            [
+                'user' => $id
+            ])->findAll();
+        
+        $count = count(array_column($userExpenseCategories, 'exp_cat_name'));
+
+        return [
+            'expenseCategories' => $userExpenseCategories,
+            'now' => $this -> now,
+            'nextYear'=> $this -> nextYear,
+            'expenseCategoryCount' => $count
+            ];
+    }
 }
