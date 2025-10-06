@@ -103,4 +103,11 @@ class ValidatorService
             'expenseCategory' => ['required']
         ]);
     }
+
+    public function validatePaymentMethod(array $formData) 
+    {
+            $this->validator->validate($formData, [
+            'paymentMethod' => ['required']
+        ]);
+    }
 }

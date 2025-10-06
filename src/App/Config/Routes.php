@@ -52,5 +52,7 @@ function registerRoutes(App $app)
     $app->get('/editExpenseCategory/{category}', [SettingsController::class, 'editExpenseView'])->add(AuthRequiredMiddleware::class);
     $app->post('/editExpenseCategory/{category}', [SettingsController::class, 'editExpenseCategory'])->add(AuthRequiredMiddleware::class);
     $app->get('/listPaymentMethod', [SettingsController::class, 'listPaymentView'])->add(AuthRequiredMiddleware::class);
+    $app->get('/editPaymentMethod/{category}', [SettingsController::class, 'editPaymentView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/editPaymentMethod/{category}', [SettingsController::class, 'editPaymentMethod'])->add(AuthRequiredMiddleware::class);
 
 }

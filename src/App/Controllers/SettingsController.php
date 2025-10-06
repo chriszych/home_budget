@@ -134,4 +134,24 @@ class SettingsController
         echo $this->view->render("transactions/listPaymentMethod.php", $params);
     }
 
+    public function editPaymentView(array $id_cat)
+    {   
+        $params = $this->settingsService->getUserPaymentMethod($id_cat['category']);
+
+        echo $this->view->render("transactions/editPaymentMethod.php", [
+            'category' => $params['pay_met_name'],
+            'id_cat' => $id_cat['category']
+        ]);
+    }
+
+    public function editPaymentMethod(array $category)
+    {
+
+        $this->validatorService->validatePaymentMethod($_POST);
+        $this->settingsService->isPaymentMethodTaken($_POST);
+        $this->settingsService->updatePaymentMethod($_POST, (int)$category['category']);
+
+        redirectTo('../listPaymentMethod');
+    }
+
 }

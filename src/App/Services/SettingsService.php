@@ -238,4 +238,69 @@ class SettingsService
         )->find();
     }
 
+    public function isPaymentMethodUsed(int $id_cat)
+    {
+        $paymentMethodCount = $this->db->query(
+            "SELECT COUNT(*) 
+            FROM expense
+            WHERE id_user = :id_user 
+            AND id_pay_met = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_cat
+            ]
+        )->count();
+
+        if ($paymentMethodCount > 0)
+        
+        {
+            throw new ValidationException(['usedCategory' => ['Kategoria jest używana, nie może być usunięta!']]);
+        }
+    }
+
+    public function isPaymentMethodTaken(array $params)
+    {
+        $query =
+            "SELECT COUNT(*) 
+            FROM payment_user_method 
+            WHERE id_user = :id_user 
+            AND pay_met_name = :category";
+        
+        $newParams = [
+                'id_user' => $_SESSION['user'],
+                'category' => $params['paymentMethod']
+        ];
+
+        if (!empty($params['id_cat'])) 
+        {
+            $query .= " AND id_user_pay_met != :id_cat";
+            $newParams['id_cat'] = $params['id_cat'];
+        }
+
+
+        $paymentMethodCount = $this->db->query($query, $newParams)->count();
+
+        if ($paymentMethodCount > 0)
+        
+        {
+            throw new ValidationException(['paymentMethod' => ['Kategoria jest już dodana!']]);
+        }
+    }
+
+    public function updatePaymentMethod(array $formData, int $id_cat)
+    {
+
+        $this->db->query(
+            "UPDATE payment_user_method
+            SET pay_met_name = :new_category
+            WHERE id_user = :id_user AND id_user_pay_met = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $id_cat,
+                'new_category' => $formData['paymentMethod']
+            ]
+            
+        );
+    }
+
 }   
