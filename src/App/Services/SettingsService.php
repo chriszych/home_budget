@@ -316,4 +316,18 @@ class SettingsService
         );
     }
 
+    public function deletePaymentMethod(array $formData)
+    {
+        $this->db->query(
+            "DELETE FROM payment_user_method
+            WHERE id_user = :id_user AND id_user_pay_met = :id_cat",
+            [
+                'id_user' => $_SESSION['user'],
+                'id_cat' => $formData['id_cat']
+            ]
+        );
+        redirectTo('/listPaymentMethod');
+
+    }
+
 }   

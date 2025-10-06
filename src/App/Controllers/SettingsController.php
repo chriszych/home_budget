@@ -169,4 +169,10 @@ class SettingsController
         redirectTo('/listPaymentMethod');
     }
 
+    public function deletePaymentMethod()
+    {
+        $this->settingsService->isPaymentMethodUsed((int)$_POST['id_cat']);
+        $this->settingsService->deletePaymentMethod($_POST);
+    }
+
 }
