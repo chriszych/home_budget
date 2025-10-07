@@ -57,5 +57,7 @@ function registerRoutes(App $app)
     $app->get('/addPaymentMethod', [SettingsController::class, 'addPaymentView'])->add(AuthRequiredMiddleware::class);
     $app->post('/addPaymentMethod', [SettingsController::class, 'addPaymentMethod'])->add(AuthRequiredMiddleware::class);
     $app->post('/deletePaymentMethod', [SettingsController::class, 'deletePaymentMethod'])->add(AuthRequiredMiddleware::class);
+    $app->get('/editUser', [SettingsController::class, 'editUserView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/editUser', [SettingsController::class, 'updateUser'])->add(AuthRequiredMiddleware::class);
 
 }

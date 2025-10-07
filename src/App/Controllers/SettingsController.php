@@ -175,4 +175,16 @@ class SettingsController
         $this->settingsService->deletePaymentMethod($_POST);
     }
 
+    public function editUserView()
+    {   
+        $params = $this->settingsService->getUserData();
+
+        echo $this->view->render("transactions/editUser.php", 
+        [
+            'firstname' => $params['user_firstname'],
+            'lastname' => $params['user_lastname'],
+            'email' => $params['user_email']
+        ]);
+    }
+
 }

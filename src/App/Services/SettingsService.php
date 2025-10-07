@@ -330,4 +330,15 @@ class SettingsService
 
     }
 
+    public function getUserData()
+    {
+            return $this->db->query(
+            "SELECT user_firstname, user_lastname, user_email FROM users
+            WHERE id_user = :id_user",
+            [
+                'id_user' => $_SESSION['user']
+            ]
+        )->find();
+    }
+
 }   
