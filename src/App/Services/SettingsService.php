@@ -341,4 +341,38 @@ class SettingsService
         )->find();
     }
 
+    public function updateUser($formData)
+    {
+            $this->db->query(
+
+            "UPDATE users
+            SET user_firstname = :firstname, user_lastname = :lastname, user_email = :email 
+            WHERE id_user = :id_user",
+            [
+                'firstname' => $formData['firstname'],
+                'lastname' => $formData['lastname'],
+                'email' => $formData['email'],
+                'id_user' => $_SESSION['user']
+            ]
+        );
+    }
+
+    public function isEmailUsed(string $email)
+    {
+        $emailCount = $this->db->query(
+            "SELECT COUNT(*) FROM users WHERE user_email = :email
+            AND id_user != :id_user",
+            [
+                'email' => $email,
+                'id_user' => $_SESSION['user']
+            ]
+        )->count();
+
+        if ($emailCount > 0)
+        
+        {
+            throw new ValidationException(['email' => ['Adres e-mail już użyty!']]);
+        }
+    }
+
 }   

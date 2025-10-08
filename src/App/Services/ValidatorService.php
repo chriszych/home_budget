@@ -110,4 +110,24 @@ class ValidatorService
             'paymentMethod' => ['required']
         ]);
     }
+
+    public function validateUserData(array $formData) 
+    {
+
+        $this->validator->validate($formData, [
+            'firstname' => ['required'],
+            'lastname' => ['required'],
+            'email' => ['required', 'email']
+        ]);
+    }
+
+    public function validateUserPassword(array $formData) 
+    {
+
+        $this->validator->validate($formData, [
+            'password' => ['required'],
+            'confirmPassword' => ['required', 'match:password'],
+        ]);
+    }
+
 }

@@ -9,7 +9,8 @@ use App\Config\Paths;
 use App\Services\{
     SettingsService, 
     TransactionService,
-    ValidatorService
+    ValidatorService,
+    UserService
     };
 
 
@@ -20,7 +21,8 @@ class SettingsController
         private TemplateEngine $view,
         private SettingsService $settingsService,
         private ValidatorService $validatorService,
-        private TransactionService $transactionService
+        private TransactionService $transactionService,
+        private UserService $userService
         )
     {
 
@@ -189,7 +191,11 @@ class SettingsController
 
     public function updateUser()
     {
+        $this->validatorService->validateUserData($_POST);
+        $this->settingsService->isEmailUsed($_POST['email']);
+        $this->settingsService->updateUser($_POST);
 
+        redirectTo('/settings');
     }
     
     public function changePasswordView()

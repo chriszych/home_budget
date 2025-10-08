@@ -11,7 +11,7 @@
     </div>
 
     <div class="p-5 pt-0">
-      <form method="POST" action="/updateUser">
+      <form method="POST">
 
         <?php include $this->resolve('partials/_csrf.php'); ?>
 			
