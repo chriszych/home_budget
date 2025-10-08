@@ -195,7 +195,7 @@ class SettingsController
         $this->settingsService->isEmailUsed($_POST['email']);
         $this->settingsService->updateUser($_POST);
 
-        redirectTo('/settings');
+        redirectTo('/displayInfo');
     }
     
     public function changePasswordView()
