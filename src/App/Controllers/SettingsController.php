@@ -208,7 +208,17 @@ class SettingsController
     {
         $this->validatorService->validateUserPassword($_POST);
         $this->settingsService->updatePassword($_POST);
-        redirectTo('/settings');
+        redirectTo('/displayInfo');
+    }
+
+    public function infoView()
+    {   
+        $message = 'Zmiany zapisane pomyślnie!';
+
+        echo $this->view->render("settings/displayInfo.php",
+        [
+            'message'=>$message
+        ]);
     }
 
 
