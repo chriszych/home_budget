@@ -35,13 +35,13 @@ class SettingsController
     {   
         $params = $this->transactionService->getUserIncomeCategory((int)$_SESSION['user']);  
 
-        echo $this->view->render("transactions/listIncomeCategory.php", $params);
+        echo $this->view->render("settings/listIncomeCategory.php", $params);
     }
 
     public function addIncomeView()
     {   
 
-        echo $this->view->render("transactions/addIncomeCategory.php");
+        echo $this->view->render("settings/addIncomeCategory.php");
     }
 
     public function addIncomeCategory() 
@@ -63,7 +63,7 @@ class SettingsController
     {   
         $params = $this->settingsService->getUserIncomeCategory($id_cat['category']);
 
-        echo $this->view->render("transactions/editIncomeCategory.php", [
+        echo $this->view->render("settings/editIncomeCategory.php", [
             'category' => $params['inc_cat_name'],
             'id_cat' => $id_cat['category']
         ]);
@@ -82,7 +82,7 @@ class SettingsController
     public function addExpenseView()
     {   
 
-        echo $this->view->render("transactions/addExpenseCategory.php");
+        echo $this->view->render("settings/addExpenseCategory.php");
     }
 
     public function addExpenseCategory() 
@@ -98,7 +98,7 @@ class SettingsController
     {   
         $params = $this->transactionService->getUserExpenseCategory((int)$_SESSION['user']);  
 
-        echo $this->view->render("transactions/listExpenseCategory.php", $params);
+        echo $this->view->render("settings/listExpenseCategory.php", $params);
     }
 
     public function deleteExpenseCategory()
@@ -111,7 +111,7 @@ class SettingsController
     {   
         $params = $this->settingsService->getUserExpenseCategory($id_cat['category']);
 
-        echo $this->view->render("transactions/editExpenseCategory.php", [
+        echo $this->view->render("settings/editExpenseCategory.php", [
             'category' => $params['exp_cat_name'],
             'id_cat' => $id_cat['category']
         ]);
@@ -131,14 +131,14 @@ class SettingsController
     {   
         $params = $this->transactionService->getUserPaymentMethod((int)$_SESSION['user']);  
 
-        echo $this->view->render("transactions/listPaymentMethod.php", $params);
+        echo $this->view->render("settings/listPaymentMethod.php", $params);
     }
 
     public function editPaymentView(array $id_cat)
     {   
         $params = $this->settingsService->getUserPaymentMethod($id_cat['category']);
 
-        echo $this->view->render("transactions/editPaymentMethod.php", [
+        echo $this->view->render("settings/editPaymentMethod.php", [
             'category' => $params['pay_met_name'],
             'id_cat' => $id_cat['category']
         ]);
@@ -157,7 +157,7 @@ class SettingsController
     public function addPaymentView()
     {   
 
-        echo $this->view->render("transactions/addPaymentMethod.php");
+        echo $this->view->render("settings/addPaymentMethod.php");
     }
 
     public function addPaymentMethod() 
@@ -179,7 +179,7 @@ class SettingsController
     {   
         $params = $this->settingsService->getUserData();
 
-        echo $this->view->render("transactions/editUser.php", 
+        echo $this->view->render("settings/editUser.php", 
         [
             'firstname' => $params['user_firstname'],
             'lastname' => $params['user_lastname'],
