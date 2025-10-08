@@ -187,4 +187,21 @@ class SettingsController
         ]);
     }
 
+    public function updateUser()
+    {
+
+    }
+    
+    public function changePasswordView()
+    {   
+
+        echo $this->view->render("settings/changePassword.php");
+    }
+
+    public function updatePassword()
+    {
+
+    }
+
+
 }
