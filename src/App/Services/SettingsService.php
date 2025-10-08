@@ -375,4 +375,21 @@ class SettingsService
         }
     }
 
+    public function updatePassword($formData)
+    {
+        $password = password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+
+        $this->db->query(
+
+            "UPDATE users
+            SET user_password = :password 
+            WHERE id_user = :id_user",
+            [
+                'password' => $password,
+                'id_user' => $_SESSION['user']
+            ]
+        );
+
+    }
+
 }   

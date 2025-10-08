@@ -206,7 +206,9 @@ class SettingsController
 
     public function updatePassword()
     {
-
+        $this->validatorService->validateUserPassword($_POST);
+        $this->settingsService->updatePassword($_POST);
+        redirectTo('/settings');
     }
 
 
