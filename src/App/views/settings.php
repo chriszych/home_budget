@@ -12,7 +12,7 @@
           <a href="./listPaymentMethod" class="btn btn-lg rounded-3 btn-outline-primary w-100 w-md-50 mx-auto">Edytuj metody płatności</a>
           <a href="./editUser" class="btn btn-lg rounded-3 btn-outline-primary w-100 w-md-50 mx-auto">Edytuj dane konta</a>
           <a href="./changePassword" class="btn btn-lg rounded-3 btn-outline-primary w-100 w-md-50 mx-auto">Zmień hasło</a>
-          <a href="./deleteUserAccount" class="btn btn-lg rounded-3 btn-outline-primary w-100 w-md-50 mx-auto">Usuń moje konto</a>
+          <a href="./deleteUser" class="btn btn-lg rounded-3 btn-outline-primary w-100 w-md-50 mx-auto">Usuń moje konto</a>
         </div>
       </div>
     </div>

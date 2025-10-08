@@ -214,10 +214,24 @@ class SettingsController
     public function infoView()
     {   
         $message = 'Zmiany zapisane pomyślnie!';
+        $link = './settings';
 
         echo $this->view->render("settings/displayInfo.php",
         [
-            'message'=>$message
+            'message'=>$message,
+            'link'=>$link
+        ]);
+    }
+
+    public function confirmView()
+    {   
+        $message = 'Czy na pewno chcesz usunać użytkownika <br> i wszystkie jego dane?';
+        $link = './settings';
+
+        echo $this->view->render("settings/confirm.php",
+        [
+            'message'=>$message,
+            'link'=>$link
         ]);
     }
 

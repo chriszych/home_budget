@@ -14,7 +14,8 @@
 				
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
           <!-- <button class="w-100 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button" type="submit">OK</button> -->
-          <a href="<?= $link ?>" class="w-50 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button">OK</a>
+          <a href="<?= $link ?>" class="w-100 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button">OK</a>
+          <a href="./settings" class="w-100 btn btn-lg rounded-3 btn-outline-secondary my-0 mb-0" role="button">Anuluj</a>
         </div>
 
       </form>
