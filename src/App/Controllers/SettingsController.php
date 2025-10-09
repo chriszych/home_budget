@@ -226,7 +226,7 @@ class SettingsController
     public function confirmView()
     {   
         $message = 'Czy na pewno chcesz usunać użytkownika <br> i wszystkie jego dane?';
-        $link = './settings';
+        $link = './dropUser';
 
         echo $this->view->render("settings/confirm.php",
         [
@@ -235,5 +235,15 @@ class SettingsController
         ]);
     }
 
+    public function deleteUserData()
+    {
+        $this->settingsService->deleteUserTransactions();
+        $this->settingsService->deleteUserCategories();
+        $this->settingsService->deleteCurrentUser();
+        
+        $this->userService->logout();
+        redirectTo('/');
+
+    }
 
 }

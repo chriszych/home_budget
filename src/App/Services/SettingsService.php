@@ -392,4 +392,19 @@ class SettingsService
 
     }
 
+    public function deleteUserTransactions()
+    {
+
+    }
+
+    public function deleteUserCategories()
+    {
+
+    }
+    
+    public function deleteCurrentUser()
+    {
+
+    }
+
 }   
