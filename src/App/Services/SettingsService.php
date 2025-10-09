@@ -394,17 +394,59 @@ class SettingsService
 
     public function deleteUserTransactions()
     {
+        $this->db->query(
+        "DELETE FROM income
+        WHERE id_user = :id_user",
+        [
+           'id_user' => $_SESSION['user']
+        ]
+        );
 
+        $this->db->query(
+        "DELETE FROM expense
+        WHERE id_user = :id_user",
+        [
+           'id_user' => $_SESSION['user']
+        ]
+        );
     }
 
     public function deleteUserCategories()
     {
+        $this->db->query(
+        "DELETE FROM payment_user_method
+        WHERE id_user = :id_user",
+        [
+           'id_user' => $_SESSION['user']
+        ]
+        );
 
+        $this->db->query(
+        "DELETE FROM income_user_category
+        WHERE id_user = :id_user",
+        [
+           'id_user' => $_SESSION['user']
+        ]
+        );
+
+        $this->db->query(
+        "DELETE FROM expense_user_category
+        WHERE id_user = :id_user",
+        [
+           'id_user' => $_SESSION['user']
+        ]
+        );
     }
-    
+
     public function deleteCurrentUser()
     {
-
+        $this->db->query(
+        "DELETE FROM users
+        WHERE id_user = :id_user",
+        [
+           'id_user' => $_SESSION['user']
+        ]
+        );
     }
 
 }   
