@@ -211,10 +211,10 @@ class SettingsController
         redirectTo('/displayInfo');
     }
 
-    public function infoView()
+    public function infoView(?string $message = 'Zmiany zapisane pomyślnie!', ?string $link= './settings')
     {   
-        $message = 'Zmiany zapisane pomyślnie!';
-        $link = './settings';
+        // $message = 'Zmiany zapisane pomyślnie!';
+        // $link = './settings';
 
         echo $this->view->render("settings/displayInfo.php",
         [
@@ -240,9 +240,9 @@ class SettingsController
         $this->settingsService->deleteUserTransactions();
         $this->settingsService->deleteUserCategories();
         $this->settingsService->deleteCurrentUser();
-        
         $this->userService->logout();
-        redirectTo('/');
+        
+        $this->infoView("Wszystkie dane użytkownika zostały usuniętę.","./");
 
     }
 
