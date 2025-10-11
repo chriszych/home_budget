@@ -78,8 +78,13 @@ class BalanceService
         ];
     }
 
-    public function GetUserTransactions() : Array
+    public function GetUserTransactions(array $params = []) : Array
     {
+
+        $this -> firstCurrentMonthDay = date('01-m-Y');
+	    $this -> lastCurrentMonthDay = date('t-m-Y');
+	    $this -> sqlMonthHiLimit = date('Y-m-t 23:59:59');
+	    $this -> sqlMonthLowLimit = date('Y-m-01 00:00:00'); 
 
         $resultExp = $this->db->query(
             "SELECT id_exp, exp_date, exp_amount, exp_cat_name, pay_met_name, exp_comment 

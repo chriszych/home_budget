@@ -61,7 +61,7 @@
         <a class="btn btn-lg btn-outline-primary m-2 w-100" href="#">Aktualny rok</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-lg btn-outline-primary m-2 w-100" href="#">Dowolna data</a>
+        <a class="btn btn-lg btn-outline-primary m-2 w-100" href="/customDates">Dowolna data</a>
       </li>
     </ul>
   </div>

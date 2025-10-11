@@ -65,5 +65,8 @@ function registerRoutes(App $app)
     $app->get('/AfterUserChangeInfo', [SettingsController::class, 'infoAfterUserChange'])->add(AuthRequiredMiddleware::class);
     $app->get('/deleteUser', [SettingsController::class, 'confirmView'])->add(AuthRequiredMiddleware::class);
     $app->get('/dropUser', [SettingsController::class, 'deleteUserData'])->add(AuthRequiredMiddleware::class);
+    $app->get('/customDates', [BalanceController::class, 'customDatesView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/customDates', [BalanceController::class, 'updateCustomDates'])->add(AuthRequiredMiddleware::class);
+    
 
 }

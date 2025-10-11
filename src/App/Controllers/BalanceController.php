@@ -49,4 +49,25 @@ class BalanceController
         echo $this->view->render("balance2.php", $params);
 
     }
+
+    public function customDatesView()
+    {
+        echo $this->view->render("./balance/customDates.php");
+    }
+
+    public function updateCustomDates()
+    {
+
+            $params = array_merge(
+            $this->balanceService->getUserTransactions(),
+            $this->balanceService->getChartResults(),
+            [
+                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+            ],
+            $this->balanceService->checkBalancePage()
+        );
+
+        echo $this->view->render("balance.php", $params);
+    }
 }
