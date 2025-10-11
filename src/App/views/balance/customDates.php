@@ -13,7 +13,7 @@
         
   <div class="p-5 py-0">
 
-    <form method="POST" action="/">
+    <form method="POST">
       <?php include $this->resolve("partials/_csrf.php"); ?>
 
       <div class="form-floating mb-3">
@@ -23,7 +23,7 @@
           min="2000-01-01T00:00" 
           max="<?= $nextYear ?>" 
           placeholder="<?= $now ?>" 
-          name="dateStart" 
+          name="startDate" 
           class="form-control rounded-3 <?= isset($errors['startDate']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['startDate'] ?? $now) ?>"
         >
@@ -38,12 +38,12 @@
           min="2000-01-01T00:00" 
           max="<?= $nextYear ?>" 
           placeholder="<?= $now ?>" 
-          name="dateEnd" 
-          class="form-control rounded-3 <?= isset($errors['startEnd']) ? 'border-danger':''?>" 
-          value="<?= e($oldFormData['startEnd'] ?? $now) ?>"
+          name="endDate" 
+          class="form-control rounded-3 <?= isset($errors['endDate']) ? 'border-danger':''?>" 
+          value="<?= e($oldFormData['endDate'] ?? $now) ?>"
         >
         <label for="registerFloatingLogin">Data do:</label>
-          <?= formError($errors, 'startEnd') ?>
+          <?= formError($errors, 'endDate') ?>
       </div>
 
             		  

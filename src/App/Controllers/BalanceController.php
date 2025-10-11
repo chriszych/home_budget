@@ -57,9 +57,11 @@ class BalanceController
 
     public function updateCustomDates()
     {
+        //$this->validatorService->validateDates($_POST);
+
 
             $params = array_merge(
-            $this->balanceService->getUserTransactions(),
+            $this->balanceService->getUserTransactions($_POST),
             $this->balanceService->getChartResults(),
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
