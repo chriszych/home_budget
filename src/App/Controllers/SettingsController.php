@@ -219,7 +219,7 @@ class SettingsController
     {
     $message = $params['message'] ?? 'Zmiany zapisane pomyślnie!';
     $link = $params['link'] ?? './settings';
-    
+
         echo $this->view->render("settings/displayInfo.php",
         [
             'message'=>$message,
@@ -246,7 +246,12 @@ class SettingsController
         $this->settingsService->deleteCurrentUser();
         $this->userService->logout();
         
-        $this->infoView("Wszystkie dane użytkownika zostały usuniętę.","./");
+        $this->infoView(
+            [
+                'message'=>"Wszystkie dane użytkownika zostały usuniętę.",
+                'link'=>"./"
+            ]
+        );
 
     }
 
