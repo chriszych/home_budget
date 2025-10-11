@@ -195,7 +195,7 @@ class SettingsController
         $this->settingsService->isEmailUsed($_POST['email']);
         $this->settingsService->updateUser($_POST);
 
-        redirectTo('/displayInfo');
+        redirectTo('/AfterUserChangeInfo');
     }
     
     public function changePasswordView()
@@ -208,13 +208,9 @@ class SettingsController
     {
         $this->validatorService->validateUserPassword($_POST);
         $this->settingsService->updatePassword($_POST);
-        redirectTo('/displayInfo');
+        redirectTo('/AfterPassChangeInfo');
     }
 
-    // public function infoView(?string $message = 'Zmiany zapisane pomyślnie!', ?string $link= './settings')
-    // {   
-        // $message = 'Zmiany zapisane pomyślnie!';
-        // $link = './settings';
     public function infoView(array $params = [])
     {
     $message = $params['message'] ?? 'Zmiany zapisane pomyślnie!';
@@ -253,6 +249,26 @@ class SettingsController
             ]
         );
 
+    }
+
+    public function infoAfterPassChange()
+    {
+            $this->infoView(
+            [
+                'message'=>"Hasło zostało zmienione.",
+                'link'=>"./settings"
+            ]
+        );
+    }
+
+    public function infoAfterUserChange()
+    {
+            $this->infoView(
+            [
+                'message'=>"Dane użytkownika zostały zapisane.",
+                'link'=>"./settings"
+            ]
+        );
     }
 
 }

@@ -61,7 +61,8 @@ function registerRoutes(App $app)
     $app->post('/editUser', [SettingsController::class, 'updateUser'])->add(AuthRequiredMiddleware::class);
     $app->get('/changePassword', [SettingsController::class, 'changePasswordView'])->add(AuthRequiredMiddleware::class);
     $app->post('/changePassword', [SettingsController::class, 'updatePassword'])->add(AuthRequiredMiddleware::class);
-    $app->get('/displayInfo', [SettingsController::class, 'infoView'])->add(AuthRequiredMiddleware::class);
+    $app->get('/AfterPassChangeInfo', [SettingsController::class, 'infoAfterPassChange'])->add(AuthRequiredMiddleware::class);
+    $app->get('/AfterUserChangeInfo', [SettingsController::class, 'infoAfterUserChange'])->add(AuthRequiredMiddleware::class);
     $app->get('/deleteUser', [SettingsController::class, 'confirmView'])->add(AuthRequiredMiddleware::class);
     $app->get('/dropUser', [SettingsController::class, 'deleteUserData'])->add(AuthRequiredMiddleware::class);
 
