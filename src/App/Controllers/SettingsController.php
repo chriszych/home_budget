@@ -211,11 +211,15 @@ class SettingsController
         redirectTo('/displayInfo');
     }
 
-    public function infoView(?string $message = 'Zmiany zapisane pomyślnie!', ?string $link= './settings')
-    {   
+    // public function infoView(?string $message = 'Zmiany zapisane pomyślnie!', ?string $link= './settings')
+    // {   
         // $message = 'Zmiany zapisane pomyślnie!';
         // $link = './settings';
-
+    public function infoView(array $params = [])
+    {
+    $message = $params['message'] ?? 'Zmiany zapisane pomyślnie!';
+    $link = $params['link'] ?? './settings';
+    
         echo $this->view->render("settings/displayInfo.php",
         [
             'message'=>$message,
