@@ -89,14 +89,16 @@ class BalanceService
 
         //$formattedstartDate = "{$formData['startDate']}:00";
         //$formattedEndDate = "{$formData['endDate']}:00";
+        //date('d-m-Y', strtotime($formData['startDate']));
+
         if (!empty($formData['startDate']))
         {
-        $this -> firstCurrentMonthDay = $formData['startDate'];
+        $this -> firstCurrentMonthDay = date('d-m-Y', strtotime($formData['startDate']));
         $this -> sqlMonthLowLimit = "{$formData['startDate']}:00"; 
         }
         if (!empty($formData['startDate']))
         {
-	    $this -> lastCurrentMonthDay = $formData['endDate'];
+	    $this -> lastCurrentMonthDay = date('d-m-Y', strtotime($formData['endDate']));
         $this -> sqlMonthHiLimit = "{$formData['endDate']}:00";
         }
 
