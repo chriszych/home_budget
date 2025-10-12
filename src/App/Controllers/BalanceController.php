@@ -6,7 +6,10 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 use App\Config\Paths;
-use App\Services\BalanceService;
+use App\Services\{
+    BalanceService,
+    ValidatorService
+};
 
 
 class BalanceController
@@ -14,7 +17,8 @@ class BalanceController
     
     public function __construct(
         private TemplateEngine $view,
-        private BalanceService $balanceService
+        private BalanceService $balanceService,
+        private ValidatorService $validatorService
         )
     {
 
@@ -57,7 +61,7 @@ class BalanceController
 
     public function updateCustomDates()
     {
-        //$this->validatorService->validateDates($_POST);
+        $this->validatorService->validateBalanceDates($_POST);
 
 
             $params = array_merge(

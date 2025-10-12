@@ -15,7 +15,8 @@ use Framework\Rules\{
     MatchRule,
     LengthMaxRule,
     NumericRule,
-    DateFormatRule
+    DateFormatRule,
+    LaterDateRule
 };
 
 class ValidatorService 
@@ -34,6 +35,7 @@ class ValidatorService
         $this->validator->add('lengthMax', new LengthMaxRule());
         $this->validator->add('numeric', new NumericRule());
         $this->validator->add('dateFormat', new DateFormatRule());
+        $this->validator->add('laterDate', new LaterDateRule());
     }
     public function validateRegister(array $formData) 
     {
@@ -130,4 +132,11 @@ class ValidatorService
         ]);
     }
 
+    public function validateBalanceDates(array $formData) 
+    {
+        $this->validator->validate($formData, [
+        'startDate' => ['required', 'dateFormat:Y-m-d\TG:i'],
+        'endDate' => ['required', 'dateFormat:Y-m-d\TG:i', 'laterDate:startDate']
+        ]);
+    }
 }

@@ -81,29 +81,13 @@ class BalanceService
     public function GetUserTransactions(array $formData = []) : Array
     {
 
-        // $this -> firstCurrentMonthDay = date('01-m-Y');
-	    // $this -> lastCurrentMonthDay = date('t-m-Y');
-	    // $this -> sqlMonthHiLimit = date('Y-m-t 23:59:59');
-	    // $this -> sqlMonthLowLimit = date('Y-m-01 00:00:00'); 
-        //$formattedDate = "{$formData['date']}:00";
-
-        //$formattedstartDate = "{$formData['startDate']}:00";
-        //$formattedEndDate = "{$formData['endDate']}:00";
-        //date('d-m-Y', strtotime($formData['startDate']));
-
-        if (!empty($formData['startDate']))
+        if ((!empty($formData['startDate']))&&(!empty($formData['endDate'])))
         {
         $this -> firstCurrentMonthDay = date('d-m-Y', strtotime($formData['startDate']));
+        $this -> lastCurrentMonthDay = date('d-m-Y', strtotime($formData['endDate']));
         $this -> sqlMonthLowLimit = "{$formData['startDate']}:00"; 
-        }
-        if (!empty($formData['startDate']))
-        {
-	    $this -> lastCurrentMonthDay = date('d-m-Y', strtotime($formData['endDate']));
         $this -> sqlMonthHiLimit = "{$formData['endDate']}:00";
         }
-
-	
-
 
         $resultExp = $this->db->query(
             "SELECT id_exp, exp_date, exp_amount, exp_cat_name, pay_met_name, exp_comment 
