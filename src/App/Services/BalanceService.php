@@ -207,6 +207,22 @@ class BalanceService
         ];
     }
 
+    public function updateCurrentYear()
+    {
+        $this -> firstCurrentMonthDay = date('01-01-Y');
+        $this -> lastCurrentMonthDay = date('t-12-Y');
+        $this -> sqlMonthHiLimit = date('Y-12-t 23:59:59');
+        $this -> sqlMonthLowLimit = date('Y-01-01 00:00:00'); 
+    }
+
+    public function updateLastMonth()
+    {
+        $this -> firstCurrentMonthDay = date('01-m-Y', strtotime("-1 month"));
+        $this -> lastCurrentMonthDay = date('t-m-Y', strtotime("-1 month"));
+        $this -> sqlMonthHiLimit = date('Y-n-t 23:59:59', strtotime("-1 month"));
+        $this -> sqlMonthLowLimit = date('Y-n-01 00:00:00', strtotime("-1 month")); 
+    }
+    //updateLastMonth
 
 
 
