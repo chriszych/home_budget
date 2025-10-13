@@ -14,7 +14,8 @@ use App\Services\{
 
 class BalanceController
 {
-    
+    private $balanceViewMode = "CurrentMonth";
+
     public function __construct(
         private TemplateEngine $view,
         private BalanceService $balanceService,
@@ -31,7 +32,8 @@ class BalanceController
             $this->balanceService->getChartResults(),
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'viewMode' => $this->balanceViewMode
             ],
             $this->balanceService->checkBalancePage()
         );
@@ -46,6 +48,7 @@ class BalanceController
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
                 'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'viewMode' => $this->balanceViewMode
             ],
             $this->balanceService->checkBalancePage()
         );

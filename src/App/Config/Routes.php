@@ -36,8 +36,8 @@ function registerRoutes(App $app)
     $app->post('/addExpense', [TransactionController::class, 'addExpense'])->add(AuthRequiredMiddleware::class);
     $app->get('/addIncome', [TransactionController::class, 'addIncomeView'])->add(AuthRequiredMiddleware::class);
     $app->post('/addIncome', [TransactionController::class, 'addIncome'])->add(AuthRequiredMiddleware::class);
-    $app->get('/balanceAll', [BalanceController::class, 'balanceAllView'])->add(AuthRequiredMiddleware::class);
-    $app->get('/balanceCategory', [BalanceController::class, 'balanceCategoryView'])->add(AuthRequiredMiddleware::class);
+    $app->get('/balanceAll/{viewMode}', [BalanceController::class, 'balanceAllView'])->add(AuthRequiredMiddleware::class);
+    $app->get('/balanceCategory/{viewMode}', [BalanceController::class, 'balanceCategoryView'])->add(AuthRequiredMiddleware::class);
     $app->get('/settings', [SettingsController::class, 'settings'])->add(AuthRequiredMiddleware::class);
     $app->get('/listIncomeCategory', [SettingsController::class, 'listIncomeView'])->add(AuthRequiredMiddleware::class);
     $app->get('/addIncomeCategory', [SettingsController::class, 'addIncomeView'])->add(AuthRequiredMiddleware::class);
@@ -69,7 +69,7 @@ function registerRoutes(App $app)
     $app->post('/customDates', [BalanceController::class, 'updateCustomDates'])->add(AuthRequiredMiddleware::class);
     $app->get('/currentYear', [BalanceController::class, 'updateCurrentYear'])->add(AuthRequiredMiddleware::class);
     $app->get('/lastMonth', [BalanceController::class, 'updateLastMonth'])->add(AuthRequiredMiddleware::class);
-    $app->get('/currentMonth', [BalanceController::class, 'updateCurrentMonth'])->add(AuthRequiredMiddleware::class);
+    // $app->get('/currentMonth', [BalanceController::class, 'updateCurrentMonth'])->add(AuthRequiredMiddleware::class);
     //currentYear
     //currentMonth
     //lastMonth

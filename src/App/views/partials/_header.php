@@ -45,23 +45,23 @@
               <ul class="navbar-nav col-lg-9 justify-content-center">
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="./addExpense">Nowy wydatek</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../addExpense">Nowy wydatek</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="./addIncome">Nowy przychód</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../addIncome">Nowy przychód</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="./balanceAll">Aktualny bilans</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../balanceAll/<?= $viewMode ?>">Aktualny bilans</a>
                 </li>              
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="./settings">Ustawienia</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../settings">Ustawienia</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="./logout">Wyloguj</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../logout">Wyloguj</a>
                 </li>
               </ul>
             <!-- </div> -->

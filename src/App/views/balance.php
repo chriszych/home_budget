@@ -3,8 +3,11 @@
 
   <!-- mainPageContent -->
   <section id="mainPageContent">
+  <!-- <php include $this->resolve("partials/_header.php"); ?> -->
 
     <section class="py-3 text-center container">
+
+  
 
       
       <?php include $this->resolve("partials/_balanceHeader.php"); ?>	

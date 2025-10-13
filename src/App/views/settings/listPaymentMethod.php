@@ -77,7 +77,7 @@
         
       <div class="d-grid gap-2 d-md-flex justify-content-center">
         <a href="./addPaymentMethod" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-primary my-2 mb-md-3" role="button">Dodaj płatność</a>
-        <a href="./settings" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-2 mb-md-3" role="button">   Anuluj   </a>
+        <a href="../settings" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-2 mb-md-3" role="button">   Anuluj   </a>
       </div>
 
 
