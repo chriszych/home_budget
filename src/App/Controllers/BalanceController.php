@@ -24,7 +24,7 @@ class BalanceController
 
     }    
 
-    public function balanceView()
+    public function balanceAllView()
     {   
         $params = array_merge(
             $this->balanceService->getUserTransactions(),
@@ -38,7 +38,7 @@ class BalanceController
 
         echo $this->view->render("balance.php", $params);
     }
-    public function balance2View()
+    public function balanceCategoryView()
     {   
         $params = array_merge(
             $this->balanceService->GetUserTransactionsByCategories(),

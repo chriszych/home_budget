@@ -53,7 +53,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="./balance">Aktualny bilans</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="./balanceAll">Aktualny bilans</a>
                 </li>              
 
                 <li class="nav-item">
