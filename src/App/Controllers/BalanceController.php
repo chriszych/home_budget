@@ -14,7 +14,6 @@ use App\Services\{
 
 class BalanceController
 {
-    private $balanceViewMode = "CurrentMonth";
 
     public function __construct(
         private TemplateEngine $view,
@@ -22,18 +21,20 @@ class BalanceController
         private ValidatorService $validatorService
         )
     {
-
+        $_SESSION['vievMode'] = "CurrentMonth";
     }    
 
     public function balanceAllView()
     {   
+        $_SESSION['vievMode'] = "CurrentMonth";
+
         $params = array_merge(
             $this->balanceService->getUserTransactions(),
             $this->balanceService->getChartResults(),
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
                 'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
-                'viewMode' => $this->balanceViewMode
+                // 'viewMode' => $this->balanceViewMode
             ],
             $this->balanceService->checkBalancePage()
         );
@@ -48,7 +49,7 @@ class BalanceController
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
                 'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
-                'viewMode' => $this->balanceViewMode
+                // 'viewMode' => $this->balanceViewMode
             ],
             $this->balanceService->checkBalancePage()
         );
@@ -77,6 +78,10 @@ class BalanceController
             $this->balanceService->checkBalancePage()
         );
 
+        //test
+        $_SESSION['vievMode'] = "customDates";
+        //testEnd
+
         echo $this->view->render("balance.php", $params);
     }
 
@@ -93,6 +98,11 @@ class BalanceController
             ],
             $this->balanceService->checkBalancePage()
         );
+
+        //test
+        $_SESSION['vievMode'] = "currentMonth";
+        //testEnd
+
         echo $this->view->render("balance.php", $params);
     }
 
@@ -109,6 +119,11 @@ class BalanceController
             ],
             $this->balanceService->checkBalancePage()
         );
+
+        //test
+        $_SESSION['vievMode'] = "lastMonth";
+        //testEnd
+
         echo $this->view->render("balance.php", $params);
     }
 
@@ -125,6 +140,11 @@ class BalanceController
             ],
             $this->balanceService->checkBalancePage()
         );
+
+        //test
+        $_SESSION['vievMode'] = "currenMonth";
+        //testEnd
+
         echo $this->view->render("balance.php", $params);
     }
     //updateLastMonth

@@ -53,7 +53,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../balanceAll/<?= $viewMode ?>">Aktualny bilans</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../balanceAll/<?= $_SESSION['vievMode'] ?>">Aktualny bilans</a>
                 </li>              
 
                 <li class="nav-item">

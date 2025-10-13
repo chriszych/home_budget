@@ -13,7 +13,7 @@ class IndexController
     
     public function __construct(private TemplateEngine $view)
     {
-
+        
     }    
 
     public function index()
