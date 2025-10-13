@@ -109,5 +109,21 @@ class BalanceController
         echo $this->view->render("balance.php", $params);
     }
 
+    public function updateCurrentMonth()
+    {
+        $dateParams = $this->balanceService->updateCurrentMonth();
+            
+        $params = array_merge(
+            $this->balanceService->getUserTransactions(),
+            $this->balanceService->getChartResults(),
+            [
+                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+            ],
+            $this->balanceService->checkBalancePage()
+        );
+        echo $this->view->render("balance.php", $params);
+    }
     //updateLastMonth
+    //updateCurrentMonth
 }

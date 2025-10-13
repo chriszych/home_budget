@@ -222,6 +222,14 @@ class BalanceService
         $this -> sqlMonthHiLimit = date('Y-n-t 23:59:59', strtotime("-1 month"));
         $this -> sqlMonthLowLimit = date('Y-n-01 00:00:00', strtotime("-1 month")); 
     }
+    
+    public function updateCurrentMonth()
+    {
+        $this -> firstCurrentMonthDay = date('01-m-Y');
+        $this -> lastCurrentMonthDay = date('t-m-Y');
+        $this -> sqlMonthHiLimit = date('Y-m-t 23:59:59');
+        $this -> sqlMonthLowLimit = date('Y-m-01 00:00:00'); 
+    }
     //updateLastMonth
 
 

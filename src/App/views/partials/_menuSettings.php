@@ -52,7 +52,7 @@
   <div class="d-flex justify-content-center w-100" id="buttonNavbar">
     <ul class="navbar-nav d-flex flex-column flex-lg-row justify-content-center">
       <li class="nav-item">
-        <a class="btn btn-lg btn-primary m-2 w-100" href="/balance">Aktualny miesiąc</a>
+        <a class="btn btn-lg btn-primary m-2 w-100" href="/currentMonth">Aktualny miesiąc</a>
       </li>
       <li class="nav-item">
         <a class="btn btn-lg btn-outline-primary m-2 w-100" href="/lastMonth">Poprzedni miesiąc</a>

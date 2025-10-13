@@ -69,6 +69,7 @@ function registerRoutes(App $app)
     $app->post('/customDates', [BalanceController::class, 'updateCustomDates'])->add(AuthRequiredMiddleware::class);
     $app->get('/currentYear', [BalanceController::class, 'updateCurrentYear'])->add(AuthRequiredMiddleware::class);
     $app->get('/lastMonth', [BalanceController::class, 'updateLastMonth'])->add(AuthRequiredMiddleware::class);
+    $app->get('/currentMonth', [BalanceController::class, 'updateCurrentMonth'])->add(AuthRequiredMiddleware::class);
     //currentYear
     //currentMonth
     //lastMonth
