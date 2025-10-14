@@ -150,8 +150,33 @@ class BalanceController
 
     public function balanceView()
     {   
-        $_SESSION['vievMode'] = "CurrentMonth";
+       
+       
+        $_SESSION['vievMode'] = "currentMonth";
         $uri = $_SERVER['REQUEST_URI'];
+
+
+
+        if (str_contains($uri, '/currentMonth')) {
+            $dateParams = $this->balanceService->updateCurrentMonth();
+            $_SESSION['viewMode'] = "currentMonth";
+        }
+        elseif (str_contains($uri, '/lastMonth')) {
+            $dateParams = $this->balanceService->updateLastMonth();
+            $_SESSION['viewMode'] = "lastMonth";
+        }
+        elseif (str_contains($uri, '/currentYear')) {
+            $dateParams = $this->balanceService->updateCurrentYear();
+            $_SESSION['viewMode'] = "currentYear";
+        }
+        elseif (str_contains($uri, '/customDates')) {
+            echo $this->view->render("./balance/customDates.php");
+            return;
+        }
+        else {
+
+        }
+
 
         if (str_starts_with($uri, '/balanceAll')) {
             $userTransactions = $this->balanceService->getUserTransactions();
@@ -162,31 +187,16 @@ class BalanceController
             $balanceMode = "category";
         }
         else {
-            $userTransactions = [];
-            $balanceMode = "unknown";
+            // $userTransactions = [];
+            // $balanceMode = "unknown";
         }
 
-        if (str_contains($uri, '/currentMonth')) {
-            $dateParams = $this->balanceService->updateCurrentMonth();
-            $_SESSION['vievMode'] = "currenMonth";
-        }
-        elseif (str_contains($uri, '/lastMonth')) {
-            $dateParams = $this->balanceService->updateLastMonth();
-            $_SESSION['vievMode'] = "lastMonth";
-        }
-        elseif (str_contains($uri, '/currentYear')) {
-            $dateParams = $this->balanceService->updateCurrentYear();
-            $_SESSION['vievMode'] = "currentYear";
-        }
-        elseif (str_contains($uri, '/customDates')) {
-            echo $this->view->render("./balance/customDates.php");
-        }
-        else {
+       // dd($userTransactions);
 
-        }
 
             $params = array_merge(
             $userTransactions,
+            //$this->balanceService->getUserTransactions(),
             $this->balanceService->getChartResults(),
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,

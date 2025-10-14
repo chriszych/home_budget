@@ -20,7 +20,7 @@
     </section>
 
     <section>
-      <?= dd($resultExp)?>
+      <!-- <= dd($balanceMode)?> -->
       <?php include $this->resolve("partials/_{$balanceMode}Table.php"); ?>
 
     </section>
