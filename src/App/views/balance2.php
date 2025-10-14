@@ -6,6 +6,7 @@
     <section class="py-3 text-center container">
 
 	    <?php include $this->resolve("partials/_balanceHeader.php"); ?>
+      <?php include $this->resolve("partials/_menuSettings.php"); ?> 
       <?php include $this->resolve("partials/_toggleButtons.php"); ?>
 
 	  </section>

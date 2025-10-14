@@ -147,6 +147,42 @@ class BalanceController
 
         echo $this->view->render("balance.php", $params);
     }
-    //updateLastMonth
-    //updateCurrentMonth
+
+    public function balanceView()
+    {   
+        $_SESSION['vievMode'] = "CurrentMonth";
+        $uri = $_SERVER['REQUEST_URI'];
+
+        if (str_starts_with($uri, '/balanceAll'))
+        {
+        $params = array_merge(
+            $this->balanceService->getUserTransactions(),
+            $this->balanceService->getChartResults(),
+            [
+                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+            ],
+            $this->balanceService->checkBalancePage()
+        );
+
+        echo $this->view->render("balance.php", $params);
+        }
+        elseif (str_starts_with($uri, '/balanceCategory'))
+        {
+
+            $params = array_merge(
+            $this->balanceService->GetUserTransactionsByCategories(),
+            $this->balanceService->getChartResults(),
+            [
+                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                // 'viewMode' => $this->balanceViewMode
+            ],
+            $this->balanceService->checkBalancePage()
+        );
+
+        echo $this->view->render("balance2.php", $params);
+
+        }
+    }
 }
