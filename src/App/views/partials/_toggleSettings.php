@@ -1,8 +1,18 @@
 
 <?php
+  // if ($balanceMode = "detailed")
+  // {
+  //   $Balance1Button =  "btn-primary";
+  //   $Balance2Button =  "btn-outline-primary";
+  // }
+  // elseif ($balanceMode = "category")
+  // {
+  //   $Balance2Button =  "btn-primary";
+  //   $Balance1Button =  "btn-outline-primary";
+  // }
 
-    $Balance2Button =  "btn-primary";
-    $Balance1Button =  "btn-outline-primary";
+      $Balance1Button =  "btn-primary";
+    $Balance2Button =  "btn-outline-primary";
 ?>
 
 <div class="btn-group m-4" role="group" aria-label="Przełącznik raportu">

@@ -153,36 +153,50 @@ class BalanceController
         $_SESSION['vievMode'] = "CurrentMonth";
         $uri = $_SERVER['REQUEST_URI'];
 
-        if (str_starts_with($uri, '/balanceAll'))
-        {
-        $params = array_merge(
-            $this->balanceService->getUserTransactions(),
+        if (str_starts_with($uri, '/balanceAll')) {
+            $userTransactions = $this->balanceService->getUserTransactions();
+            $balanceMode = "detailed";
+        }
+        elseif (str_starts_with($uri, '/balanceCategory')) {
+            $userTransactions = $this->balanceService->getUserTransactionsByCategories();
+            $balanceMode = "category";
+        }
+        else {
+            $userTransactions = [];
+            $balanceMode = "unknown";
+        }
+
+        if (str_contains($uri, '/currentMonth')) {
+            $dateParams = $this->balanceService->updateCurrentMonth();
+            $_SESSION['vievMode'] = "currenMonth";
+        }
+        elseif (str_contains($uri, '/lastMonth')) {
+            $dateParams = $this->balanceService->updateLastMonth();
+            $_SESSION['vievMode'] = "lastMonth";
+        }
+        elseif (str_contains($uri, '/currentYear')) {
+            $dateParams = $this->balanceService->updateCurrentYear();
+            $_SESSION['vievMode'] = "currentYear";
+        }
+        elseif (str_contains($uri, '/customDates')) {
+            echo $this->view->render("./balance/customDates.php");
+        }
+        else {
+
+        }
+
+            $params = array_merge(
+            $userTransactions,
             $this->balanceService->getChartResults(),
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
                 'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'balanceMode' => $balanceMode
             ],
             $this->balanceService->checkBalancePage()
         );
 
         echo $this->view->render("balance.php", $params);
-        }
-        elseif (str_starts_with($uri, '/balanceCategory'))
-        {
 
-            $params = array_merge(
-            $this->balanceService->GetUserTransactionsByCategories(),
-            $this->balanceService->getChartResults(),
-            [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
-                // 'viewMode' => $this->balanceViewMode
-            ],
-            $this->balanceService->checkBalancePage()
-        );
-
-        echo $this->view->render("balance2.php", $params);
-
-        }
     }
 }

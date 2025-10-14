@@ -78,7 +78,7 @@ class BalanceService
         ];
     }
 
-    public function GetUserTransactions(array $formData = []) : Array
+    public function getUserTransactions(array $formData = []) : Array
     {
 
         if ((!empty($formData['startDate']))&&(!empty($formData['endDate'])))
@@ -141,7 +141,7 @@ class BalanceService
 
     }
 
-    public function GetUserTransactionsByCategories() : Array
+    public function getUserTransactionsByCategories() : Array
     {
         $resultExp = $this->db->query(
             "SELECT SUM(exp_amount) AS total_amount, exp_cat_name 
@@ -190,7 +190,7 @@ class BalanceService
     public function checkBalancePage() : Array
     {
         $path = $_SERVER['REQUEST_URI'];
-        $isBalance2 = strpos($path, '/balance2') !== false;
+        $isBalance2 = strpos($path, '/balanceCategory') !== false;
 
         if ($isBalance2)
             {

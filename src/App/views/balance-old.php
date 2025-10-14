@@ -20,8 +20,8 @@
     </section>
 
     <section>
-      <?= dd($resultExp)?>
-      <?php include $this->resolve("partials/_{$balanceMode}Table.php"); ?>
+
+      <?php include $this->resolve("partials/_detailedTable.php"); ?>
 
     </section>
 
