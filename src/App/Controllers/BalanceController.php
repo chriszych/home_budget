@@ -65,7 +65,20 @@ class BalanceController
 
     public function updateCustomDates()
     {
+
+        //$_SESSION['vievMode'] = "currentMonth";
+        $uri = $_SERVER['REQUEST_URI'];
+
+        if (str_starts_with($uri, '/balanceAll')) {
+            $balanceMode = "detailed";
+        }
+        elseif (str_starts_with($uri, '/balanceCategory')) {
+            $balanceMode = "category";
+        }
+
         $this->validatorService->validateBalanceDates($_POST);
+
+
 
 
             $params = array_merge(
@@ -73,13 +86,14 @@ class BalanceController
             $this->balanceService->getChartResults(),
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'balanceMode' => $balanceMode
             ],
             $this->balanceService->checkBalancePage()
         );
 
         //test
-        $_SESSION['vievMode'] = "customDates";
+        //$_SESSION['vievMode'] = "customDates";
         //testEnd
 
         echo $this->view->render("balance.php", $params);
@@ -158,20 +172,35 @@ class BalanceController
 
 
         if (str_contains($uri, '/currentMonth')) {
-            $dateParams = $this->balanceService->updateCurrentMonth();
             $_SESSION['viewMode'] = "currentMonth";
+            $this->balanceService->updateCurrentMonth();
         }
         elseif (str_contains($uri, '/lastMonth')) {
-            $dateParams = $this->balanceService->updateLastMonth();
             $_SESSION['viewMode'] = "lastMonth";
+            $this->balanceService->updateLastMonth();
+            
         }
         elseif (str_contains($uri, '/currentYear')) {
-            $dateParams = $this->balanceService->updateCurrentYear();
             $_SESSION['viewMode'] = "currentYear";
+            $this->balanceService->updateCurrentYear();
+            
         }
         elseif (str_contains($uri, '/customDates')) {
-            echo $this->view->render("./balance/customDates.php");
-            return;
+
+            //$this->balanceService->updateCustomDates();
+
+            if ($_SESSION['viewMode'] != "customDates")
+            {
+                echo $this->view->render("./balance/customDates.php");
+                $_SESSION['viewMode'] = "customDates";
+                return;
+            } 
+            else
+            {
+                $this->updateCustomDates();
+                // echo $this->view->render("balance.php");
+                // return;
+            }
         }
         else {
 

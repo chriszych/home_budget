@@ -67,7 +67,7 @@ function registerRoutes(App $app)
     $app->get('/dropUser', [SettingsController::class, 'deleteUserData'])->add(AuthRequiredMiddleware::class);
     $app->get('/{balanceType:balanceAll|balanceCategory}/{viewMode:currentMonth|currentYear|lastMonth|customDates}', [BalanceController::class, 'balanceView'])->add(AuthRequiredMiddleware::class);
     // $app->get('/{balanceType}/customDates', [BalanceController::class, 'customDatesView'])->add(AuthRequiredMiddleware::class);
-    // $app->post('/{balanceType}/customDates', [BalanceController::class, 'updateCustomDates'])->add(AuthRequiredMiddleware::class);
+    $app->post('/{balanceType:balanceAll|balanceCategory}/customDates', [BalanceController::class, 'updateCustomDates'])->add(AuthRequiredMiddleware::class);
     // $app->get('/{balanceType}/currentYear', [BalanceController::class, 'updateCurrentYear'])->add(AuthRequiredMiddleware::class);
     // $app->get('/{balanceType}/lastMonth', [BalanceController::class, 'updateLastMonth'])->add(AuthRequiredMiddleware::class);
     // $app->get('/currentMonth', [BalanceController::class, 'updateCurrentMonth'])->add(AuthRequiredMiddleware::class);
