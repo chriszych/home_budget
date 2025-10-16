@@ -141,8 +141,18 @@ class BalanceService
 
     }
 
-    public function getUserTransactionsByCategories() : Array
+    public function getUserTransactionsByCategories(array $formData = []) : Array
     {
+        
+        if ((!empty($formData['startDate']))&&(!empty($formData['endDate'])))
+        {
+        $this -> firstCurrentMonthDay = date('d-m-Y', strtotime($formData['startDate']));
+        $this -> lastCurrentMonthDay = date('d-m-Y', strtotime($formData['endDate']));
+        $this -> sqlMonthLowLimit = "{$formData['startDate']}:00"; 
+        $this -> sqlMonthHiLimit = "{$formData['endDate']}:00";
+        }
+        
+        
         $resultExp = $this->db->query(
             "SELECT SUM(exp_amount) AS total_amount, exp_cat_name 
             FROM expense 

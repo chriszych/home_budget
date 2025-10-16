@@ -76,13 +76,35 @@ class BalanceController
             $balanceMode = "category";
         }
 
-        $this->validatorService->validateBalanceDates($_POST);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->validatorService->validateBalanceDates($_POST);
+            $_SESSION['startDate'] = $_POST['startDate'];
+            $_SESSION['endDate'] = $_POST['endDate'];
+            if (str_starts_with($uri, '/balanceCategory')) {
+                $userTransactions = $this->balanceService->getUserTransactionsByCategories($_POST);
+            } else {
+                $userTransactions = $this->balanceService->getUserTransactions($_POST);
+            }
+        } else {
+            if (str_starts_with($uri, '/balanceCategory')) {
+                $userTransactions = $this->balanceService->getUserTransactionsByCategories([
+                    'startDate' => $_SESSION['startDate'],
+                    'endDate'=> $_SESSION['endDate']
+                ]);
+            } else {
+                $userTransactions = $this->balanceService->getUserTransactions([
+                    'startDate' => $_SESSION['startDate'],
+                    'endDate'=> $_SESSION['endDate']
+                    ]);
+            }
+        }
 
 
 
 
             $params = array_merge(
-            $this->balanceService->getUserTransactions($_POST),
+            //$this->balanceService->getUserTransactions($_POST),
+            $userTransactions,
             $this->balanceService->getChartResults(),
             [
                 'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
@@ -99,68 +121,68 @@ class BalanceController
         echo $this->view->render("balance.php", $params);
     }
 
-    public function updateCurrentYear()
-    {
-        $dateParams = $this->balanceService->updateCurrentYear();
+    // public function updateCurrentYear()
+    // {
+    //     $dateParams = $this->balanceService->updateCurrentYear();
             
-        $params = array_merge(
-            $this->balanceService->getUserTransactions(),
-            $this->balanceService->getChartResults(),
-            [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
-            ],
-            $this->balanceService->checkBalancePage()
-        );
+    //     $params = array_merge(
+    //         $this->balanceService->getUserTransactions(),
+    //         $this->balanceService->getChartResults(),
+    //         [
+    //             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+    //             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+    //         ],
+    //         $this->balanceService->checkBalancePage()
+    //     );
 
-        //test
-        $_SESSION['vievMode'] = "currentMonth";
-        //testEnd
+    //     //test
+    //     $_SESSION['vievMode'] = "currentMonth";
+    //     //testEnd
 
-        echo $this->view->render("balance.php", $params);
-    }
+    //     echo $this->view->render("balance.php", $params);
+    // }
 
-    public function updateLastMonth()
-    {
-        $dateParams = $this->balanceService->updateLastMonth();
+    // public function updateLastMonth()
+    // {
+    //     $dateParams = $this->balanceService->updateLastMonth();
             
-        $params = array_merge(
-            $this->balanceService->getUserTransactions(),
-            $this->balanceService->getChartResults(),
-            [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
-            ],
-            $this->balanceService->checkBalancePage()
-        );
+    //     $params = array_merge(
+    //         $this->balanceService->getUserTransactions(),
+    //         $this->balanceService->getChartResults(),
+    //         [
+    //             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+    //             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+    //         ],
+    //         $this->balanceService->checkBalancePage()
+    //     );
 
-        //test
-        $_SESSION['vievMode'] = "lastMonth";
-        //testEnd
+    //     //test
+    //     $_SESSION['vievMode'] = "lastMonth";
+    //     //testEnd
 
-        echo $this->view->render("balance.php", $params);
-    }
+    //     echo $this->view->render("balance.php", $params);
+    // }
 
-    public function updateCurrentMonth()
-    {
-        $dateParams = $this->balanceService->updateCurrentMonth();
+    // public function updateCurrentMonth()
+    // {
+    //     $dateParams = $this->balanceService->updateCurrentMonth();
             
-        $params = array_merge(
-            $this->balanceService->getUserTransactions(),
-            $this->balanceService->getChartResults(),
-            [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
-            ],
-            $this->balanceService->checkBalancePage()
-        );
+    //     $params = array_merge(
+    //         $this->balanceService->getUserTransactions(),
+    //         $this->balanceService->getChartResults(),
+    //         [
+    //             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
+    //             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+    //         ],
+    //         $this->balanceService->checkBalancePage()
+    //     );
 
-        //test
-        $_SESSION['vievMode'] = "currenMonth";
-        //testEnd
+    //     //test
+    //     $_SESSION['vievMode'] = "currenMonth";
+    //     //testEnd
 
-        echo $this->view->render("balance.php", $params);
-    }
+    //     echo $this->view->render("balance.php", $params);
+    // }
 
     public function balanceView()
     {   
@@ -189,17 +211,18 @@ class BalanceController
 
             //$this->balanceService->updateCustomDates();
 
-            if ($_SESSION['viewMode'] != "customDates")
+            if (($_SESSION['viewMode'] != "customDates") || (isset($_SESSION['startDate']) && isset($_SESSION['endDate'])))
             {
                 echo $this->view->render("./balance/customDates.php");
                 $_SESSION['viewMode'] = "customDates";
+                //$_SESSION['viewMode'] = "custom01";
                 return;
             } 
             else
             {
                 $this->updateCustomDates();
                 // echo $this->view->render("balance.php");
-                // return;
+                return;
             }
         }
         else {

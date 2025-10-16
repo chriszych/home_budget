@@ -25,7 +25,7 @@
           placeholder="<?= $now ?>" 
           name="startDate" 
           class="form-control rounded-3 <?= isset($errors['startDate']) ? 'border-danger':''?>" 
-          value="<?= e($oldFormData['startDate'] ?? $now) ?>"
+          value="<?= e($oldFormData['startDate'] ?? $_SESSION['startDate'] ?? $now) ?>"
         >
         <label for="registerFloatingLogin">Data od:</label>
           <?= formError($errors, 'startDate') ?>
@@ -40,7 +40,7 @@
           placeholder="<?= $now ?>" 
           name="endDate" 
           class="form-control rounded-3 <?= isset($errors['endDate']) ? 'border-danger':''?>" 
-          value="<?= e($oldFormData['endDate'] ?? $now) ?>"
+          value="<?= e($oldFormData['endDate'] ?? $_SESSION['endDate'] ?? $now) ?>"
         >
         <label for="registerFloatingLogin">Data do:</label>
           <?= formError($errors, 'endDate') ?>
