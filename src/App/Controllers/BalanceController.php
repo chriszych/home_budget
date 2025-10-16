@@ -21,12 +21,12 @@ class BalanceController
         private ValidatorService $validatorService
         )
     {
-        $_SESSION['vievMode'] = "CurrentMonth";
+        $_SESSION['viewMode'] = "CurrentMonth";
     }    
 
     public function balanceAllView()
     {   
-        $_SESSION['vievMode'] = "CurrentMonth";
+        $_SESSION['viewMode'] = "CurrentMonth";
 
         $params = array_merge(
             $this->balanceService->getUserTransactions(),
