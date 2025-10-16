@@ -70,10 +70,10 @@ class BalanceController
         $uri = $_SERVER['REQUEST_URI'];
 
         if (str_starts_with($uri, '/balanceAll')) {
-            $balanceMode = "detailed";
+            $balanceMode = "balanceAll";
         }
         elseif (str_starts_with($uri, '/balanceCategory')) {
-            $balanceMode = "category";
+            $balanceMode = "balanceCategory";
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -190,8 +190,10 @@ class BalanceController
        
         $_SESSION['vievMode'] = "currentMonth";
         $uri = $_SERVER['REQUEST_URI'];
+        $uriSegments = explode('/', trim($uri, '/'));
+        $currentBalanceMode = $uriSegments[0] ?? null;
 
-
+        //dd($_SESSION['lastBalanceMode'].$currentBalanceMode);
 
         if (str_contains($uri, '/currentMonth')) {
             $_SESSION['viewMode'] = "currentMonth";
@@ -211,7 +213,13 @@ class BalanceController
 
             //$this->balanceService->updateCustomDates();
 
-            if (($_SESSION['viewMode'] != "customDates") || (isset($_SESSION['startDate']) && isset($_SESSION['endDate'])))
+            if (
+                //(
+                ($_SESSION['viewMode'] != "customDates") 
+                || (isset($_SESSION['startDate']) && isset($_SESSION['endDate']))
+                //) 
+                //&&($currentBalanceMode != $_SESSION['lastBalanceMode'])
+                )
             {
                 echo $this->view->render("./balance/customDates.php");
                 $_SESSION['viewMode'] = "customDates";
@@ -232,11 +240,11 @@ class BalanceController
 
         if (str_starts_with($uri, '/balanceAll')) {
             $userTransactions = $this->balanceService->getUserTransactions();
-            $balanceMode = "detailed";
+            $balanceMode = "balanceAll";
         }
         elseif (str_starts_with($uri, '/balanceCategory')) {
             $userTransactions = $this->balanceService->getUserTransactionsByCategories();
-            $balanceMode = "category";
+            $balanceMode = "balanceCategory";
         }
         else {
             // $userTransactions = [];
@@ -257,6 +265,9 @@ class BalanceController
             ],
             $this->balanceService->checkBalancePage()
         );
+
+         $_SESSION['lastBalanceMode'] = $balanceMode;
+         
 
         echo $this->view->render("balance.php", $params);
 
