@@ -12,6 +12,12 @@ use App\Services\{
 };
 
 
+    //public $dateLowLimit; //$firstCurrentMonthDay;
+	//public $dateHiLimit; //$lastCurrentMonthDay;
+	//private $sqlDateHiLimit; //$sqlMonthHiLimit;
+	//private $sqlDateLowLimit; //$sqlMonthLowLimit;
+
+
 class BalanceController
 {
 
@@ -32,8 +38,8 @@ class BalanceController
             $this->balanceService->getUserTransactions(),
             $this->balanceService->getChartResults(),
             [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'dateLowLimit' => $this->balanceService->dateLowLimit,
+                'dateHiLimit' => $this->balanceService->dateHiLimit,
                 // 'viewMode' => $this->balanceViewMode
             ],
             $this->balanceService->checkBalancePage()
@@ -47,8 +53,8 @@ class BalanceController
             $this->balanceService->GetUserTransactionsByCategories(),
             $this->balanceService->getChartResults(),
             [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'dateLowLimit' => $this->balanceService->dateLowLimit,
+                'dateHiLimit' => $this->balanceService->dateHiLimit,
                 // 'viewMode' => $this->balanceViewMode
             ],
             $this->balanceService->checkBalancePage()
@@ -107,8 +113,8 @@ class BalanceController
             $userTransactions,
             $this->balanceService->getChartResults(),
             [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'dateLowLimit' => $this->balanceService->dateLowLimit,
+                'dateHiLimit' => $this->balanceService->dateHiLimit,
                 'balanceMode' => $balanceMode
             ],
             $this->balanceService->checkBalancePage()
@@ -129,8 +135,8 @@ class BalanceController
     //         $this->balanceService->getUserTransactions(),
     //         $this->balanceService->getChartResults(),
     //         [
-    //             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-    //             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+    //             'dateLowLimit' => $this->balanceService->dateLowLimit,
+    //             'dateHiLimit' => $this->balanceService->dateHiLimit
     //         ],
     //         $this->balanceService->checkBalancePage()
     //     );
@@ -150,8 +156,8 @@ class BalanceController
     //         $this->balanceService->getUserTransactions(),
     //         $this->balanceService->getChartResults(),
     //         [
-    //             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-    //             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+    //             'dateLowLimit' => $this->balanceService->dateLowLimit,
+    //             'dateHiLimit' => $this->balanceService->dateHiLimit
     //         ],
     //         $this->balanceService->checkBalancePage()
     //     );
@@ -171,8 +177,8 @@ class BalanceController
     //         $this->balanceService->getUserTransactions(),
     //         $this->balanceService->getChartResults(),
     //         [
-    //             'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-    //             'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay
+    //             'dateLowLimit' => $this->balanceService->dateLowLimit,
+    //             'dateHiLimit' => $this->balanceService->dateHiLimit
     //         ],
     //         $this->balanceService->checkBalancePage()
     //     );
@@ -259,8 +265,8 @@ class BalanceController
             //$this->balanceService->getUserTransactions(),
             $this->balanceService->getChartResults(),
             [
-                'firstCurrentMonthDay' => $this->balanceService->firstCurrentMonthDay,
-                'lastCurrentMonthDay' => $this->balanceService->lastCurrentMonthDay,
+                'dateLowLimit' => $this->balanceService->dateLowLimit,
+                'dateHiLimit' => $this->balanceService->dateHiLimit,
                 'balanceMode' => $balanceMode
             ],
             $this->balanceService->checkBalancePage()

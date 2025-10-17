@@ -1,3 +1,5 @@
+
+
    <div class="album py-3 bg-body-tertiary">
       <div class="container">
         <div class="row row-cols-xl-2 row-cols-xl-2 g-1">
@@ -8,7 +10,7 @@
                   
 				  <h3>Przychody według kategorii</h3>
           <!-- <h3>Przychody według kategorii <?= $viewMode ?></h3> -->
-				  <p>W okresie od <span class="fw-bold"><?= $firstCurrentMonthDay ?></span> do <span class="fw-bold"><?= $lastCurrentMonthDay ?></span></p>
+				  <p>W okresie od <span class="fw-bold"><?= $dateLowLimit ?></span> do <span class="fw-bold"><?= $dateHiLimit ?></span></p>
 				  
 				    <table class="table table-hover">
                     <thead>
@@ -51,7 +53,7 @@
               <div class="card-body">
                 <div class="container tableIncomes table-responsive">
                   <h3>Wydatki według kategorii</h3>
-                  <p>W okresie od <span class="fw-bold"><?= $firstCurrentMonthDay ?></span> do <span class="fw-bold"><?= $lastCurrentMonthDay ?></span></p>
+                  <p>W okresie od <span class="fw-bold"><?= $dateLowLimit ?></span> do <span class="fw-bold"><?= $dateHiLimit ?></span></p>
 
 					<table class="table table-hover">
                     <thead>

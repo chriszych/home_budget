@@ -9,18 +9,18 @@ use Framework\Database;
 class BalanceService
 {
 
-    public $firstCurrentMonthDay;
-	public $lastCurrentMonthDay;
-	private $sqlMonthHiLimit;
-	private $sqlMonthLowLimit;
+    public $dateLowLimit; //$firstCurrentMonthDay;
+	public $dateHiLimit; //$lastCurrentMonthDay;
+	private $sqlDateHiLimit; //$sqlMonthHiLimit;
+	private $sqlDateLowLimit; //$sqlMonthLowLimit;
     
     public function __construct(private Database $db)
     {
 
-    $this -> firstCurrentMonthDay = date('01-m-Y');
-	$this -> lastCurrentMonthDay = date('t-m-Y');
-	$this -> sqlMonthHiLimit = date('Y-m-t 23:59:59');
-	$this -> sqlMonthLowLimit = date('Y-m-01 00:00:00'); 
+    $this -> dateLowLimit = date('01-m-Y');
+	$this -> dateHiLimit = date('t-m-Y');
+	$this -> sqlDateHiLimit = date('Y-m-t 23:59:59');
+	$this -> sqlDateLowLimit = date('Y-m-01 00:00:00'); 
 
     }
 
@@ -35,8 +35,8 @@ class BalanceService
             ORDER BY total_amount DESC",
             [
                 'id_user' => $_SESSION['user'],
-                'low_limit' => $this -> sqlMonthLowLimit,
-                'hi_limit' => $this -> sqlMonthHiLimit
+                'low_limit' => $this -> sqlDateLowLimit,
+                'hi_limit' => $this -> sqlDateHiLimit
             ]
         )->findAll();
 
@@ -83,10 +83,10 @@ class BalanceService
 
         if ((!empty($formData['startDate']))&&(!empty($formData['endDate'])))
         {
-        $this -> firstCurrentMonthDay = date('d-m-Y', strtotime($formData['startDate']));
-        $this -> lastCurrentMonthDay = date('d-m-Y', strtotime($formData['endDate']));
-        $this -> sqlMonthLowLimit = "{$formData['startDate']}:00"; 
-        $this -> sqlMonthHiLimit = "{$formData['endDate']}:00";
+        $this -> dateLowLimit = date('d-m-Y', strtotime($formData['startDate']));
+        $this -> dateHiLimit = date('d-m-Y', strtotime($formData['endDate']));
+        $this -> sqlDateLowLimit = "{$formData['startDate']}:00"; 
+        $this -> sqlDateHiLimit = "{$formData['endDate']}:00";
         }
 
         $resultExp = $this->db->query(
@@ -101,8 +101,8 @@ class BalanceService
             ORDER BY exp_date",
             [
                 'id_user' => $_SESSION['user'],
-                'low_limit' => $this -> sqlMonthLowLimit,
-                'hi_limit' => $this -> sqlMonthHiLimit
+                'low_limit' => $this -> sqlDateLowLimit,
+                'hi_limit' => $this -> sqlDateHiLimit
             ] 
         )->findAll();
 
@@ -119,8 +119,8 @@ class BalanceService
             ORDER BY inc_date",
             [
                 'id_user' => $_SESSION['user'],
-                'low_limit' => $this -> sqlMonthLowLimit,
-                'hi_limit' => $this -> sqlMonthHiLimit
+                'low_limit' => $this -> sqlDateLowLimit,
+                'hi_limit' => $this -> sqlDateHiLimit
             ] 
         )->findAll();
 
@@ -146,10 +146,10 @@ class BalanceService
         
         if ((!empty($formData['startDate']))&&(!empty($formData['endDate'])))
         {
-        $this -> firstCurrentMonthDay = date('d-m-Y', strtotime($formData['startDate']));
-        $this -> lastCurrentMonthDay = date('d-m-Y', strtotime($formData['endDate']));
-        $this -> sqlMonthLowLimit = "{$formData['startDate']}:00"; 
-        $this -> sqlMonthHiLimit = "{$formData['endDate']}:00";
+        $this -> dateLowLimit = date('d-m-Y', strtotime($formData['startDate']));
+        $this -> dateHiLimit = date('d-m-Y', strtotime($formData['endDate']));
+        $this -> sqlDateLowLimit = "{$formData['startDate']}:00"; 
+        $this -> sqlDateHiLimit = "{$formData['endDate']}:00";
         }
         
         
@@ -161,8 +161,8 @@ class BalanceService
             GROUP BY exp_cat_name ORDER BY total_amount DESC",
             [
                 'id_user' => $_SESSION['user'],
-                'low_limit' => $this -> sqlMonthLowLimit,
-                'hi_limit' => $this -> sqlMonthHiLimit
+                'low_limit' => $this -> sqlDateLowLimit,
+                'hi_limit' => $this -> sqlDateHiLimit
             ]
         )->findAll();
 
@@ -175,8 +175,8 @@ class BalanceService
             ORDER BY total_amount DESC",
             [
                 'id_user' => $_SESSION['user'],
-                'low_limit' => $this -> sqlMonthLowLimit,
-                'hi_limit' => $this -> sqlMonthHiLimit
+                'low_limit' => $this -> sqlDateLowLimit,
+                'hi_limit' => $this -> sqlDateHiLimit
             ]
         )->findAll();
 
@@ -219,34 +219,34 @@ class BalanceService
 
     public function updateCurrentYear()
     {
-        $this -> firstCurrentMonthDay = date('01-01-Y');
-        $this -> lastCurrentMonthDay = date('t-12-Y');
-        $this -> sqlMonthHiLimit = date('Y-12-t 23:59:59');
-        $this -> sqlMonthLowLimit = date('Y-01-01 00:00:00'); 
+        $this -> dateLowLimit = date('01-01-Y');
+        $this -> dateHiLimit = date('t-12-Y');
+        $this -> sqlDateHiLimit = date('Y-12-t 23:59:59');
+        $this -> sqlDateLowLimit = date('Y-01-01 00:00:00'); 
     }
 
     public function updateLastMonth()
     {
-        $this -> firstCurrentMonthDay = date('01-m-Y', strtotime("-1 month"));
-        $this -> lastCurrentMonthDay = date('t-m-Y', strtotime("-1 month"));
-        $this -> sqlMonthHiLimit = date('Y-n-t 23:59:59', strtotime("-1 month"));
-        $this -> sqlMonthLowLimit = date('Y-n-01 00:00:00', strtotime("-1 month")); 
+        $this -> dateLowLimit = date('01-m-Y', strtotime("-1 month"));
+        $this -> dateHiLimit = date('t-m-Y', strtotime("-1 month"));
+        $this -> sqlDateHiLimit = date('Y-n-t 23:59:59', strtotime("-1 month"));
+        $this -> sqlDateLowLimit = date('Y-n-01 00:00:00', strtotime("-1 month")); 
     }
     
     public function updateCurrentMonth()
     {
-        $this -> firstCurrentMonthDay = date('01-m-Y');
-        $this -> lastCurrentMonthDay = date('t-m-Y');
-        $this -> sqlMonthHiLimit = date('Y-m-t 23:59:59');
-        $this -> sqlMonthLowLimit = date('Y-m-01 00:00:00'); 
+        $this -> dateLowLimit = date('01-m-Y');
+        $this -> dateHiLimit = date('t-m-Y');
+        $this -> sqlDateHiLimit = date('Y-m-t 23:59:59');
+        $this -> sqlDateLowLimit = date('Y-m-01 00:00:00'); 
     }
 
     // public function updateCustomDates()
     // {
-    //     $this -> firstCurrentMonthDay = date('01-m-Y');
-    //     $this -> lastCurrentMonthDay = date('t-m-Y');
-    //     $this -> sqlMonthHiLimit = date('Y-m-t 23:59:59');
-    //     $this -> sqlMonthLowLimit = date('Y-m-01 00:00:00'); 
+    //     $this -> dateLowLimit = date('01-m-Y');
+    //     $this -> dateHiLimit = date('t-m-Y');
+    //     $this -> sqlDateHiLimit = date('Y-m-t 23:59:59');
+    //     $this -> sqlDateLowLimit = date('Y-m-01 00:00:00'); 
     // }
 
     //updateLastMonth
