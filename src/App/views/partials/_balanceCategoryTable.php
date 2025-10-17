@@ -9,7 +9,6 @@
                 <div class="container tableExpenses table-responsive">
                   
 				  <h3>Przychody według kategorii</h3>
-          <!-- <h3>Przychody według kategorii <?= $viewMode ?></h3> -->
 				  <p>W okresie od <span class="fw-bold"><?= $dateLowLimit ?></span> do <span class="fw-bold"><?= $dateHiLimit ?></span></p>
 				  
 				    <table class="table table-hover">

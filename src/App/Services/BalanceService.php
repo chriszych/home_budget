@@ -240,17 +240,4 @@ class BalanceService
         $this -> sqlDateHiLimit = date('Y-m-t 23:59:59');
         $this -> sqlDateLowLimit = date('Y-m-01 00:00:00'); 
     }
-
-    // public function updateCustomDates()
-    // {
-    //     $this -> dateLowLimit = date('01-m-Y');
-    //     $this -> dateHiLimit = date('t-m-Y');
-    //     $this -> sqlDateHiLimit = date('Y-m-t 23:59:59');
-    //     $this -> sqlDateLowLimit = date('Y-m-01 00:00:00'); 
-    // }
-
-    //updateLastMonth
-
-
-
 }

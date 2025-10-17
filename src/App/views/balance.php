@@ -1,14 +1,9 @@
-
   <?php include $this->resolve("partials/_header.php"); ?>
 
   <!-- mainPageContent -->
   <section id="mainPageContent">
-  <!-- <php include $this->resolve("partials/_header.php"); ?> -->
 
     <section class="py-3 text-center container">
-
-  
-
       
       <?php include $this->resolve("partials/_balanceHeader.php"); ?>	
       
@@ -16,13 +11,10 @@
 	  
       <?php include $this->resolve("partials/_toggleButtons.php"); ?>
 
-
     </section>
 
     <section>
-      <!-- <= dd($balanceMode)?> -->
       <?php include $this->resolve("partials/_{$balanceMode}Table.php"); ?>
-
     </section>
 
     <section class="py-3 text-center container">

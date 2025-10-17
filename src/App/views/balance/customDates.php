@@ -1,11 +1,9 @@
   
 <?php include $this->resolve("partials/_header.php"); ?>
 
-<!-- mainPageContent -->
 <section id="mainPageContent">
 
 <section class="py-3 col-12 col-md-8 col-lg-5 text-center container">
-<!-- Subpage AddIncome -->
 
   <div class="text-start p-5 py-3 mb-2 border-bottom-0">
     <p class="fw-bold mb-0 fs-2">Podaj zakres dat: </p>

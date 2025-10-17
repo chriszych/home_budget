@@ -108,9 +108,7 @@ class UserService
         session_regenerate_id();
 
         $_SESSION['user'] = $user['id_user'];
-        //test
         $_SESSION['vievMode'] = "currentMonth";
-        //testEnd
     }
 
     public function logout()
