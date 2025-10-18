@@ -53,13 +53,6 @@ class App {
         return $this;
     }
 
-
-    public function patch(string $path, array $controller): App
-    {
-        $this->router->add('PATCH', $path, $controller);
-        return $this;
-    }
-
     public function setErrorHandler(array $controller)
     {
         $this->router->setErrorHandler($controller);

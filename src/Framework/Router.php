@@ -16,7 +16,10 @@ class Router
 
         $path = $this->normalizePath($path);
 
-        $regexPath = preg_replace('#{[^/]+}#', '([^/]+)', $path);
+        $regexPath = preg_replace_callback('#{([^/:]+)(?::([^/]+))?}#', function (array $matches) {
+            $pattern = $matches[2] ?? '[^/]+';
+            return "({$pattern})";
+        }, $path);
 
         $this->routes[] = [
             'path' => $path,
@@ -51,8 +54,8 @@ class Router
 
             array_shift($paramValues);
 
-            preg_match_all('#{([^/]+)}#', $route['path'], $paramKeys);
-            
+            preg_match_all('#{([^/:]+)(?::[^/]+)?}#', $route['path'], $paramKeys);
+
             $paramKeys = $paramKeys[1];
 
             $params = array_combine($paramKeys, $paramValues);
