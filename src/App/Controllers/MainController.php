@@ -26,10 +26,12 @@ class MainController
 
     public function mainView()
     {   
-        
+       $dateRange = $this->balanceService->getSqlDateRange('current-month');
+
         $params = array_merge(
             $this->userService->getLoggedUserData(),
-            $this->balanceService->GetUserTransactionsByCategories()
+            //$this->balanceService->GetUserTransactionsByCategories()
+            $this->balanceService->getTransactionsData('balanceCategory', $dateRange)
         );
         
         echo $this->view->render("main.php", $params);
