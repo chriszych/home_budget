@@ -1,7 +1,6 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
   
-<!-- userEditPage -->
 <main id="registerPage">
 
   <div class="py-3 col-12 col-md-8 col-lg-5 text-center container">

@@ -9,12 +9,12 @@
           <img src="./pics/05main.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="450" height="300" loading="lazy">
         </div>
         <div class="col-lg-6 text-center">
-          <p class="lead display-6 fw-bold text-center">Odzyskaj kontrolę nad domowymi finansami!</p>
+          <p class="lead display-6 fw-bold text-center">Get control of your personal finances!</p>
           <br><br>
-          <p class="lead text-center">Nad domowymi finansami da się a nawet trzeba zapanować. Zarządzanie domowymi finansami daje spokój ducha oraz wymierne korzyści. <br>Nigdy więcej sytuacji, gdy pięniądze się rozchodzą a kwota na Twoim koncie ciągle maleje. <br><br>Aplikacja została opracowana po to aby skatalogować oraz zsumować domowe przychody i wydatki. <br>Zrób to razem z nami za pomocą łatwego i intuicyjnego narzędzia online, które jest bezpieczne i zawsze dostępne dla Ciebie, na Twoim komputerze, laptopie, tablecie czy telefonie. <br><br>Zaczynamy? <br><br></p>
+          <p class="lead text-center">You can, and indeed you must, gain control over your home finances. Managing your household finances provides peace of mind and tangible benefits <br>Never again face the situation where your money disappears and the balance in your account is constantly shrinking. <br><br>The application has been developed to itemize and total your household income and expenses. <br>Do it with us using an easy and intuitive online tool that is secure and always available to you, on your desktop, laptop, tablet, or phone. <br><br>Shall we start? <br><br></p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <a href="./login" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-5" role="button">Zaloguj się!</a>
-            <a href="./register" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-5" role="button">Zarejestruj się!</a>
+            <a href="./login" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-5" role="button">Log in!</a>
+            <a href="./register" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-5" role="button">Register!</a>
           </div>
         </div>
       </div>

@@ -8,15 +8,15 @@
               <div class="card-body">
                 <div class="container tableExpenses table-responsive">
                   
-				  <h3>Przychody według kategorii</h3>
-				  <p>W okresie od <span class="fw-bold"><?= $sqlDataLow ?></span> do <span class="fw-bold"><?= $sqlDataHi ?></span></p>
+				  <h3>Income by Category</h3>
+				  <p>For the period from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 				  
 				    <table class="table table-hover">
                     <thead>
                      <tr>
-                        <th class="text-center px-1">Nr.</th>
-						<th class="px-1">Kategoria</th>
-                       <th class="text-center pe-1">Kwota</th>
+                        <th class="text-center px-1">No.</th>
+						<th class="px-1">Category</th>
+                       <th class="text-center pe-1">Amount</th>
                        
                       </tr>
                     </thead>
@@ -34,7 +34,7 @@
                     <tfoot>
                       <tr>
                         <th></th>
-                        <th class="text-center">Suma: </th>
+                        <th class="text-center">Total: </th>
 						<th class="text-end pe-1 text-nowrap"><?= number_format($incSum, 2, ',','') ?></th>
                         <th></th>
                         <th></th>
@@ -51,15 +51,15 @@
             <div class="card shadow-sm">
               <div class="card-body">
                 <div class="container tableIncomes table-responsive">
-                  <h3>Wydatki według kategorii</h3>
-                  <p>W okresie od <span class="fw-bold"><?= $sqlDataLow ?></span> do <span class="fw-bold"><?= $sqlDataHi ?></span></p>
+                  <h3>Expenses by Category</h3>
+                  <p>For the period from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 
 					<table class="table table-hover">
                     <thead>
                       <tr>
-                        <th class="text-center px-1">Nr.</th>
-						<th class="px-1">Kategoria</th>
-                        <th class="text-center pe-1">Kwota</th>
+                        <th class="text-center px-1">No.</th>
+						<th class="px-1">Category</th>
+                        <th class="text-center pe-1">Amount</th>
                       </tr>
                     </thead>
 					
@@ -76,7 +76,7 @@
                     <tfoot>
                       <tr>
                        <th></th>
-                       <th class="text-center">Suma: </th>
+                       <th class="text-center">Total:</th>
 					   <th class="text-end pe-1 text-nowrap"><?= number_format($expSum, 2, ',','') ?></th>
                        <th></th>
                        <th></th>

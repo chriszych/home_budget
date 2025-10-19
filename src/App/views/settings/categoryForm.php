@@ -30,11 +30,11 @@
       </div>
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button" type="submit">Zapisz</button>
+        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button" type="submit">Save</button>
         <?php 
           $listPath = 'list' . ucfirst($fieldName);
         ?>
-        <a href="../<?= $listPath ?>" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-0 mb-0" role="button">Anuluj</a>
+        <a href="../<?= $listPath ?>" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-0 mb-0" role="button">Cancel</a>
       </div>
     </form>
   </div>

@@ -35,19 +35,19 @@ class SettingsController
 
     public function infoView(array $params = [])
     {
-    $message = $params['message'] ?? 'Zmiany zapisane pomyślnie!';
+    $message = $params['message'] ?? 'Changes saved successfully!';
     $link = $params['link'] ?? './settings';
 
         echo $this->view->render("settings/displayInfo.php",
         [
-            'message'=>$message,
-            'link'=>$link
+            'message'   =>$message,
+            'link'      =>$link
         ]);
     }
 
     public function confirmView()
     {   
-        $message = 'Czy na pewno chcesz usunać użytkownika <br> i wszystkie jego dane?';
+        $message = 'Are you sure you want to delete your account <br> and all associated data?';
         $link = './dropUser';
 
         echo $this->view->render("settings/confirm.php",
@@ -61,8 +61,8 @@ class SettingsController
     {
             $this->infoView(
             [
-                'message'=>"Hasło zostało zmienione.",
-                'link'=>"./settings"
+                'message'   =>"Password changed successfully.",
+                'link'      =>"./settings"
             ]
         );
     }
@@ -71,8 +71,8 @@ class SettingsController
     {
             $this->infoView(
             [
-                'message'=>"Dane użytkownika zostały zapisane.",
-                'link'=>"./settings"
+                'message'   =>"User data saved.",
+                'link'      =>"./settings"
             ]
         );
     }
@@ -108,7 +108,7 @@ class SettingsController
         $userId = $this->getUserId();
         $categoryId = (int)($routeParams['category'] ?? 0);
         
-        $title = $categoryId > 0 ? 'Edytuj wybraną kategorię' : 'Dodaj nową kategorię';
+        $title = $categoryId > 0 ? 'Edit selected category' : 'Add new category';
         $categoryValue = '';
 
         if ($categoryId > 0) {
@@ -188,7 +188,7 @@ class SettingsController
     public function listIncomeView()
     {   
         $params = [
-            'title'                     => 'Kategorie przychodów', 
+            'title'                     => 'Income categories', 
             'addLink'                   => './addIncomeCategory', 
             'editBaseLink'              => './editIncomeCategory/', 
             'deleteAction'              => '/deleteIncomeCategory',
@@ -201,7 +201,7 @@ class SettingsController
 
     public function addIncomeView()
     {   
-        $this->renderCategoryFormView('income', 'incomeCategory', 'Nazwa kategorii przychodów');
+        $this->renderCategoryFormView('income', 'incomeCategory', 'Income category name');
     }
 
     public function addIncomeCategory() 
@@ -214,7 +214,7 @@ class SettingsController
     }
     public function editIncomeView(array $id_cat)
     {   
-        $this->renderCategoryFormView('income', 'incomeCategory', 'Edytuj kategorię przychodów', $id_cat);
+        $this->renderCategoryFormView('income', 'incomeCategory', 'Edit income category', $id_cat);
     }
     public function editIncomeCategory(array $category)
     {
@@ -224,7 +224,7 @@ class SettingsController
     public function listExpenseView()
     {   
         $params = [
-            'title'                     => 'Kategorie wydatków', 
+            'title'                     => 'Expense categories', 
             'addLink'                   => './addExpenseCategory', 
             'editBaseLink'              => './editExpenseCategory/', 
             'deleteAction'              => '/deleteExpenseCategory',
@@ -237,7 +237,7 @@ class SettingsController
 
     public function addExpenseView()
     {   
-        $this->renderCategoryFormView('expense', 'expenseCategory', 'Nazwa kategorii wydatków');
+        $this->renderCategoryFormView('expense', 'expenseCategory', 'Expense category name');
     }
 
     public function addExpenseCategory() 
@@ -252,7 +252,7 @@ class SettingsController
 
     public function editExpenseView(array $id_cat)
     {   
-        $this->renderCategoryFormView('expense', 'expenseCategory', 'Edytuj kategorię wydatków', $id_cat);
+        $this->renderCategoryFormView('expense', 'expenseCategory', 'Edit expense category', $id_cat);
     }
 
     public function editExpenseCategory(array $category)
@@ -263,7 +263,7 @@ class SettingsController
     public function listPaymentView()
     {   
         $metadata = [
-            'title'                     => 'Metody płatności', 
+            'title'                     => 'Payment methods', 
             'addLink'                   => './addPaymentMethod', 
             'editBaseLink'              => './editPaymentMethod/', 
             'deleteAction'              => '/deletePaymentMethod',
@@ -276,7 +276,7 @@ class SettingsController
 
     public function addPaymentView()
     {   
-        $this->renderCategoryFormView('payment', 'paymentMethod', 'Nazwa metody płatności');
+        $this->renderCategoryFormView('payment', 'paymentMethod', 'Payment method name');
     }
 
     public function addPaymentMethod() 
@@ -291,7 +291,7 @@ class SettingsController
 
     public function editPaymentView(array $id_cat)
     {   
-        $this->renderCategoryFormView('payment', 'paymentMethod', 'Edytuj metodę płatności', $id_cat);
+        $this->renderCategoryFormView('payment', 'paymentMethod', 'Edit payment method', $id_cat);
     }
 
     public function editPaymentMethod(array $category)
@@ -339,7 +339,7 @@ class SettingsController
         
         $this->infoView(
             [
-                'message'   =>"Wszystkie dane użytkownika zostały usuniętę.",
+                'message'   =>"All your data has been permanently deleted.",
                 'link'      =>"./"
             ]
         );

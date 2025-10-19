@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./bilans.css">
 
     <script src="https://kit.fontawesome.com/f7c473a27a.js" crossorigin="anonymous"></script>
-    <title>Budżet domowy online</title>
+    <title>Personal online budget</title>
 
   <link rel="icon" href="./assets/favicon.png" type="image/png">
 
@@ -37,29 +37,29 @@
           <div class="collapse navbar-collapse d-lg-flex justify-content-between align-items-center" id="buttonNavbar">
            <div class="d-flex">
               <a class="house-hover d-flex justify-content-start align-items-center" href="/"><i class="fa-solid fa-house-chimney" style="color: #2861c3;"></i></a>
-              <h1><a class="navbar-brand col-lg-3 me-0" href="/">&nbsp;Budżet online</a></h1>
+              <h1><a class="navbar-brand col-lg-3 me-0" href="/">&nbsp;Online Budget</a></h1>
             </div>
 
               <ul class="navbar-nav col-lg-9 justify-content-center">
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../addExpense">Nowy wydatek</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../addExpense">New expense</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../addIncome">Nowy przychód</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../addIncome">New income</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../balanceAll/current-month">Aktualny bilans</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../balanceAll/current-month">Current Balance</a>
                 </li>              
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../settings">Ustawienia</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../settings">Settings</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../logout">Wyloguj</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../logout">Log out</a>
                 </li>
               </ul>
             <!-- </div> -->
@@ -69,13 +69,13 @@
         
         <div class="collapse navbar-collapse d-lg-flex" id="logNavbar">
           <a href="./"><i class="fa-solid fa-house-chimney" style="color: #2861c3;"></i></a>
-          <h1><a class="navbar-brand col-lg-3 me-0" href="./">&nbsp;Budżet online</a></h1>
+          <h1><a class="navbar-brand col-lg-3 me-0" href="./">&nbsp;Online Budget</a></h1>
           <ul class="navbar-nav col-lg-9 justify-content-lg-end">
             <li class="nav-item">
-              <a class="btn btn-lg btn-primary m-1" href="./login">Logowanie</a>
+              <a class="btn btn-lg btn-primary m-1" href="./login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-lg btn-outline-primary m-1" href="./register">Rejestracja</a>
+              <a class="btn btn-lg btn-outline-primary m-1" href="./register">Register</a>
             </li>
           </ul>
         </div>
@@ -83,14 +83,14 @@
         <?php endif; ?>
 
         </div>
-        <div class="dropdown">
+        <!-- <div class="dropdown">
           <button class="btn btn-outline-primary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown">
           <span class="fi fi-gb"></span></button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#"><span class="fi fi-pl"></span></a></li>
             <li><a class="dropdown-item" href="#"><span class="fi fi-gb"></span></a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
 
     </nav>

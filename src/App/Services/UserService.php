@@ -27,7 +27,7 @@ class UserService
         if ($emailCount > 0)
         
         {
-            throw new ValidationException(['email' => ['Adres e-mail już użyty!']]);
+            throw new ValidationException(['email' => ['Email address already in use!']]);
         }
     }
 
@@ -86,7 +86,7 @@ class UserService
             ]
         );
         
-        $_SESSION['welcomeText'] = "Konto utworzone! Możesz już się zalogować:";
+        $_SESSION['welcomeText'] = "Success! Your account is ready. Please log in:";
     }
 
     public function login(array $formData) 
@@ -102,7 +102,7 @@ class UserService
             );
 
         if(!$user || !$passwordMatch) {
-            throw new ValidationException(['password' => ['Błędne dane logowania']]);
+            throw new ValidationException(['password' => ['Invalid login credentials']]);
         }
 
         session_regenerate_id();
@@ -140,16 +140,16 @@ class UserService
         $firstname = $user['user_firstname'];
 			
 		if ($loggedDays == 0){
-			$loggedRegDate = "dzisiaj!";
+			$loggedRegDate = "today!";
 		} else {
-			$loggedRegDate = $interval->format('%y lat, %m miesięcy, %d dni');
+			$loggedRegDate = $interval->format('%y years, %m months, %d days');
 		}
 
         if ($loggedDays > 31) 
         {
-            $welcomeText = "Dziękujemy, doceniamy to!";
+            $welcomeText = "Thank you, we value that!";
         } else {
-            $welcomeText = "Miło Cię poznać!";
+            $welcomeText = "Nice to meet You!";
         }
 
         return

@@ -16,8 +16,8 @@
                        <thead>
                          <tr>
                            <th class="text-center px-1">Nr.</th>
-                           <th class="px-1">Kategoria</th>
-                           <th class="text-center pe-1">Akcja</th>
+                           <th class="px-1">Category</th>
+                           <th class="text-center pe-1">Action</th>
                          </tr>
                        </thead>
             
@@ -56,7 +56,7 @@
                        <tfoot>
                          <tr>
                            <th></th>
-                           <th class="text-center">Ilość Twoich kategorii: </th>
+                           <th class="text-center">Number of Your categories: </th>
                            <th class="text-center"><?= $categoryCount ?></th>      
              
                          </tr>
@@ -70,8 +70,8 @@
 
         
          <div class="d-grid gap-2 d-md-flex justify-content-center">
-           <a href="<?= $addLink ?>" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-primary my-2 mb-md-3" role="button">Dodaj kategorię</a>
-           <a href="../settings" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-2 mb-md-3" role="button">   Anuluj   </a>
+           <a href="<?= $addLink ?>" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-primary my-2 mb-md-3" role="button">Add new category</a>
+           <a href="../settings" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-2 mb-md-3" role="button">   Cancel   </a>
          </div>
 
 

@@ -34,13 +34,13 @@
             placeholder="Password"
             class="form-control rounded-3 <?= isset($errors['password']) ? 'border-danger' : '' ?>"
           >
-          <label for="LoginFloatingPass">Hasło</label>
+          <label for="LoginFloatingPass">Password</label>
           <?= formError($errors, 'password') ?>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 my-md-5 mb-md-5" role="button" type="submit">Zaloguj się</button>
-          <a href="./" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 my-md-5 mb-md-5" role="button">Anuluj</a>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 my-md-5 mb-md-5" role="button" type="submit">Log in</button>
+          <a href="./" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 my-md-5 mb-md-5" role="button">Cancel</a>
         </div>
 
       </form>

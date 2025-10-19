@@ -47,15 +47,15 @@ class BalanceService
     {
         if($balance > 0)
         {
-            $messageMain = "Gratulacje!!!";
-            $messageText = "Świetnie zarządzasz swoimi finansami :)";
+            $messageMain = "Congratulations!!!";
+            $messageText = "You're doing great with your finances :)";
             $messageColor = "text-success";
             $messageBackground = "text-bg-success border-success";
         }  
         else
         {
-            $messageMain = "Uwaga!!!";
-            $messageText = "Ostrożnie, wpadasz w długi :(";
+            $messageMain = "Caution!!!";
+            $messageText = "Be careful, you're going into debt :(";
             $messageColor = "text-danger";
             $messageBackground = "text-bg-danger border-danger";
         }

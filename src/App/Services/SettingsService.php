@@ -83,7 +83,7 @@ class SettingsService
         $count = $this->db->query($query, $sqlParams)->count();
 
         if ($count > 0) {
-            throw new ValidationException([$params['formKey'] => ['Kategoria jest już dodana!']]);
+            throw new ValidationException([$params['formKey'] => ['This category already exists!']]);
         }
     }    
 

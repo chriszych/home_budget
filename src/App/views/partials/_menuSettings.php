@@ -5,22 +5,22 @@
       <li class="nav-item">
         <a class="btn btn-lg <?= $currentViewmode === 'current-month' ? 'btn-primary' : 'btn-outline-primary' ?> m-2 w-100" 
         href="./current-month">
-        Aktualny miesiąc</a>
+        Current month</a>
       </li>
       <li class="nav-item">
         <a class="btn btn-lg <?= $currentViewmode === 'last-month' ? 'btn-primary' : 'btn-outline-primary' ?> m-2 w-100" 
         href="./last-month">
-        Poprzedni miesiąc</a>
+        Previous month</a>
       </li>
       <li class="nav-item">
         <a class="btn btn-lg <?= $currentViewmode === 'current-year' ? 'btn-primary' : 'btn-outline-primary' ?> m-2 w-100" 
         href="./current-year">
-        Aktualny rok</a>
+        Current year</a>
       </li>
       <li class="nav-item">
         <a class="btn btn-lg <?= $currentViewmode === 'custom' ? 'btn-primary' : 'btn-outline-primary' ?> m-2 w-100" 
         href="./custom">
-        Dowolna data</a>
+        Custom date</a>
       </li>
     </ul>
   </div>

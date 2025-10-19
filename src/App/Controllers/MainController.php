@@ -30,7 +30,6 @@ class MainController
 
         $params = array_merge(
             $this->userService->getLoggedUserData(),
-            //$this->balanceService->GetUserTransactionsByCategories()
             $this->balanceService->getTransactionsData('balanceCategory', $dateRange)
         );
         

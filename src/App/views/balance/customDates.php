@@ -6,7 +6,7 @@
 <section class="py-3 col-12 col-md-8 col-lg-5 text-center container">
 
   <div class="text-start p-5 py-3 mb-2 border-bottom-0">
-    <p class="fw-bold mb-0 fs-2">Podaj zakres dat: </p>
+    <p class="fw-bold mb-0 fs-2">Specify Date Range:</p>
   </div>
         
   <div class="p-5 py-0">
@@ -25,7 +25,7 @@
           class="form-control rounded-3 <?= isset($errors['startDate']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['startDate'] ?? $_SESSION['startDate'] ?? $now) ?>"
         >
-        <label for="registerFloatingLogin">Data od:</label>
+        <label for="registerFloatingLogin">From:</label>
           <?= formError($errors, 'startDate') ?>
       </div>
 
@@ -40,13 +40,13 @@
           class="form-control rounded-3 <?= isset($errors['endDate']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['endDate'] ?? $_SESSION['endDate'] ?? $now) ?>"
         >
-        <label for="registerFloatingLogin">Data do:</label>
+        <label for="registerFloatingLogin">To:</label>
           <?= formError($errors, 'endDate') ?>
       </div>
             		  
       <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 mb-md-5 mt-1 mt-md-3" type="submit">OK</button>
-          <a href="/<?= $balanceMode ?>/current-month" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 mb-md-5 mt-1 mt-md-3" role="button">Anuluj</a>
+          <a href="/<?= $balanceMode ?>/current-month" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-1 mb-1 mb-md-5 mt-1 mt-md-3" role="button">Cancel</a>
       </div>
     </form>
   </div>

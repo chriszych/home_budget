@@ -8,7 +8,7 @@
 <!-- Subpage AddExpense -->
 
   <div class="text-start p-5 py-3 mb-2 border-bottom-0">
-    <p class="fw-bold mb-0 fs-2">Dodaj nowy wydatek: </p>
+    <p class="fw-bold mb-0 fs-2">Add new expense: </p>
   </div>
         
   <div class="p-5 py-0">
@@ -31,7 +31,7 @@
           name="amount" 
           value="<?= e($oldFormData['amount'] ?? '') ?>"
         >
-        <label for="registerFloatingInput">Kwota w PLN:</label>
+        <label for="registerFloatingInput">Amount:</label>
         <?= formError($errors, 'amount') ?>
       </div>
 
@@ -46,7 +46,7 @@
           class="form-control rounded-3 <?= isset($errors['date']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['date'] ?? $now) ?>"
         >
-        <label for="registerFloatingLogin">Data:</label>
+        <label for="registerFloatingLogin">Date:</label>
         <?= formError($errors, 'date') ?>
       </div>
 
@@ -56,7 +56,7 @@
           name="paymentMethod" 
           class="form-control rounded-3 <?= isset($errors['paymentMethod']) ? 'border-danger':''?>"
         >
-          <option disabled selected>Wybierz sposób płatności...</option>
+          <option disabled selected>Select a payment method...</option>
 				     
           <?php foreach ($paymentMethods as $paymentMethod): ?> 
 				    <option value="<?= $paymentMethod['id_user_pay_met']; ?>" 
@@ -66,7 +66,7 @@
 				  <?php endforeach; ?>
 				
         </select>
-        <label for="expensePaymentMethod">Sposób płatności:</label>
+        <label for="expensePaymentMethod">Payment method:</label>
         <?= formError($errors, 'paymentMethod') ?>
       </div>
 
@@ -76,7 +76,7 @@
           name="category" 
           class="form-control rounded-3 <?= isset($errors['category']) ? 'border-danger':''?>"
         >
-          <option disabled selected>Wybierz kategorię...</option>
+          <option disabled selected>Select a category...</option>
 				
 				    <?php foreach ($expenseCategories as $expenseCategory): ?> 
 				      <option value="<?= $expenseCategory['id_exp_user_cat']; ?>" 
@@ -86,7 +86,7 @@
 				    <?php endforeach; ?>
 				
         </select>
-        <label for="expenseCategory">Kategoria:</label>
+        <label for="expenseCategory">Category:</label>
         <?= formError($errors, 'category') ?>
       </div>
 
@@ -99,7 +99,7 @@
           placeholder="dodaj komentarz (opcja)" 
           class="form-control rounded-3 <?= isset($errors['comment']) ? 'border-danger':''?>"
         ><?= $oldFormData['comment'] ?? '' ?></textarea>
-        <label for="expenseComment">Komentarz:</label>
+        <label for="expenseComment">Add your comment:</label>
         <?= formError($errors, 'comment') ?>
       </div>
            		  

@@ -8,7 +8,7 @@
 <!-- Subpage AddIncome -->
 
   <div class="text-start p-5 py-3 mb-2 border-bottom-0">
-    <p class="fw-bold mb-0 fs-2">Dodaj nowy przychód: </p>
+    <p class="fw-bold mb-0 fs-2">Add new income: </p>
   </div>
         
   <div class="p-5 py-0">
@@ -28,7 +28,7 @@
           class="form-control rounded-3 <?= isset($errors['amount']) ? 'border-danger' : ''?>" 
           value="<?= e($oldFormData['amount'] ?? '') ?>"
         >
-        <label for="registerFloatingInput">Kwota w PLN:</label>
+        <label for="registerFloatingInput">Amount:</label>
           <?= formError($errors, 'amount') ?>
       </div>
 
@@ -43,7 +43,7 @@
           class="form-control rounded-3 <?= isset($errors['date']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['date'] ?? $now) ?>"
         >
-        <label for="registerFloatingLogin">Data:</label>
+        <label for="registerFloatingLogin">Date:</label>
           <?= formError($errors, 'date') ?>
       </div>
 
@@ -53,7 +53,7 @@
           name="category" 
           class="form-control rounded-3 <?= isset($errors['category']) ? 'border-danger':''?>"
         >
-          <option disabled selected>Wybierz kategorię...</option>
+          <option disabled selected>Select a category...</option>
 				
 		        <?php foreach ($incomeCategories as $incomeCategory): ?> 
 	            <option value="<?= $incomeCategory['id_inc_user_cat'] ?>" 
@@ -64,7 +64,7 @@
 		        <?php endforeach; ?>
 				
         </select>
-        <label for="incomeCategory">Kategoria:</label>
+        <label for="incomeCategory">Category:</label>
           <?= formError($errors, 'category') ?>
       </div>
 
@@ -77,7 +77,7 @@
           placeholder="dodaj komentarz (opcja)" 
           class="form-control rounded-3 <?= isset($errors['comment']) ? 'border-danger':''?>"
         ><?= $oldFormData['comment'] ?? '' ?></textarea>
-        <label for="incomeComment">Komentarz:</label>
+        <label for="incomeComment">Add your comment:</label>
           <?= formError($errors, 'comment') ?>
       </div>
             		  

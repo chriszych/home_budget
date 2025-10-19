@@ -8,17 +8,17 @@
               <div class="card-body">
                 <div class="container tableExpenses table-responsive">
                   
-				  <h3>Przychody</h3>
-				  <p>W okresie od <span class="fw-bold"><?= $sqlDataLow ?></span> do <span class="fw-bold"><?= $sqlDataHi ?></span></p>
+				  <h3>Income</h3>
+				  <p>For the period from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 				  
 				    <table class="table table-hover">
                     <thead>
                      <tr>
-                        <th class="text-center px-1">Nr.</th>
-                       <th class="text-center px-1">Data</th>
-                       <th class="text-center pe-1">Kwota</th>
-                       <th class="px-1">Kategoria</th>
-                       <th class="px-1">Komentarz</th>
+                        <th class="text-center px-1">No.</th>
+                       <th class="text-center px-1">Date</th>
+                       <th class="text-center pe-1">Amount</th>
+                       <th class="px-1">Category</th>
+                       <th class="px-1">Comment</th>
                       </tr>
                     </thead>
 					
@@ -37,7 +37,7 @@
                     <tfoot>
                       <tr>
                         <th></th>
-                        <th class="text-center">Suma: </th>
+                        <th class="text-center">Total: </th>
 						<th class="text-end pe-1 text-nowrap"><?= number_format($incSum, 2, ',','') ?></th>
                         <th></th>
                         <th></th>
@@ -55,19 +55,19 @@
             <div class="card shadow-sm">
               <div class="card-body">
                 <div class="container tableIncomes table-responsive">
-                  <h3>Wydatki</h3>
-                  <p>W okresie od <span class="fw-bold"><?= $sqlDataLow ?></span> do <span class="fw-bold"><?= $sqlDataHi ?></span></p>
+                  <h3>Expenses</h3>
+                  <p>For the period from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 
 
 					<table class="table table-hover">
                     <thead>
                       <tr>
-                        <th class="text-center px-1">Nr.</th>
-                        <th class="text-center px-1">Data</th>
-                        <th class="text-center pe-1">Kwota</th>
-                        <th class="px-1">Kategoria</th>
-						<th class="px-1">Płatność</th>
-                        <th class="px-1">Komentarz</th>
+                        <th class="text-center px-1">No.</th>
+                        <th class="text-center px-1">Date</th>
+                        <th class="text-center pe-1">Amount</th>
+                        <th class="px-1">Category</th>
+						<th class="px-1">Payment</th>
+                        <th class="px-1">Comment</th>
                       </tr>
                     </thead>
 					
@@ -89,7 +89,7 @@
                     <tfoot>
                       <tr>
                        <th></th>
-                       <th class="text-center">Suma: </th>
+                       <th class="text-center">Total: </th>
 					   <th class="text-end pe-1 text-nowrap"><?= number_format($expSum, 2, ',','') ?></th>
                        <th></th>
                        <th></th>

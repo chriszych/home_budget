@@ -72,7 +72,7 @@
           },
           title: {
             display: true,
-            text: "Struktura Twoich wydatków:",
+            text: "Your Expense Breakdown:",
             font: {
               size: 18,
               family: 'Arial'

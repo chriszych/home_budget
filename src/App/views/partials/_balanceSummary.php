@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
           <h3><?= $messageText ?></h3>
-          <h3>Aktualne saldo: <span class="fw-bold <?= $messageColor ?>"><?= $balance ?> PLN</span></h3>
+          <h3>Current Balance: <span class="fw-bold <?= $messageColor ?>"><?= $balance ?> PLN</span></h3>
         </div>
       </div>
     </div>
