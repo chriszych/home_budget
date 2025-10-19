@@ -9,7 +9,7 @@
                 <div class="container tableExpenses table-responsive">
                   
 				  <h3>Przychody według kategorii</h3>
-				  <p>W okresie od <span class="fw-bold"><?= $dateLowLimit ?></span> do <span class="fw-bold"><?= $dateHiLimit ?></span></p>
+				  <p>W okresie od <span class="fw-bold"><?= $sqlDataLow ?></span> do <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 				  
 				    <table class="table table-hover">
                     <thead>
@@ -52,7 +52,7 @@
               <div class="card-body">
                 <div class="container tableIncomes table-responsive">
                   <h3>Wydatki według kategorii</h3>
-                  <p>W okresie od <span class="fw-bold"><?= $dateLowLimit ?></span> do <span class="fw-bold"><?= $dateHiLimit ?></span></p>
+                  <p>W okresie od <span class="fw-bold"><?= $sqlDataLow ?></span> do <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 
 					<table class="table table-hover">
                     <thead>

@@ -43,7 +43,6 @@
         <label for="registerFloatingLogin">Data do:</label>
           <?= formError($errors, 'endDate') ?>
       </div>
-
             		  
       <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-1 mb-1 mb-md-5 mt-1 mt-md-3" type="submit">OK</button>
