@@ -8,13 +8,9 @@ use Framework\Database;
 
 class TransactionService
 {
-   public $now;
-   public $nextYear;
    
     public function __construct(private Database $db)
     {
-        $this -> now = date('Y-m-d\TH:i');
-		$this -> nextYear = date('Y-m-d\TH:i', strtotime('+1 year'));
     }
 
    
@@ -38,9 +34,7 @@ class TransactionService
 
         return [
             'expenseCategories' => $userExpenseCategories, 
-            'paymentsMethods' => $userPaymentMethods,
-            'now' => $this -> now,
-            'nextYear'=> $this -> nextYear 
+            'paymentMethods' => $userPaymentMethods,
             ];
     }
 
@@ -71,15 +65,8 @@ class TransactionService
             [
                 'user' => $id
             ])->findAll();
-        
-        $count = count(array_column($userIncomeCategories, 'inc_cat_name'));
 
-        return [
-            'incomeCategories' => $userIncomeCategories,
-            'now' => $this -> now,
-            'nextYear'=> $this -> nextYear,
-            'incomeCategoryCount' => $count
-            ];
+        return $userIncomeCategories;
     }
 
     public function insertIncome(array $formData)
@@ -109,14 +96,7 @@ class TransactionService
                 'user' => $id
             ])->findAll();
         
-        $count = count(array_column($userExpenseCategories, 'exp_cat_name'));
-
-        return [
-            'expenseCategories' => $userExpenseCategories,
-            'now' => $this -> now,
-            'nextYear'=> $this -> nextYear,
-            'expenseCategoryCount' => $count
-            ];
+        return $userExpenseCategories;
     }
 
     public function getUserPaymentMethod(int $id) : array
@@ -129,13 +109,14 @@ class TransactionService
                 'user' => $id
             ])->findAll();
         
-        $count = count(array_column($userPaymentMethods, 'pay_met_name'));
+        return $userPaymentMethods;
+    }
 
+    public function getNowNextYear(): array
+    {
         return [
-            'paymentMethod' => $userPaymentMethods,
-            'now' => $this -> now,
-            'nextYear'=> $this -> nextYear,
-            'paymentMethodCount' => $count
-            ];
+            'now' => date('Y-m-d\TH:i'),
+            'nextYear' => date('Y-m-d\TH:i', strtotime('+1 year'))
+        ];
     }
 }

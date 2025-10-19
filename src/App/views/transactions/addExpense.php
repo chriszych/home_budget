@@ -58,10 +58,10 @@
         >
           <option disabled selected>Wybierz sposób płatności...</option>
 				     
-          <?php foreach ($paymentsMethods as $paymentsMethod): ?> 
-				    <option value="<?= $paymentsMethod['id_user_pay_met']; ?>" 
-				    <?= (isset($oldFormData['paymentMethod']) && $oldFormData['paymentMethod'] == $paymentsMethod['id_user_pay_met']) ? 'selected' : '' ?>>
-				    <?= $paymentsMethod['pay_met_name']; ?>
+          <?php foreach ($paymentMethods as $paymentMethod): ?> 
+				    <option value="<?= $paymentMethod['id_user_pay_met']; ?>" 
+				    <?= (isset($oldFormData['paymentMethod']) && $oldFormData['paymentMethod'] == $paymentMethod['id_user_pay_met']) ? 'selected' : '' ?>>
+				    <?= $paymentMethod['pay_met_name']; ?>
 				    </option> 
 				  <?php endforeach; ?>
 				

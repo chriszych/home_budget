@@ -18,219 +18,38 @@ class SettingsService
 
     }
 
-    public function isIncomeCategoryTaken(array $params)
-    {
-        $query =
-            "SELECT COUNT(*) 
-            FROM income_user_category 
-            WHERE id_user = :id_user 
-            AND inc_cat_name = :category";
-        
-        $newParams = [
-                'id_user' => $_SESSION['user'],
-                'category' => $params['incomeCategory']
-        ];
-
-        if (!empty($params['id_cat'])) 
-        {
-            $query .= " AND id_inc_user_cat != :id_cat";
-            $newParams['id_cat'] = $params['id_cat'];
-        }
-
-
-        $incomeCategoryCount = $this->db->query($query, $newParams)->count();
-
-        if ($incomeCategoryCount > 0)
-        
-        {
-            throw new ValidationException(['incomeCategory' => ['Kategoria jest już dodana!']]);
-        }
-    }
-
-    public function isIncomeCategoryUsed(int $id_cat)
-    {
-        $incomeCategoryCount = $this->db->query(
-            "SELECT COUNT(*) 
-            FROM income
-            WHERE id_user = :id_user 
-            AND id_inc_cat = :id_cat",
-            [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $id_cat
-            ]
-        )->count();
-
-        if ($incomeCategoryCount > 0)
-        
-        {
-            throw new ValidationException(['usedCategory' => ['Kategoria jest używana, nie może być usunięta!']]);
-        }
-    }
-
-    public function insertIncomeCategory(array $formData) 
-    {
-            $this->db->query(
-
-            "INSERT INTO income_user_category(id_user, inc_cat_name) 
-            VALUES (:id_user, :category)",
-            [
-                'id_user' => $_SESSION['user'],
-                'category' => $formData['incomeCategory']
-            ]
-        );
-    }
-
-    public function deleteIncomeCategory(array $formData)
-    {
-        $this->db->query(
-            "DELETE FROM income_user_category
-            WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",
-            [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $formData['id_cat']
-            ]
-        );
-        redirectTo('/listIncomeCategory');
-
-    }
-
     public function getUserIncomeCategory(string $id_category)
     {
         return $this->db->query(
             "SELECT inc_cat_name FROM income_user_category
-            WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",
+            WHERE id_user = :id_user 
+            AND id_inc_user_cat = :id_cat",
             [
                 'id_user' => $_SESSION['user'],
                 'id_cat' => $id_category
             ]
         )->find();
-    }
-
-    public function updateIncomeCategory(array $formData, int $id_cat)
-    {
-
-        $this->db->query(
-            "UPDATE income_user_category
-            SET inc_cat_name = :new_category
-            WHERE id_user = :id_user AND id_inc_user_cat = :id_cat",
-            [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $id_cat,
-                'new_category' => $formData['incomeCategory']
-            ]
-            
-        );
-    }
-
-    public function insertExpenseCategory(array $formData) 
-    {
-            $this->db->query(
-
-            "INSERT INTO expense_user_category(id_user, exp_cat_name) 
-            VALUES (:id_user, :category)",
-            [
-                'id_user' => $_SESSION['user'],
-                'category' => $formData['expenseCategory']
-            ]
-        );
-    }
-
-    public function isExpenseCategoryTaken(array $params)
-    {
-        $query =
-            "SELECT COUNT(*) 
-            FROM expense_user_category 
-            WHERE id_user = :id_user 
-            AND exp_cat_name = :category";
-        
-        $newParams = [
-                'id_user' => $_SESSION['user'],
-                'category' => $params['expenseCategory']
-        ];
-
-        if (!empty($params['id_cat'])) 
-        {
-            $query .= " AND id_exp_user_cat != :id_cat";
-            $newParams['id_cat'] = $params['id_cat'];
-        }
-
-
-        $expenseCategoryCount = $this->db->query($query, $newParams)->count();
-
-        if ($expenseCategoryCount > 0)
-        
-        {
-            throw new ValidationException(['expenseCategory' => ['Kategoria jest już dodana!']]);
-        }
-    }
-
-    public function isExpenseCategoryUsed(int $id_cat)
-    {
-        $expenseCategoryCount = $this->db->query(
-            "SELECT COUNT(*) 
-            FROM expense
-            WHERE id_user = :id_user 
-            AND id_exp_cat = :id_cat",
-            [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $id_cat
-            ]
-        )->count();
-
-        if ($expenseCategoryCount > 0)
-        
-        {
-            throw new ValidationException(['usedCategory' => ['Kategoria jest używana, nie może być usunięta!']]);
-        }
-    }
-    
-    public function deleteExpenseCategory(array $formData)
-    {
-        $this->db->query(
-            "DELETE FROM expense_user_category
-            WHERE id_user = :id_user AND id_exp_user_cat = :id_cat",
-            [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $formData['id_cat']
-            ]
-        );
-        redirectTo('/listExpenseCategory');
-
     }
 
     public function getUserExpenseCategory(string $id_category)
     {
         return $this->db->query(
             "SELECT exp_cat_name FROM expense_user_category
-            WHERE id_user = :id_user AND id_exp_user_cat = :id_cat",
+            WHERE id_user = :id_user 
+            AND id_exp_user_cat = :id_cat",
             [
                 'id_user' => $_SESSION['user'],
                 'id_cat' => $id_category
             ]
         )->find();
-    }
-
-    public function updateExpenseCategory(array $formData, int $id_cat)
-    {
-
-        $this->db->query(
-            "UPDATE expense_user_category
-            SET exp_cat_name = :new_category
-            WHERE id_user = :id_user AND id_exp_user_cat = :id_cat",
-            [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $id_cat,
-                'new_category' => $formData['expenseCategory']
-            ]
-            
-        );
     }
 
     public function getUserPaymentMethod(string $id_category)
     {
         return $this->db->query(
             "SELECT pay_met_name FROM payment_user_method
-            WHERE id_user = :id_user AND id_user_pay_met = :id_cat",
+            WHERE id_user = :id_user 
+            AND id_user_pay_met = :id_cat",
             [
                 'id_user' => $_SESSION['user'],
                 'id_cat' => $id_category
@@ -238,215 +57,392 @@ class SettingsService
         )->find();
     }
 
-    public function isPaymentMethodUsed(int $id_cat)
+    private function isCategoryNameTaken(int $userId, array $params)
     {
-        $paymentMethodCount = $this->db->query(
-            "SELECT COUNT(*) 
-            FROM expense
-            WHERE id_user = :id_user 
-            AND id_pay_met = :id_cat",
+        $categoryName = $params['formData'][$params['formKey']];
+        $sqlParams = [
+            'id_user'   => $userId, 
+            'category'  => $categoryName
+            ];
+
+        $table = $params['table'];
+        $nameColumn = $params['nameColumn'];
+        $categoryId = $params['categoryId'];
+        $idColumn = $params['idColumn'];
+        
+        $query = "SELECT COUNT(*) FROM {$table} 
+        WHERE id_user = :id_user 
+        AND {$nameColumn} = :category";
+
+
+        if ($categoryId > 0) {
+            $query .= " AND {$idColumn} != :id_cat";
+            $sqlParams['id_cat'] = $categoryId;
+        }
+
+        $count = $this->db->query($query, $sqlParams)->count();
+
+        if ($count > 0) {
+            throw new ValidationException([$params['formKey'] => ['Kategoria jest już dodana!']]);
+        }
+    }    
+
+    public function isIncomeCategoryTaken(array $formData, int $userId, int $categoryId = 0)
+    {
+    $params = [
+        'table'         => 'income_user_category',
+        'nameColumn'    => 'inc_cat_name',
+        'formKey'       => 'incomeCategory',
+        'idColumn'      => 'id_inc_user_cat',
+        'formData'      => $formData,
+        'categoryId'    => $categoryId
+    ];
+
+    $this->isCategoryNameTaken($userId, $params);
+    }
+
+    public function isExpenseCategoryTaken(array $formData, int $userId, int $categoryId = 0)
+    {
+    $params = [
+        'table'         => 'expense_user_category',
+        'nameColumn'    => 'exp_cat_name',
+        'formKey'       => 'expenseCategory',
+        'idColumn'      => 'id_exp_user_cat',
+        'formData'      => $formData,
+        'categoryId'    => $categoryId
+    ];
+
+    $this->isCategoryNameTaken($userId, $params);
+    }
+
+    public function isPaymentMethodTaken(array $formData, int $userId, int $categoryId = 0)
+    {
+    $params = [
+        'table'         => 'payment_user_method',
+        'nameColumn'    => 'pay_met_name',
+        'formKey'       => 'paymentMethod',
+        'idColumn'      => 'id_user_pay_met',
+        'formData'      => $formData,
+        'categoryId'    => $categoryId
+    ];
+
+    $this->isCategoryNameTaken($userId, $params);
+    }
+
+    public function isCategoryUsed(int $userId, array $params)
+    {
+        
+        $count = $this->db->query(
+            "SELECT COUNT(*) FROM {$params['transactionTable']} 
+            WHERE id_user = :id_user
+            AND {$params['foreignKey']} = :id_cat",
             [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $id_cat
+                'id_user' => $userId,
+                'id_cat' => $params['categoryId']
             ]
         )->count();
 
-        if ($paymentMethodCount > 0)
-        
-        {
+        if ($count > 0) {
             throw new ValidationException(['usedCategory' => ['Kategoria jest używana, nie może być usunięta!']]);
         }
     }
 
-    public function isPaymentMethodTaken(array $params)
-    {
-        $query =
-            "SELECT COUNT(*) 
-            FROM payment_user_method 
-            WHERE id_user = :id_user 
-            AND pay_met_name = :category";
-        
-        $newParams = [
-                'id_user' => $_SESSION['user'],
-                'category' => $params['paymentMethod']
-        ];
-
-        if (!empty($params['id_cat'])) 
-        {
-            $query .= " AND id_user_pay_met != :id_cat";
-            $newParams['id_cat'] = $params['id_cat'];
-        }
-
-
-        $paymentMethodCount = $this->db->query($query, $newParams)->count();
-
-        if ($paymentMethodCount > 0)
-        
-        {
-            throw new ValidationException(['paymentMethod' => ['Kategoria jest już dodana!']]);
-        }
-    }
-
-    public function updatePaymentMethod(array $formData, int $id_cat)
+    private function insertCategory(int $userId, array $params)
     {
 
+        $this->isCategoryNameTaken($userId, $params);
+        
         $this->db->query(
-            "UPDATE payment_user_method
-            SET pay_met_name = :new_category
-            WHERE id_user = :id_user AND id_user_pay_met = :id_cat",
-            [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $id_cat,
-                'new_category' => $formData['paymentMethod']
-            ]
-            
-        );
-    }
-
-    public function insertPaymentMethod(array $formData) 
-    {
-            $this->db->query(
-
-            "INSERT INTO payment_user_method(id_user, pay_met_name) 
+            "INSERT INTO {$params['table']}(id_user, {$params['nameColumn']}) 
             VALUES (:id_user, :category)",
             [
-                'id_user' => $_SESSION['user'],
-                'category' => $formData['paymentMethod']
+                'id_user' => $userId,
+                'category' => $params['formData'][$params['formKey']]
             ]
         );
     }
 
-    public function deletePaymentMethod(array $formData)
+    private function updateCategory(int $userId, array $params)
+    {
+        $this->isCategoryNameTaken($userId, $params);
+        
+        $this->db->query(
+            "UPDATE {$params['table']}
+            SET {$params['nameColumn']} = :new_category
+            WHERE id_user = :id_user 
+            AND {$params['idColumn']} = :id_cat",
+            [
+                'id_user' => $userId,
+                'id_cat' => $params['categoryId'],
+                'new_category' => $params['formData'][$params['formKey']]
+            ]
+        );
+    }
+
+    private function deleteCategory(int $userId, array $params)
     {
         $this->db->query(
-            "DELETE FROM payment_user_method
-            WHERE id_user = :id_user AND id_user_pay_met = :id_cat",
+            "DELETE FROM {$params['table']} 
+            WHERE id_user = :id_user 
+            AND {$params['idColumn']} = :id_cat",
             [
-                'id_user' => $_SESSION['user'],
-                'id_cat' => $formData['id_cat']
+                'id_user' => $userId,
+                'id_cat' => $params['categoryId']
             ]
         );
-        redirectTo('/listPaymentMethod');
-
     }
 
-    public function getUserData()
+    public function getCategory(int $userId, array $params)
     {
-            return $this->db->query(
-            "SELECT user_firstname, user_lastname, user_email FROM users
-            WHERE id_user = :id_user",
+        return $this->db->query(
+            "SELECT {$params['nameColumn']} FROM {$params['table']} 
+            WHERE id_user = :id_user 
+            AND {$params['idColumn']} = :id_cat",
             [
-                'id_user' => $_SESSION['user']
+                'id_user' => $userId,
+                'id_cat' => $params['categoryId']
             ]
         )->find();
     }
-
-    public function updateUser($formData)
+    //income category CRUD
+    public function insertIncomeCategory(array $formData, int $userId)
     {
-            $this->db->query(
+        $metadata = [
+            'table'         => 'income_user_category', 
+            'nameColumn'    => 'inc_cat_name', 
+            'formKey'       => 'incomeCategory', 
+            'formData'      => $formData
+        ];
+        $this->insertCategory($userId, $metadata);
+    }
 
+    public function updateIncomeCategory(array $formData, int $categoryId, int $userId): void
+    {
+        $metadata = [
+            'table'         => 'income_user_category', 
+            'nameColumn'    => 'inc_cat_name', 
+            'formKey'       => 'incomeCategory', 
+            'formData'      => $formData,
+            'idColumn'      => 'id_inc_user_cat', 
+            'categoryId'    => $categoryId
+        ];
+        $this->updateCategory($userId, $metadata);
+    }
+
+    public function deleteIncomeCategory(int $userId, int $categoryId)
+    {
+        $metadata = [
+            'table'         => 'income_user_category', 
+            'idColumn'      => 'id_inc_user_cat', 
+            'categoryId'    => $categoryId
+        ];
+        $this->deleteCategory($userId, $metadata);
+    }
+
+    public function isIncomeCategoryUsed(int $categoryId, int $userId)
+    {
+        $metadata = [
+            'transactionTable'  => 'income', 
+            'foreignKey'        => 'id_inc_cat', 
+            'categoryId'        => $categoryId
+        ];
+        $this->isCategoryUsed($userId, $metadata);
+    }
+    //expense category CRUD
+    public function insertExpenseCategory(array $formData, int $userId): void
+    {
+        $metadata = [
+            'table'         => 'expense_user_category', 
+            'nameColumn'    => 'exp_cat_name', 
+            'formKey'       => 'expenseCategory', 
+            'formData'      => $formData
+        ];
+        $this->insertCategory($userId, $metadata);
+    }
+
+    public function updateExpenseCategory(array $formData, int $categoryId, int $userId)
+    {
+        $metadata = [
+            'table'         => 'expense_user_category', 
+            'nameColumn'    => 'exp_cat_name', 
+            'formKey'       => 'expenseCategory', 
+            'formData'      => $formData,
+            'idColumn'      => 'id_exp_user_cat', 
+            'categoryId'    => $categoryId
+        ];
+        $this->updateCategory($userId, $metadata);
+    }
+
+    public function deleteExpenseCategory(int $userId, int $categoryId)
+    {
+        $metadata = [
+            'table'         => 'expense_user_category', 
+            'idColumn'      => 'id_exp_user_cat', 
+            'categoryId'    => $categoryId
+        ];
+        $this->deleteCategory($userId, $metadata);
+    }
+    
+    public function isExpenseCategoryUsed(int $categoryId, int $userId)
+    {
+        $metadata = [
+            'transactionTable'  => 'expense', 
+            'foreignKey'        => 'id_exp_cat', 
+            'categoryId'        => $categoryId
+        ];
+        $this->isCategoryUsed($userId, $metadata);
+    }
+    //payment method CRUD
+    public function insertPaymentMethod(array $formData, int $userId): void
+    {
+        $metadata = [
+            'table'         => 'payment_user_method', 
+            'nameColumn'    => 'pay_met_name', 
+            'formKey'       => 'paymentMethod', 
+            'formData'      => $formData
+        ];
+        $this->insertCategory($userId, $metadata);
+    }
+
+    public function updatePaymentMethod(array $formData, int $categoryId, int $userId)
+    {
+        $metadata = [
+            'table' => 'payment_user_method', 
+            'nameColumn' => 'pay_met_name', 
+            'formKey' => 'paymentMethod', 
+            'formData' => $formData,
+            'idColumn' => 'id_user_pay_met', 
+            'categoryId' => $categoryId
+        ];
+        $this->updateCategory($userId, $metadata);
+    }
+
+    public function deletePaymentMethod(int $userId, int $categoryId)
+    {
+        $metadata = [
+            'table' => 'payment_user_method', 
+            'idColumn' => 'id_user_pay_met', 
+            'categoryId' => $categoryId
+        ];
+        $this->deleteCategory($userId, $metadata);
+    }
+
+    public function isPaymentMethodUsed(int $categoryId, int $userId)
+    {
+        $metadata = [
+            'transactionTable'  => 'expense', 
+            'foreignKey'        => 'id_pay_met', 
+            'categoryId'        => $categoryId
+        ];
+        $this->isCategoryUsed($userId, $metadata);
+    }
+
+    public function getUserData(int $userId)
+    {
+        return $this->db->query(
+            "SELECT user_firstname, user_lastname, user_email FROM users 
+            WHERE id_user = :id_user",
+            [
+                'id_user' => $userId
+                ]
+        )->find();
+    }
+
+    public function isEmailUsed(string $email, int $userId)
+    {
+        $count = $this->db->query(
+            "SELECT COUNT(*) FROM users 
+            WHERE user_email = :email 
+            AND id_user != :id_user",
+            [
+                'email'     => $email, 
+                'id_user'   => $userId
+                ]
+        )->count();
+
+        if ($count > 0) {
+            throw new ValidationException(['email' => ['Adres e-mail jest już zajęty!']]);
+        }
+    }
+
+    public function updateUser(array $formData, int $userId)
+    {
+        $this->db->query(
             "UPDATE users
-            SET user_firstname = :firstname, user_lastname = :lastname, user_email = :email 
+            SET user_firstname = :firstname, user_lastname = :lastname, user_email = :email
             WHERE id_user = :id_user",
             [
                 'firstname' => $formData['firstname'],
                 'lastname' => $formData['lastname'],
                 'email' => $formData['email'],
-                'id_user' => $_SESSION['user']
+                'id_user' => $userId
             ]
         );
     }
 
-    public function isEmailUsed(string $email)
+    public function updatePassword(array $formData, int $userId)
     {
-        $emailCount = $this->db->query(
-            "SELECT COUNT(*) FROM users WHERE user_email = :email
-            AND id_user != :id_user",
-            [
-                'email' => $email,
-                'id_user' => $_SESSION['user']
-            ]
-        )->count();
-
-        if ($emailCount > 0)
-        
-        {
-            throw new ValidationException(['email' => ['Adres e-mail już użyty!']]);
-        }
-    }
-
-    public function updatePassword($formData)
-    {
-        $password = password_hash($formData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+        $password = password_hash($formData['password'], PASSWORD_DEFAULT);
 
         $this->db->query(
-
             "UPDATE users
             SET user_password = :password 
             WHERE id_user = :id_user",
             [
-                'password' => $password,
-                'id_user' => $_SESSION['user']
+                'password'  => $password,
+                'id_user'   => $userId
             ]
         );
-
     }
 
-    public function deleteUserTransactions()
+    public function deleteUserTransactions(int $userId)
     {
         $this->db->query(
-        "DELETE FROM income
-        WHERE id_user = :id_user",
-        [
-           'id_user' => $_SESSION['user']
-        ]
-        );
-
+            "DELETE FROM income 
+            WHERE id_user = :id_user", 
+            [
+                'id_user'   => $userId
+            ]);
+        
         $this->db->query(
-        "DELETE FROM expense
-        WHERE id_user = :id_user",
-        [
-           'id_user' => $_SESSION['user']
-        ]
-        );
+            "DELETE FROM expense 
+            WHERE id_user = :id_user", 
+            [
+                'id_user'   => $userId
+            ]);
     }
 
-    public function deleteUserCategories()
+    public function deleteUserCategories(int $userId)
     {
         $this->db->query(
-        "DELETE FROM payment_user_method
-        WHERE id_user = :id_user",
-        [
-           'id_user' => $_SESSION['user']
-        ]
-        );
-
+            "DELETE FROM payment_user_method 
+            WHERE id_user = :id_user", 
+            [
+                'id_user'   => $userId
+            ]);
+        
         $this->db->query(
-        "DELETE FROM income_user_category
-        WHERE id_user = :id_user",
-        [
-           'id_user' => $_SESSION['user']
-        ]
-        );
-
+            "DELETE FROM income_user_category 
+            WHERE id_user = :id_user", 
+            [
+                'id_user'   => $userId
+            ]);
+        
         $this->db->query(
-        "DELETE FROM expense_user_category
-        WHERE id_user = :id_user",
-        [
-           'id_user' => $_SESSION['user']
-        ]
-        );
+            "DELETE FROM expense_user_category 
+            WHERE id_user = :id_user", 
+            [
+                'id_user'   => $userId
+            ]);
     }
 
-    public function deleteCurrentUser()
+    public function deleteCurrentUser(int $userId)
     {
         $this->db->query(
-        "DELETE FROM users
-        WHERE id_user = :id_user",
-        [
-           'id_user' => $_SESSION['user']
-        ]
-        );
+            "DELETE FROM users 
+            WHERE id_user = :id_user", 
+            [
+                'id_user'   => $userId
+            ]);
     }
-
-}   
+}
