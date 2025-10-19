@@ -31,15 +31,13 @@ class BalanceController
         $userTransactions = $this->balanceService->getTransactionsData($type, $dateRange);
         $chartResults = $this->balanceService->getChartResults($dateRange['sqlDataLow'], $dateRange['sqlDataHi']);
 
-        $this->renderBalancePage(
-            array_merge(
-            $userTransactions, 
-            $chartResults, 
-            $formattedDates,
-            [
-            'balanceMode'       => $type,
-            'currentViewmode'   => $period,
-            ]));
+            $this->renderBalancePage([
+                ...$userTransactions, 
+                ...$chartResults, 
+                ...$formattedDates,
+                'balanceMode'     => $type,
+                'currentViewmode' => $period,
+            ]);
     }
 
     public function custom(array $params): void
@@ -58,15 +56,13 @@ class BalanceController
             $userTransactions = $this->balanceService->getTransactionsData($type, $dateRange);
             $chartResults = $this->balanceService->getChartResults($dateRange['sqlDataLow'], $dateRange['sqlDataHi']);
 
-            $this->renderBalancePage(
-                array_merge(
-                    $userTransactions, 
-                    $chartResults, 
-                    $formattedDates,
-                    [
-                        'balanceMode'       => $type,
-                        'currentViewmode'   => $period,
-                ]));
+            $this->renderBalancePage([
+                ...$userTransactions, 
+                ...$chartResults, 
+                ...$formattedDates,
+                'balanceMode'     => $type,
+                'currentViewmode' => $period,
+            ]);
             return;
         }
 
