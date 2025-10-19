@@ -27,6 +27,7 @@ class BalanceController
         $period = $params['period'];
 
         $dateRange = $this->balanceService->getSqlDateRange($period);
+        $formattedDates = $this->formatDates($dateRange);
         $userTransactions = $this->balanceService->getTransactionsData($type, $dateRange);
         $chartResults = $this->balanceService->getChartResults($dateRange['sqlDataLow'], $dateRange['sqlDataHi']);
 
@@ -34,9 +35,8 @@ class BalanceController
             array_merge(
             $userTransactions, 
             $chartResults, 
+            $formattedDates,
             [
-            'sqlDataLow'    => date('d-m-Y',strtotime($dateRange['sqlDataLow'])),
-            'sqlDataHi'     => date('d-m-Y',strtotime($dateRange['sqlDataHi'])),
             'balanceMode'       => $type,
             'currentViewmode'   => $period,
             ]));
@@ -54,6 +54,7 @@ class BalanceController
             $_SESSION['endDate'] = $_POST['endDate'];
 
             $dateRange = $this->balanceService->getSqlDateRange($period,$_POST);
+            $formattedDates = $this->formatDates($dateRange);
             $userTransactions = $this->balanceService->getTransactionsData($type, $dateRange);
             $chartResults = $this->balanceService->getChartResults($dateRange['sqlDataLow'], $dateRange['sqlDataHi']);
 
@@ -61,9 +62,8 @@ class BalanceController
                 array_merge(
                     $userTransactions, 
                     $chartResults, 
+                    $formattedDates,
                     [
-                        'sqlDataLow'        => date('d-m-Y',strtotime($dateRange['sqlDataLow'])),
-                        'sqlDataHi'         => date('d-m-Y',strtotime($dateRange['sqlDataHi'])),
                         'balanceMode'       => $type,
                         'currentViewmode'   => $period,
                 ]));
@@ -81,5 +81,13 @@ class BalanceController
     private function renderBalancePage(array $params): void
     {
         echo $this->view->render("balance.php", $params);
+    }
+
+    private function formatDates(array $dateRange): array
+    {
+    return [
+        'sqlDataLow' => date('d-m-Y', strtotime($dateRange['sqlDataLow'])),
+        'sqlDataHi'  => date('d-m-Y', strtotime($dateRange['sqlDataHi']))
+    ];
     }
 }
