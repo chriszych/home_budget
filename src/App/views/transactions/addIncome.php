@@ -19,7 +19,7 @@
       <div class="form-floating mb-3">
         <input 
           type="number" 
-          id="registerFloatingInput" 
+          id="amount" 
           placeholder="kwota w PLN" 
           step="0.01" 
           min="0.01" 
@@ -28,14 +28,14 @@
           class="form-control rounded-3 <?= isset($errors['amount']) ? 'border-danger' : ''?>" 
           value="<?= e($oldFormData['amount'] ?? '') ?>"
         >
-        <label for="registerFloatingInput">Amount:</label>
+        <label for="amount">Amount:</label>
           <?= formError($errors, 'amount') ?>
       </div>
 
       <div class="form-floating mb-3">
         <input 
           type="datetime-local" 
-          id="registerFloatingLogin" 
+          id="date" 
           min="2000-01-01T00:00" 
           max="<?= $nextYear ?>" 
           placeholder="<?= $now ?>" 
@@ -43,7 +43,7 @@
           class="form-control rounded-3 <?= isset($errors['date']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['date'] ?? $now) ?>"
         >
-        <label for="registerFloatingLogin">Date:</label>
+        <label for="date">Date:</label>
           <?= formError($errors, 'date') ?>
       </div>
 
@@ -74,10 +74,10 @@
           name="comment" 
           rows="2" 
           cols="30" 
-          placeholder="dodaj komentarz (opcja)" 
+          placeholder="Add your comment" 
           class="form-control rounded-3 <?= isset($errors['comment']) ? 'border-danger':''?>"
         ><?= $oldFormData['comment'] ?? '' ?></textarea>
-        <label for="incomeComment">Add your comment:</label>
+        <label for="incomeComment">Add your comment (optional):</label>
           <?= formError($errors, 'comment') ?>
       </div>
             		  

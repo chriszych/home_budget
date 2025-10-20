@@ -96,10 +96,10 @@
           name="comment" 
           rows="2" 
           cols="30" 
-          placeholder="dodaj komentarz (opcja)" 
+          placeholder="Add your comment" 
           class="form-control rounded-3 <?= isset($errors['comment']) ? 'border-danger':''?>"
         ><?= $oldFormData['comment'] ?? '' ?></textarea>
-        <label for="expenseComment">Add your comment:</label>
+        <label for="expenseComment">Add your comment (optional):</label>
         <?= formError($errors, 'comment') ?>
       </div>
            		  

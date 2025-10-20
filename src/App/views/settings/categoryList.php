@@ -56,7 +56,7 @@
                        <tfoot>
                          <tr>
                            <th></th>
-                           <th class="text-center">Number of Your categories: </th>
+                           <th class="text-center">Total categories: </th>
                            <th class="text-center"><?= $categoryCount ?></th>      
              
                          </tr>

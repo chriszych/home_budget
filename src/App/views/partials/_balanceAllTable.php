@@ -9,7 +9,7 @@
                 <div class="container tableExpenses table-responsive">
                   
 				  <h3>Income</h3>
-				  <p>For the period from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
+				  <p>from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 				  
 				    <table class="table table-hover">
                     <thead>
@@ -56,7 +56,7 @@
               <div class="card-body">
                 <div class="container tableIncomes table-responsive">
                   <h3>Expenses</h3>
-                  <p>For the period from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
+                  <p>from <span class="fw-bold"><?= $sqlDataLow ?></span> to <span class="fw-bold"><?= $sqlDataHi ?></span></p>
 
 
 					<table class="table table-hover">

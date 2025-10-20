@@ -20,7 +20,7 @@ class TransactionController
   {
     $userId = (int)$_SESSION['user'];
     $data = $this->transactionService->getUserExpensePayment($userId);
-    $timeData = $this->transactionService->getNowNextYear();
+    $timeData = getNowNextYear();
     $params = array_merge($data, $timeData); 
 
     echo $this->view->render("transactions/addExpense.php", $params);
@@ -38,7 +38,7 @@ class TransactionController
   {
     $userId = (int)$_SESSION['user']; 
     $incomeCategories = $this->transactionService->getUserIncomeCategory($userId);
-    $timeData = $this->transactionService->getNowNextYear();
+    $timeData = getNowNextYear();
     $params = [
         'incomeCategories' => $incomeCategories,
         ...$timeData
@@ -51,7 +51,7 @@ class TransactionController
     {
     $this->validatorService->validateIncome($_POST);
     $this->transactionService->insertIncome($_POST);
-    
+
     redirectTo('/addIncome');
     }
 

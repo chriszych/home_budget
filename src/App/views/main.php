@@ -16,7 +16,7 @@
             
           <div class="col-12 col-sm-10 col-lg-10">
 			      <p class="lead text-left pt-4">You've been with us since: <br><span class="fw-bold"><?= $loggedRegDate ?></span><br><?= $welcomeText ?></p>
-            <p class="lead text-left pt-4">Current Month's Finances::</p>
+            <p class="lead text-left pt-4">Current Month's Finances:</p>
             <div class="row">
               <div class="col-1">
                 <p class="lead text-start p-0">Income: </p>

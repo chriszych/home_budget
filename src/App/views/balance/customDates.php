@@ -17,7 +17,7 @@
       <div class="form-floating mb-3">
         <input 
           type="datetime-local" 
-          id="registerFloatingLogin" 
+          id="startDate" 
           min="2000-01-01T00:00" 
           max="<?= $nextYear ?>" 
           placeholder="<?= $now ?>" 
@@ -25,14 +25,14 @@
           class="form-control rounded-3 <?= isset($errors['startDate']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['startDate'] ?? $_SESSION['startDate'] ?? $now) ?>"
         >
-        <label for="registerFloatingLogin">From:</label>
+        <label for="startDate">From:</label>
           <?= formError($errors, 'startDate') ?>
       </div>
 
             <div class="form-floating mb-3">
         <input 
           type="datetime-local" 
-          id="registerFloatingLogin" 
+          id="endDate" 
           min="2000-01-01T00:00" 
           max="<?= $nextYear ?>" 
           placeholder="<?= $now ?>" 
@@ -40,7 +40,7 @@
           class="form-control rounded-3 <?= isset($errors['endDate']) ? 'border-danger':''?>" 
           value="<?= e($oldFormData['endDate'] ?? $_SESSION['endDate'] ?? $now) ?>"
         >
-        <label for="registerFloatingLogin">To:</label>
+        <label for="endDate">To:</label>
           <?= formError($errors, 'endDate') ?>
       </div>
             		  

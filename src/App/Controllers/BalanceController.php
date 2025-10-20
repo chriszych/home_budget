@@ -44,6 +44,7 @@ class BalanceController
     {
         $type = $params['type'];
         $period = $params['period'];
+        $timeData = getNowNextYear();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -60,6 +61,7 @@ class BalanceController
                 ...$userTransactions, 
                 ...$chartResults, 
                 ...$formattedDates,
+                ...$timeData,
                 'balanceMode'     => $type,
                 'currentViewmode' => $period,
             ]);
@@ -68,6 +70,7 @@ class BalanceController
 
         echo $this->view->render("./balance/customDates.php", 
             [
+                ...$timeData,
                 'balanceMode'       => $type,
                 'currentViewmode'   => $period,
                 ]);

@@ -112,11 +112,11 @@ class TransactionService
         return $userPaymentMethods;
     }
 
-    public function getNowNextYear(): array
-    {
-        return [
-            'now' => date('Y-m-d\TH:i'),
-            'nextYear' => date('Y-m-d\TH:i', strtotime('+1 year'))
-        ];
-    }
+    // public function getNowNextYear(): array
+    // {
+    //     return [
+    //         'now' => date('Y-m-d\TH:i'),
+    //         'nextYear' => date('Y-m-d\TH:i', strtotime('+1 year'))
+    //     ];
+    // }
 }

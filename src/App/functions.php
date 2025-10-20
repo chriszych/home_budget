@@ -37,3 +37,11 @@ function formError(array $errors, string $field): string
          . e($errors[$field][0])
          . '</div>';
 }
+
+function getNowNextYear(): array
+{
+    return [
+        'now' => date('Y-m-d\TH:i'),
+        'nextYear' => date('Y-m-d\TH:i', strtotime('+1 year'))
+    ];
+}
