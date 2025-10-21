@@ -72,7 +72,7 @@
           },
           title: {
             display: true,
-            text: "Your Expense Breakdown:",
+            text: "Your Expenses Breakdown:",
             font: {
               size: 18,
               family: 'Arial'

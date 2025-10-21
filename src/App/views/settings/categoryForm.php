@@ -9,33 +9,42 @@
         
   <div class="p-5 py-0">
 
-    <form method="POST" action="<?= $formAction ?>">
+    <!-- <form method="POST" action="<= $formAction ?>">
+      <php include $this->resolve("partials/_csrf.php"); ?> -->
+    <form method="POST" action="/categories/save/<?= $type ?>/<?= $categoryId ?? '' ?>">
       <?php include $this->resolve("partials/_csrf.php"); ?>
       
-      <?php if (isset($categoryId)): ?>
+      <!-- <php if (isset($categoryId)): ?>
         <input type="hidden" name="id_cat" value="<?= $categoryId ?>" />
-      <?php endif; ?>
+      <php endif; ?> -->
 
       <div class="form-floating mb-3">
         <input 
           type="text" 
           id="registerFloatingInput" 
           placeholder="<?= $label ?>" 
-          name="<?= $fieldName ?>" 
-          class="form-control rounded-3 <?= isset($errors[$fieldName]) ? 'border-danger' : ''?>" 
-          value="<?= e($oldFormData[$fieldName] ?? $categoryValue ?? '') ?>"
+          name="categoryName" 
+          class="form-control rounded-3 <?= isset($errors['categoryName']) ? 'border-danger' : ''?>" 
+          value="<?= e($oldFormData['categoryName'] ?? $categoryValue ?? '') ?>"
         >
         <label for="registerFloatingInput"><?= $label ?></label>
-        <?= formError($errors, $fieldName) ?>
+        <?= formError($errors, 'categoryName') ?>
       </div>
 
-      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+      <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center">
         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button" type="submit">Save</button>
-        <?php 
+        <php 
           $listPath = 'list' . ucfirst($fieldName);
         ?>
-        <a href="../<?= $listPath ?>" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-0 mb-0" role="button">Cancel</a>
-      </div>
+        <a href="../<= $listPath ?>" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-0 mb-0" role="button">Cancel</a>
+      </div> -->
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button" type="submit">Save</button>
+    
+    <a href="/categories/list/<?= htmlspecialchars($type) ?>" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-0 mb-0" role="button">Cancel</a>
+</div>
+
     </form>
   </div>
 </section>

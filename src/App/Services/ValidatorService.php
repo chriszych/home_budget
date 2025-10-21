@@ -92,26 +92,26 @@ class ValidatorService
         
     }
 
-    public function validateIncomeCategory(array $formData) 
-    {
-            $this->validator->validate($formData, [
-            'incomeCategory' => ['required']
-        ]);
-    }
+    // public function validateIncomeCategory(array $formData) 
+    // {
+    //         $this->validator->validate($formData, [
+    //         'incomeCategory' => ['required']
+    //     ]);
+    // }
 
-    public function validateExpenseCategory(array $formData) 
-    {
-            $this->validator->validate($formData, [
-            'expenseCategory' => ['required']
-        ]);
-    }
+    // public function validateExpenseCategory(array $formData) 
+    // {
+    //         $this->validator->validate($formData, [
+    //         'expenseCategory' => ['required']
+    //     ]);
+    // }
 
-    public function validatePaymentMethod(array $formData) 
-    {
-            $this->validator->validate($formData, [
-            'paymentMethod' => ['required']
-        ]);
-    }
+    // public function validatePaymentMethod(array $formData) 
+    // {
+    //         $this->validator->validate($formData, [
+    //         'paymentMethod' => ['required']
+    //     ]);
+    // }
 
     public function validateUserData(array $formData) 
     {
@@ -139,4 +139,20 @@ class ValidatorService
         'endDate' => ['required', 'dateFormat:Y-m-d\TG:i', 'laterDate:startDate']
         ]);
     }
+
+    public function validateCategoryName(array $formData): void
+{
+    // Sprawdza, czy klucz 'categoryName' istnieje w $_POST
+    //$errors = 
+    $this->validator->validate(
+        $formData,
+        [
+            'categoryName' => ['required', 'min:3', 'max:50'] // Używamy ujednoliconej nazwy klucza
+        ]
+    );
+
+    // if (count($errors)) {
+    //     throw new ValidationException($errors, $formData);
+    // }
+}
 }

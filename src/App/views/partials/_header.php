@@ -43,11 +43,11 @@
               <ul class="navbar-nav col-lg-9 justify-content-center">
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../addExpense">New expense</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../addTransaction/expense">New expense</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../addIncome">New income</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="../addTransaction/income">New income</a>
                 </li>
 
                 <li class="nav-item">
