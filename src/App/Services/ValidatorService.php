@@ -147,7 +147,8 @@ class ValidatorService
     $this->validator->validate(
         $formData,
         [
-            'categoryName' => ['required', 'min:3', 'max:50'] // Używamy ujednoliconej nazwy klucza
+            //'categoryName' => ['required', 'min:3', 'max:50'] // Używamy ujednoliconej nazwy klucza
+            'categoryName' => ['required']
         ]
     );
 

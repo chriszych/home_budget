@@ -29,12 +29,14 @@ function redirectTo(string $path)
 
 function formError(array $errors, string $field): string
 {
+    
     if (!isset($errors[$field])) {
         return '';
     }
-
+//dd($errors);
     return '<div class="text-danger fw-bold mt-2 p-2">'
          . e($errors[$field][0])
+         //. e($errors[$field])
          . '</div>';
 }
 

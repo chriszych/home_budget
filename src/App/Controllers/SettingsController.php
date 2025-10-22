@@ -79,10 +79,10 @@ class SettingsController
         ]);
     }
 
-    public function confirmView()
+    public function confirmView(array $params = [])
     {   
-        $message = 'Are you sure you want to delete your account <br> and all associated data?';
-        $link = './dropUser';
+        $message = $params['message'] ?? 'Are you sure you want to delete your account <br> and all associated data?';
+        $link = $params['link'] ??'./dropUser';
 
         echo $this->view->render("settings/confirm.php",
         [
@@ -468,8 +468,8 @@ class SettingsController
     };
 
     // Przekaż wszystkie potrzebne dane do widoku
-    //echo $this->view->render('settings/categoryForm.php', [
-    dd([
+    echo $this->view->render('settings/categoryForm.php', [
+    //dd([
         'title'         => $title,
         'type'          => $type,
         'categoryId'    => $categoryId,
@@ -481,17 +481,22 @@ class SettingsController
 
     public function handleCategoryForm(array $params)
     {
+     // dd($params);  
     $type = $params['type'];
     $map = $this->getCategoryMap($type);
     $userId = $this->getUserId();
+    //$categoryId = $params['id'] ?? null;
     $categoryId = $params['id'] ?? null;
+    //$isUpdate = !empty($params['id']); 
     $isUpdate = !empty($params['id']); 
+
+   // dd($params);
 
     //$this->validatorService->{$map['service_validate']}($_POST);
     $this->validatorService->validateCategoryName($_POST);
 
     //$this->settingsService->{$map['service_is_taken']}($_POST, $userId, $params['id'] ?? null);
-    $this->settingsService->isCategoryTakenGeneric($_POST, $userId, $categoryId, $map);
+    $this->settingsService->isCategoryTakenGeneric($_POST, $userId, (int)$categoryId, $map);
 
     // $method = $isUpdate ? $map['service_update'] : $map['service_insert'];
     // $this->settingsService->{$method}($_POST, $userId, $params['id'] ?? null); 
@@ -503,10 +508,11 @@ class SettingsController
         //$message = 'Kategoria dodana pomyślnie!';
     }
 
-    $this->infoView([
-        'message' => 'Saved sucessfully!',
-        'link'    => $map['redirect_list']
-        ]);
+    // $this->infoView([
+    //     'message' => 'Saved sucessfully!',
+    //     'link'    => $map['redirect_list']
+    //     ]);
+    redirectTo($map['redirect_list']);
     }
 
     public function handleCategoryDelete(array $params)
@@ -517,15 +523,16 @@ class SettingsController
     //$userId = $this->getUserId();
 
    //$this->settingsService->{$map['service_is_used']}($categoryId, $map);
-   $this->settingsService->isCategoryUsedGeneric($categoryId, $map);
+   $this->settingsService->isCategoryUsedGeneric((int)$categoryId, $map);
  
     //$this->settingsService->deleteCategoryGeneric($categoryId, $map['db_table'], $map['db_id_col']);
-    $this->settingsService->deleteCategoryGeneric($categoryId, $map);
+    $this->settingsService->deleteCategoryGeneric((int)$categoryId, $map);
 
-    $this->infoView([
-        'message' => 'Category sucessfully deleted!',
+    $this->confirmView([
+        'message' => 'Are you sure to delete this category?',
         'link'    => $map['redirect_list']
     ]);
+    redirectTo($map['redirect_list']);
     }
 
 }

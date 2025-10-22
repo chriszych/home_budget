@@ -493,7 +493,7 @@ class SettingsService
     $count = $this->db->query($query, $params)->count();
 
     if ($count > 0) {
-        throw new ValidationException(['categoryName' => 'Category name already exists']);
+        throw new ValidationException(['categoryName' => ['Category name already exists']]);
     }
 }
 
@@ -557,9 +557,11 @@ public function insertCategoryGeneric(array $formData, int $userId, array $map):
         
         $count = $this->db->query($query, ['id_cat' => $categoryId])->count();
         
+        //dd( ['usedCategory' => "Can't delete - this category is used."]);
+
         if ($count > 0) {
             throw new ValidationException(
-                ['usedCategory' => "Can't delete - this category is used."],
+                ['usedCategory' => ["Can't delete - this category is used."]],
                 //['id_cat' => $categoryId] // Wracamy z błędem walidacji na listę
             );
         }
