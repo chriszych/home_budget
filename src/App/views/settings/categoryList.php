@@ -104,7 +104,7 @@
                     <i class="fa-regular fa-pen-to-square fa-2xl"></i>
                 </a>
 
-                <form method="POST" action="/categories/delete/<?= htmlspecialchars($type) ?>/<?= htmlspecialchars($row[$idKey]) ?>" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                <form method="POST" action="/categories/delete/<?= htmlspecialchars($type) ?>/<?= htmlspecialchars($row[$idKey]) ?>">
                     <?php include $this->resolve("partials/_csrf.php"); ?>
                     <button type="submit" class="btn icon-trash-hover">
                         <i class="fa-regular fa-trash-can fa-2xl"></i>
