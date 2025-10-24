@@ -434,13 +434,15 @@ class SettingsController
     // echo $this->view->render('settings/categoryForm.php', [
     //     'map' => $map,
     // ]);
+    //dd($params);
+
     $type = $params['type'];
     $categoryId = isset($params['id']) ? (int)$params['id'] : null;
     $map = $this->getCategoryMap($type);
     $userId = $this->getUserId();
 
     if (!$map) {
-        redirectTo('/settings');
+        redirectTo('./settings');
     }
 
     $categoryValue = '';

@@ -20,6 +20,11 @@ class App {
     }
 
     public function run() {
+
+        //test
+        // ob_start();
+        //testEnd
+
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 
