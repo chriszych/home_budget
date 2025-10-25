@@ -43,23 +43,23 @@
               <ul class="navbar-nav col-lg-9 justify-content-center">
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../addTransaction/expense">New expense</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="/addTransaction/expense">New expense</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../addTransaction/income">New income</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="/addTransaction/income">New income</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../balanceAll/current-month">Current Balance</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="/balanceAll/current-month">Current Balance</a>
                 </li>              
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../settings">Settings</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="/settings">Settings</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-lg btn-outline-primary m-1" href="../logout">Log out</a>
+                  <a class="btn btn-lg btn-outline-primary m-1" href="/logout">Log out</a>
                 </li>
               </ul>
             <!-- </div> -->

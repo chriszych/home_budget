@@ -55,11 +55,11 @@
   <td class="text-end">
     <div class="d-flex justify-content-evenly">
         
-      <a href="/categories/form/<?= $type ?>/<?= $row[$idKey] ?>" class="btn icon-edit-hover">
+      <a href="/categories/form/<= $type ?>/<= $row[$idKey] ?>" class="btn icon-edit-hover">
           <i class="fa-regular fa-pen-to-square fa-2xl"></i>
       </a>
 
-      <form method="POST" action="/categories/delete/<?= $type ?>/<?= $row[$idKey] ?>">
+      <form method="POST" action="/categories/delete/<= $type ?>/<= $row[$idKey] ?>">
          <php include $this->resolve("partials/_csrf.php"); ?>
          <button type="submit" class="btn icon-trash-hover">
              <i class="fa-regular fa-trash-can fa-2xl"></i>
@@ -136,7 +136,7 @@
          <div class="d-grid gap-2 d-md-flex justify-content-center">
            <!-- <a href="<= $addLink ?>" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-primary my-2 mb-md-3" role="button">Add new category</a> -->
            <a href="/categories/form/<?= $type ?>" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-primary my-2 mb-md-3" role="button">Add new category</a>
-           <a href="../settings" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-2 mb-md-3" role="button">   Cancel   </a>
+           <a href="/settings" class="w-100 w-md-75 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-2 mb-md-3" role="button">   Cancel   </a>
          </div>
 
 
