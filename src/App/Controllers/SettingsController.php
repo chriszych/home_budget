@@ -525,16 +525,53 @@ class SettingsController
     //$userId = $this->getUserId();
 
    //$this->settingsService->{$map['service_is_used']}($categoryId, $map);
-   $this->settingsService->isCategoryUsedGeneric((int)$categoryId, $map);
+    $this->settingsService->isCategoryUsedGeneric((int)$categoryId, $map);
+
+//     $this->confirmView([
+//         'message' => 'Are you sure to delete this category?',
+//         'link'    => $map['redirect_list']
+//     ]);
+
+    //dd($map['redirect_list']);
  
     //$this->settingsService->deleteCategoryGeneric($categoryId, $map['db_table'], $map['db_id_col']);
     $this->settingsService->deleteCategoryGeneric((int)$categoryId, $map);
 
-    $this->confirmView([
-        'message' => 'Are you sure to delete this category?',
-        'link'    => $map['redirect_list']
-    ]);
+
     redirectTo($map['redirect_list']);
+
+    // $type = $params['type'];
+    // $categoryId = (int)$params['id'];
+    // $map = $this->getCategoryMap($type);
+    // //$params['confirm'] = 'no';
+
+    // // Jeśli nie ma potwierdzenia, pokaż widok z pytaniem
+    // if (!isset($params['confirm']) || $params['confirm'] !== 'yes') {
+    //     $this->confirmView([
+    //         'message' => 'Are you sure you want to delete this category?',
+    //         'link'    => '/delete-category?type=' . $type . '&id=' . $categoryId . '&confirm=yes'
+    //     ]);
+    //     return;
+    // }
+
+    // // Tu następuje faktyczne usunięcie
+    // $this->settingsService->deleteCategoryGeneric($categoryId, $map);
+    // redirectTo($map['redirect_list']);
     }
+
+//     public function checkBeforeCategoryDelete(array $params)
+//     {
+//     $type = $params['type'];
+//     $categoryId = $params['id'];
+//     $map = $this->getCategoryMap($type);
+
+//    $this->settingsService->isCategoryUsedGeneric((int)$categoryId, $map);
+
+//     $this->confirmView([
+//         'message' => 'Are you sure to delete this category?',
+//         'link'    => $map['redirect_list']
+//     ]);
+
+//     }
 
 }

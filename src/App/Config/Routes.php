@@ -77,5 +77,6 @@ function registerRoutes(App $app)
     $app->get("/categories/list/{type:{$categoryTypes}}", [SettingsController::class, 'categoryListView'])->add(AuthRequiredMiddleware::class);
     $app->get("/categories/form/{type:{$categoryTypes}}/{id:\d*}?", [SettingsController::class, 'categoryFormView'])->add(AuthRequiredMiddleware::class);
     $app->post("/categories/save/{type:{$categoryTypes}}/{id:\d*}?", [SettingsController::class, 'handleCategoryForm'])->add(AuthRequiredMiddleware::class);
+    //$app->post("/categories/delete/{type:{$categoryTypes}}/{id:\d+}", [SettingsController::class, 'confirmBeforeCategoryDelete'])->add(AuthRequiredMiddleware::class);
     $app->post("/categories/delete/{type:{$categoryTypes}}/{id:\d+}", [SettingsController::class, 'handleCategoryDelete'])->add(AuthRequiredMiddleware::class);
 }
