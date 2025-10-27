@@ -1,7 +1,6 @@
 
   <?php include $this->resolve("partials/_header.php"); ?>
 
-  <!-- mainPageContent -->
   <section id="mainPageContent">
 
     <div class="container d-flex flex-column justify-content-center align-items-center text-center py-4">

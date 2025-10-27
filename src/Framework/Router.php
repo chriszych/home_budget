@@ -14,67 +14,15 @@ class Router
     public function add(string $method, string $path, array $controller)
     {
 
-        // $path = $this->normalizePath($path);
+        $regexPath = preg_replace_callback('#/{([^/:]+)(?::([^/]+))?}(\?)?#', function ($matches) {
+        $paramName = $matches[1];
+        $pattern = $matches[2] ?? '[^/]+';
+        $isOptional = isset($matches[3]) && $matches[3] === '?';
 
-        // $regexPath = preg_replace_callback('#{([^/:]+)(?::([^/]+))?}#', function (array $matches) {
-        //     $pattern = $matches[2] ?? '[^/]+';
-        //     return "({$pattern})";
-        // }, $path);
-
-$regexPath = preg_replace_callback('#/{([^/:]+)(?::([^/]+))?}(\?)?#', function ($matches) {
-    $paramName = $matches[1];
-    $pattern = $matches[2] ?? '[^/]+';
-    $isOptional = isset($matches[3]) && $matches[3] === '?';
-
-    return $isOptional
-        ? "(?:/({$pattern}))?"
-        : "/({$pattern})";
-}, $path);
-
-// $regexPath = preg_replace_callback('#({[^}]+})#', function (array $matches) {
-//     $segment = $matches[1];
-
-//     $isOptional = str_ends_with($segment, '?');
-//     $segment = rtrim($segment, '?');
-
-//     preg_match('#{([^/:]+)(?::([^/]+))?}#', $segment, $parts);
-//     $pattern = $parts[2] ?? '[^/]+';
-
-//     return $isOptional
-//         ? "(?:/({$pattern}))?"  // cały segment opcjonalny
-//         : "/({$pattern})";
-// }, $path);
-
-
-//         $regexPath = preg_replace_callback('#({[^}]+})#', function (array $matches) {
-//     $segment = $matches[1];
-
-//     // Sprawdź, czy segment jest opcjonalny (np. kończy się ?)
-//     $isOptional = str_ends_with($segment, '?');
-
-//     // Usuń znak zapytania na końcu, jeśli występuje
-//     $segment = rtrim($segment, '?');
-
-//     // Dopasuj nazwę i wzorzec
-//     preg_match('#{([^/:]+)(?::([^/]+))?}#', $segment, $parts);
-//     $pattern = $parts[2] ?? '[^/]+';
-
-//     // Jeśli opcjonalny, opakuj cały segment w (?:/...)?
-//     return $isOptional
-//         ? "(?:/({$pattern}))?"
-//         : "/({$pattern})";
-// }, $path);
-
-
-        //test
-
-        // echo "<pre>";
-        // echo "Dodawana trasa: {$path}\n";
-        // echo "RegexPath: {$regexPath}\n";
-        // echo "</pre>";
-
-        //testEnd
-
+        return $isOptional
+            ? "(?:/({$pattern}))?"
+            : "/({$pattern})";
+        }, $path);
 
         $this->routes[] = [
             'path' => $path,
@@ -87,14 +35,8 @@ $regexPath = preg_replace_callback('#/{([^/:]+)(?::([^/]+))?}(\?)?#', function (
 
     private function normalizePath(string $path): string
     {
-        // $path = trim($path, '/');
-        // $path = "/{$path}/";
-        // $path = preg_replace('#[/]{2,}#', '/', $path);
-
-        //test
         $path = trim($path, '/');
         $path = "/{$path}";
-        //testEnd
 
         return $path;
     }
@@ -107,16 +49,6 @@ $regexPath = preg_replace_callback('#/{([^/:]+)(?::([^/]+))?}(\?)?#', function (
 
         foreach ($this->routes as $route) {
 
-                    //test
-//         echo "<pre>";
-// echo "Sprawdzana trasa: {$route['path']}\n";
-// echo "RegexPath: {$route['regexPath']}\n";
-// echo "Żądany path: {$path}\n";
-// echo "Metoda: {$method}\n";
-// echo "</pre>";
-        //testEnd
-
-
 
             if (
                 !preg_match("#^{$route['regexPath']}$#", $path, $paramValues) ||
@@ -128,28 +60,13 @@ $regexPath = preg_replace_callback('#/{([^/:]+)(?::([^/]+))?}(\?)?#', function (
             array_shift($paramValues);
 
 
-            //test
-
-//             echo "<pre>";
-// echo "Dopasowano trasę: {$route['path']}\n";
-// echo "Parametry: " . print_r($paramValues, true) . "\n";
-// echo "</pre>";
-
-            //testEnd
-
-
             preg_match_all('#{([^/:]+)(?::[^/]+)?}#', $route['path'], $paramKeys);
 
             $paramKeys = $paramKeys[1];
 
-            //test
-
             while (count($paramValues) < count($paramKeys)) {
             $paramValues[] = null;
             }
-
-            //testEnd
-
 
             $params = array_combine($paramKeys, $paramValues);
 
@@ -158,13 +75,6 @@ $regexPath = preg_replace_callback('#/{([^/:]+)(?::([^/]+))?}(\?)?#', function (
             $controllerInstance = $container ?
                 $container->resolve($class) :
                 new $class;
-            //Test
-
-            // echo "Matched route: {$route['path']}<br>";
-            // echo "Params: " . json_encode($params) . "<br>";
-
-            //endTest    
-
 
             $action = fn() => $controllerInstance->{$function}($params);
 

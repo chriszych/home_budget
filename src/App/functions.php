@@ -21,7 +21,6 @@ function e(mixed $value): string
 
 function redirectTo(string $path)
 {
-    error_log("Redirecting to: {$path}"); // 👈 zapis do logów
     header("location: {$path}");
     http_response_code(Http::REDIRECT_STATUS_CODE);
     exit;
@@ -33,10 +32,9 @@ function formError(array $errors, string $field): string
     if (!isset($errors[$field])) {
         return '';
     }
-//dd($errors);
+
     return '<div class="text-danger fw-bold mt-2 p-2">'
          . e($errors[$field][0])
-         //. e($errors[$field])
          . '</div>';
 }
 

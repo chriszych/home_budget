@@ -132,7 +132,7 @@ class BalanceService
             ]
         )->findAll();
 
-        } else { // balanceAll and default
+        } else {
             $resultExp = $this->db->query(
             "SELECT id_exp, exp_date, exp_amount, exp_cat_name, pay_met_name, exp_comment 
             FROM expense 

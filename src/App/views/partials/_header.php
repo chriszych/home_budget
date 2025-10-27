@@ -62,7 +62,6 @@
                   <a class="btn btn-lg btn-outline-primary m-1" href="/logout">Log out</a>
                 </li>
               </ul>
-            <!-- </div> -->
           </div>
 
         <?php else : ?>

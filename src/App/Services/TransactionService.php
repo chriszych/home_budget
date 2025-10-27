@@ -12,32 +12,7 @@ class TransactionService
     public function __construct(private Database $db)
     {
     }
-
-   
-    // public function getUserExpensePayment(int $id) : array
-    // {
-    //     $userExpenseCategories =  $this->db->query(
-    //         "SELECT id_exp_user_cat, exp_cat_name 
-    //         FROM expense_user_category 
-    //         WHERE id_user = :user",
-    //         [
-    //             'user' => $id
-    //         ])->findAll();
-
-    //     $userPaymentMethods = $this->db->query(
-    //         "SELECT id_user_pay_met, pay_met_name 
-    //         FROM payment_user_method 
-    //         WHERE id_user = :user",
-    //         [
-    //             'user' => $id
-    //         ])->findAll();
-
-    //     return [
-    //         'expenseCategories' => $userExpenseCategories, 
-    //         'paymentMethods' => $userPaymentMethods,
-    //         ];
-    // }
-
+ 
     public function insertExpense(array $formData)
     {
         $formattedDate = "{$formData['date']}:00";
@@ -56,19 +31,6 @@ class TransactionService
         );
     }
 
-    // public function getUserIncomeCategory(int $id) : array
-    // {
-    //     $userIncomeCategories =  $this->db->query(
-    //         "SELECT id_inc_user_cat, inc_cat_name 
-    //         FROM income_user_category 
-    //         WHERE id_user = :user",
-    //         [
-    //             'user' => $id
-    //         ])->findAll();
-
-    //     return $userIncomeCategories;
-    // }
-
     public function insertIncome(array $formData)
     {
         $formattedDate = "{$formData['date']}:00";
@@ -86,107 +48,42 @@ class TransactionService
         );
     }
 
-    // public function getUserExpenseCategory(int $id) : array
-    // {
-    //     $userExpenseCategories =  $this->db->query(
-    //         "SELECT id_exp_user_cat, exp_cat_name 
-    //         FROM expense_user_category 
-    //         WHERE id_user = :user",
-    //         [
-    //             'user' => $id
-    //         ])->findAll();
+    public function getFormDataForType(string $type, int $userId): array
+    {
+        if ($type === 'income') {
+
+            $incomeCategories = $this->db->query(
+                "SELECT id_inc_user_cat, inc_cat_name 
+                FROM income_user_category 
+                WHERE id_user = :user",
+                ['user' => $userId]
+            )->findAll();
+
+            return ['incomeCategories' => $incomeCategories];
         
-    //     return $userExpenseCategories;
-    // }
+        } elseif ($type === 'expense') {
 
-    // public function getUserPaymentMethod(int $id) : array
-    // {
-    //     $userPaymentMethods =  $this->db->query(
-    //         "SELECT id_user_pay_met, pay_met_name 
-    //         FROM payment_user_method 
-    //         WHERE id_user = :user",
-    //         [
-    //             'user' => $id
-    //         ])->findAll();
+            $expenseCategories = $this->db->query(
+                "SELECT id_exp_user_cat, exp_cat_name 
+                FROM expense_user_category 
+                WHERE id_user = :user",
+                ['user' => $userId]
+            )->findAll();
         
-    //     return $userPaymentMethods;
-    // }
+            $userPaymentMethods = $this->db->query(
+                "SELECT id_user_pay_met, pay_met_name 
+                FROM payment_user_method 
+                WHERE id_user = :user",
+                ['user' => $userId]
+            )->findAll();
 
-//     public function getUserCategoriesIncome(int $userId) : array
-// {
-//     // Stara metoda getUserIncomeCategory
-//     return $this->db->query(
-//         "SELECT id_inc_user_cat, inc_cat_name 
-//         FROM income_user_category 
-//         WHERE id_user = :user",
-//         ['user' => $userId]
-//     )->findAll();
-// }
-
-// public function getUserCategoriesExpense(int $userId) : array
-// {
-//     // Stara metoda getUserExpenseCategory
-//     // ...
-//             return $this->db->query(
-//             "SELECT id_exp_user_cat, exp_cat_name 
-//             FROM expense_user_category 
-//             WHERE id_user = :user",
-//             [
-//                 'user' => $userId
-//             ])->findAll();
-// }
-
-// public function getUserCategoriesPaymentMethod(int $userId) : array
-// {
-//     // Stara metoda getUserPaymentMethod
-//     // ...
-//            return  $this->db->query(
-//             "SELECT id_user_pay_met, pay_met_name 
-//             FROM payment_user_method 
-//             WHERE id_user = :user",
-//             [
-//                 'user' => $userId
-//             ])->findAll();
-// }
-
-public function getFormDataForType(string $type, int $userId): array
-{
-    if ($type === 'income') {
-        // Logika pobierania kategorii przychodów
-        $incomeCategories = $this->db->query(
-            "SELECT id_inc_user_cat, inc_cat_name 
-            FROM income_user_category 
-            WHERE id_user = :user",
-            ['user' => $userId]
-        )->findAll();
-
-        return ['incomeCategories' => $incomeCategories];
-        
-    } elseif ($type === 'expense') {
-        // Logika pobierania kategorii wydatków
-        $expenseCategories = $this->db->query(
-            "SELECT id_exp_user_cat, exp_cat_name 
-            FROM expense_user_category 
-            WHERE id_user = :user",
-            ['user' => $userId]
-        )->findAll();
-        
-        // Logika pobierania metod płatności
-        $userPaymentMethods = $this->db->query(
-            "SELECT id_user_pay_met, pay_met_name 
-            FROM payment_user_method 
-            WHERE id_user = :user",
-            ['user' => $userId]
-        )->findAll();
-
-        return [
-            'expenseCategories' => $expenseCategories, 
-            'paymentMethods' => $userPaymentMethods,
-        ];
-    }
+            return [
+                'expenseCategories' => $expenseCategories, 
+                'paymentMethods' => $userPaymentMethods,
+            ];
+        }
     
-    // Zabezpieczenie przed błędnym typem
-    throw new \InvalidArgumentException("Invalid transaction type provided: {$type}");
-}
+        throw new \InvalidArgumentException("Invalid transaction type provided: {$type}");
+    }
 
 }

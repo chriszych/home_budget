@@ -1,6 +1,5 @@
   <?php include $this->resolve("partials/_header.php"); ?>
 
-  <!-- mainPageContent -->
   <section id="mainPageContent">
 
     <section class="py-3 text-center container">

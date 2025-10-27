@@ -9,14 +9,8 @@
         
   <div class="p-5 py-0">
 
-    <!-- <form method="POST" action="<= $formAction ?>">
-      <php include $this->resolve("partials/_csrf.php"); ?> -->
     <form method="POST" action="/categories/save/<?= $type ?>/<?= $categoryId ?? '' ?>">
       <?php include $this->resolve("partials/_csrf.php"); ?>
-      
-      <!-- <php if (isset($categoryId)): ?>
-        <input type="hidden" name="id_cat" value="<?= $categoryId ?>" />
-      <php endif; ?> -->
 
       <div class="form-floating mb-3">
         <input 
@@ -30,14 +24,6 @@
         <label for="registerFloatingInput"><?= $label ?></label>
         <?= formError($errors, 'categoryName') ?>
       </div>
-
-      <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button" type="submit">Save</button>
-        <php 
-          $listPath = 'list' . ucfirst($fieldName);
-        ?>
-        <a href="../<= $listPath ?>" class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-secondary my-0 mb-0" role="button">Cancel</a>
-      </div> -->
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-center">
     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary my-0 mb-0" role="button" type="submit">Save</button>
