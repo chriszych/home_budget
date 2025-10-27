@@ -247,7 +247,6 @@ public function insertCategoryGeneric(array $formData, int $userId, array $map):
         $dbIdCol = $map['db_id_col'];
         $dbTable = $map['db_table'];
         $nameCol = $map['db_name_col'];
-        $categoryType = $map['category_type'];
         
         $query = "SELECT {$nameCol} 
                   FROM {$dbTable}
