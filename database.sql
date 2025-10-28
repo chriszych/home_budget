@@ -99,33 +99,33 @@ CREATE INDEX idx_payment_user_method_user ON payment_user_method(id_user);
 -- defaults
 
 INSERT INTO `default_income_category` (`id_inc_cat`, `inc_cat_name`) VALUES
-(1, 'Umowa o pracę'),
-(2, 'Umowa o dzieło'),
-(3, 'Sprzedaż Allegro'),
-(4, 'Sprzedaż Olx'),
-(5, 'Nadgodziny'),
-(6, 'Odsetki bankowe'),
-(7, 'Premia');
+(1, 'Employment contract'),
+(2, 'Task contract'),
+(3, 'Allegro sales'),
+(4, 'Olx sales'),
+(5, 'Overtime'),
+(6, 'Bank interest'),
+(7, 'Bonus');
 
 INSERT INTO `default_expense_category` (`id_exp_cat`, `exp_cat_name`) VALUES
-(1, 'Zakupy'),
+(1, 'Shopping'),
 (2, 'Sport'),
-(3, 'Rachunki'),
-(4, 'Rozrywka'),
-(5, 'Prezenty'),
-(6, 'Chemia'),
-(7, 'Jedzenie');
+(3, 'Bills'),
+(4, 'Entertainment'),
+(5, 'Gifts'),
+(6, 'Cleaning'),
+(7, 'Food');
 
 INSERT INTO `default_payment_method` (`id_pay_met`, `pay_met_name`) VALUES
-(1, 'Gotówka'),
-(2, 'Karta debetowa'),
-(3, 'Karta kredytowa'),
-(4, 'Blik'),
-(5, 'Przelew'),
-(6, 'Kupon'),
-(7, 'Bon'),
+(1, 'Cash'),
+(2, 'Debit card'),
+(3, 'Credit card'),
+(4, 'BLIK'),
+(5, 'Bank transfer'),
+(6, 'Coupon'),
+(7, 'Gift card'),
 (8, 'Voucher'),
-(9, 'Kod rabatowy');
+(9, 'Promo code');
 
 
 ALTER TABLE `default_expense_category`
